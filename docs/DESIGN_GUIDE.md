@@ -1,7 +1,7 @@
-# Design Guide - GameFund
+# Design Guide - GameFund (Tailwind CSS v4)
 
-**Version** : 1.0  
-**Framework CSS** : Tailwind CSS (pur, sans bibliothèque)  
+**Version** : 2.0 - Tailwind CSS v4  
+**Framework CSS** : Tailwind CSS v4 (CSS-first configuration)  
 **Optimisé pour** : Claude Code  
 **Style** : Minimaliste & Moderne
 
@@ -34,96 +34,87 @@ cd gamefund
 # Installer les dépendances
 npm install
 
-# Installer Tailwind CSS
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
+# Installer Tailwind CSS v4 (nouvelle méthode)
+npm install tailwindcss @tailwindcss/vite
 
-# Installer les icônes
-npm install lucide-react
-
-# Installer React Router
-npm install react-router-dom
-
-# Installer Supabase
-npm install @supabase/supabase-js
+# Installer les autres dépendances
+npm install lucide-react react-router-dom @supabase/supabase-js
 ```
 
-### 1.2 Configuration Tailwind
+### 1.2 Configuration Vite
 
-**`tailwind.config.js` :**
+**`vite.config.js` :**
 
 ```javascript
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
   ],
-  theme: {
-    extend: {
-      colors: {
-        // Couleurs principales (Purple Gaming)
-        primary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
-          200: '#e9d5ff',
-          300: '#d8b4fe',
-          400: '#c084fc',
-          500: '#a855f7',
-          600: '#9333ea',
-          700: '#7e22ce',
-          800: '#6b21a8',
-          900: '#581c87',
-        },
-        // Couleurs accent (Green Success)
-        accent: {
-          50: '#f0fdf4',
-          100: '#dcfce7',
-          200: '#bbf7d0',
-          300: '#86efac',
-          400: '#4ade80',
-          500: '#22c55e',
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
-        },
-        // États sémantiques
-        success: '#22c55e',
-        warning: '#f59e0b',
-        error: '#ef4444',
-        info: '#3b82f6',
-      },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-      },
-      borderRadius: {
-        '2xl': '1rem',
-        '3xl': '1.5rem',
-      },
-      boxShadow: {
-        'soft': '0 2px 8px rgba(0, 0, 0, 0.04)',
-        'medium': '0 4px 16px rgba(0, 0, 0, 0.08)',
-        'strong': '0 8px 24px rgba(0, 0, 0, 0.12)',
-      },
-    },
-  },
-  plugins: [],
-}
+})
 ```
+
+**Note importante :** Dans Tailwind v4, il n'y a **plus de fichier `tailwind.config.js`** ni de `postcss.config.js`. Toute la configuration se fait dans le CSS !
 
 ### 1.3 CSS de base
 
 **`src/index.css` :**
 
 ```css
+/* Import Tailwind CSS v4 */
+@import "tailwindcss";
+
 /* Import Inter font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-/* Import Tailwind directives */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Theme configuration - Palette GameFund */
+@theme {
+  /* Couleurs principales (Purple Gaming) */
+  --color-primary-50: #faf5ff;
+  --color-primary-100: #f3e8ff;
+  --color-primary-200: #e9d5ff;
+  --color-primary-300: #d8b4fe;
+  --color-primary-400: #c084fc;
+  --color-primary-500: #a855f7;
+  --color-primary-600: #9333ea;
+  --color-primary-700: #7e22ce;
+  --color-primary-800: #6b21a8;
+  --color-primary-900: #581c87;
+  
+  /* Couleurs accent (Green Success) */
+  --color-accent-50: #f0fdf4;
+  --color-accent-100: #dcfce7;
+  --color-accent-200: #bbf7d0;
+  --color-accent-300: #86efac;
+  --color-accent-400: #4ade80;
+  --color-accent-500: #22c55e;
+  --color-accent-600: #16a34a;
+  --color-accent-700: #15803d;
+  --color-accent-800: #166534;
+  --color-accent-900: #14532d;
+  
+  /* États sémantiques */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* Font family */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Border radius personnalisés */
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  
+  /* Shadows personnalisées */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
 
 /* Base styles */
 @layer base {
@@ -134,12 +125,6 @@ export default {
   
   * {
     @apply border-gray-200;
-  }
-  
-  /* Améliorer le rendu des polices */
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -162,7 +147,12 @@ export default {
   }
   
   .skeleton {
-    @apply bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200;
+    background: linear-gradient(
+      90deg, 
+      rgb(229 231 235) 0%, 
+      rgb(243 244 246) 50%, 
+      rgb(229 231 235) 100%
+    );
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
   }
@@ -177,8 +167,10 @@ export default {
   
   /* Text gradient effect */
   .text-gradient {
-    @apply bg-gradient-to-r from-primary-600 to-primary-400;
-    @apply bg-clip-text text-transparent;
+    background: linear-gradient(to right, #9333ea, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 }
 ```
@@ -349,14 +341,16 @@ src/
 
 ### 2.4 Border radius
 
+**Note Tailwind v4 :** Les noms ont changé !
+
 ```jsx
-<div className="rounded-sm">    // 2px
-<div className="rounded">       // 4px
+<div className="rounded-xs">    // 2px (était rounded-sm en v3)
+<div className="rounded-sm">    // 4px (était rounded en v3)
 <div className="rounded-md">    // 6px
 <div className="rounded-lg">    // 8px (défaut pour boutons/inputs)
 <div className="rounded-xl">    // 12px
-<div className="rounded-2xl">   // 16px (cards)
-<div className="rounded-3xl">   // 24px (très arrondi)
+<div className="rounded-2xl">   // 16px (cards) - custom dans @theme
+<div className="rounded-3xl">   // 24px (très arrondi) - custom dans @theme
 <div className="rounded-full">  // 9999px (cercles, pills)
 ```
 
@@ -378,11 +372,12 @@ src/
 <div className="shadow-none">   // Pas d'ombre
 ```
 
-**Custom shadows (dans tailwind.config.js) :**
-```jsx
-<div className="shadow-soft">    // Ombre douce personnalisée
-<div className="shadow-medium">  // Ombre moyenne personnalisée
-<div className="shadow-strong">  // Ombre forte personnalisée
+**Custom shadows (définies dans @theme) :**
+```css
+/* Utilisation avec arbitrary values */
+<div className="shadow-[var(--shadow-soft)]">
+<div className="shadow-[var(--shadow-medium)]">
+<div className="shadow-[var(--shadow-strong)]">
 ```
 
 ---
@@ -753,13 +748,6 @@ import { Mail, Lock, Search } from 'lucide-react'
   value="user@example.com"
   disabled
 />
-
-// Avec ref (pour React Hook Form)
-const emailRef = useRef()
-<Input 
-  ref={emailRef}
-  label="Email"
-/>
 ```
 
 ---
@@ -769,7 +757,7 @@ const emailRef = useRef()
 **`src/components/ui/Textarea.jsx` :**
 
 ```jsx
-import { forwardRef } from 'react'
+import { forwardRef, useState } from 'react'
 
 export const Textarea = forwardRef(({ 
   label, 
@@ -1057,7 +1045,7 @@ export function Skeleton({ className = '', variant = 'default' }) {
   const variants = {
     default: 'skeleton',
     circle: 'skeleton rounded-full',
-    text: 'skeleton h-4 rounded',
+    text: 'skeleton h-4 rounded-sm',
   }
   
   return <div className={`${variants[variant]} ${className}`} />
@@ -1347,6 +1335,8 @@ const statusOptions = [
 ---
 
 ## 4. Composants spécifiques GameFund
+
+*(Le code reste identique à la v3, seules les classes Tailwind changent légèrement)*
 
 ### 4.1 ProjectCard
 
@@ -2061,31 +2051,23 @@ xl:  1280px @media (min-width: 1280px)
 
 ## 10. Évolutions futures
 
-### 10.1 Ajouter shadcn/ui (si besoin)
+### 10.1 Mode sombre
 
-Si tu as besoin d'un composant complexe (Dialog sophistiqué, Command Palette, etc.) :
+Ajouter le support du mode sombre avec Tailwind v4 :
 
-```bash
-# Installer shadcn
-npx shadcn@latest init
+**Dans `src/index.css` :**
+```css
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f172a;
+    --color-foreground: #f1f5f9;
+  }
+}
 
-# Ajouter des composants spécifiques
-npx shadcn@latest add dialog
-npx shadcn@latest add command
-npx shadcn@latest add calendar
-```
-
-Les composants shadcn seront copiés dans `src/components/ui/` et tu pourras les modifier.
-
-### 10.2 Mode sombre
-
-Ajouter le support du mode sombre avec Tailwind :
-
-**`tailwind.config.js` :**
-```javascript
-module.exports = {
-  darkMode: 'class', // ou 'media'
-  // ...
+/* Ou avec data-theme */
+[data-theme='dark'] {
+  --color-background: #0f172a;
+  --color-foreground: #f1f5f9;
 }
 ```
 
@@ -2095,7 +2077,7 @@ module.exports = {
 <h1 className="text-gray-900 dark:text-white">
 ```
 
-### 10.3 Animations avancées
+### 10.2 Animations avancées
 
 Utiliser **Framer Motion** pour des animations complexes :
 
@@ -2119,14 +2101,32 @@ import { motion } from 'framer-motion'
 
 ## 📚 Ressources
 
-- **Tailwind CSS** : https://tailwindcss.com/docs
+- **Tailwind CSS v4** : https://tailwindcss.com/docs
+- **Migration v3 → v4** : https://tailwindcss.com/docs/upgrade-guide
 - **Lucide Icons** : https://lucide.dev/
-- **Tailwind UI** : https://tailwindui.com/ (inspiration)
 - **Headless UI** : https://headlessui.com/ (composants accessibles)
-- **shadcn/ui** : https://ui.shadcn.com/ (si besoin futur)
 
 ---
 
-**Fin du Design Guide**
+## 🚀 Changements importants v3 → v4
 
-Ce guide contient tout ce dont Claude Code a besoin pour créer une interface cohérente, moderne et maintenable pour GameFund ! 🎨
+### ✅ Ce qui a changé
+
+1. **Plus de `tailwind.config.js`** → Configuration dans CSS avec `@theme`
+2. **Installation** : `@tailwindcss/vite` au lieu de PostCSS
+3. **Import** : `@import "tailwindcss"` au lieu de `@tailwind base/components/utilities`
+4. **Autoprefixer intégré** : Plus besoin de l'installer
+5. **Radius renommés** : `rounded` → `rounded-sm`, `rounded-sm` → `rounded-xs`
+
+### ❌ Ce qui n'a PAS changé
+
+1. **Classes utilitaires** : Identiques (bg-, text-, p-, m-, etc.)
+2. **Responsive** : Mêmes breakpoints (sm:, md:, lg:, etc.)
+3. **Hover/Focus** : Mêmes modifiers
+4. **Composants** : Le code React reste identique
+
+---
+
+**Fin du Design Guide pour Tailwind CSS v4**
+
+Ce guide contient tout ce dont Claude Code a besoin pour créer une interface cohérente, moderne et maintenable pour GameFund avec Tailwind CSS v4 ! 🎨
