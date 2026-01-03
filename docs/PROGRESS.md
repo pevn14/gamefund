@@ -100,7 +100,7 @@
 - [x] Styles appliqués correctement
 
 ### 1.7 Git commit
-- [ ] Commit : `git commit -m "feat: configure Tailwind CSS v4 and project structure"`
+- [x] Commit : `git commit -m "feat: configuration Tailwind CSS v4 et structure du projet"`
 
 **Date de completion :** 02 janvier 2026
 
@@ -111,81 +111,71 @@
 **Objectif :** Créer tous les composants réutilisables du design system
 
 ### 2.1 Button
-- [ ] `src/components/ui/Button.jsx` créé
-- [ ] 6 variants testés (primary, secondary, outline, ghost, danger, success)
-- [ ] 3 sizes testés (sm, md, lg)
-- [ ] Loading state testé
-- [ ] Disabled state testé
-- [ ] Git commit : `git commit -m "feat: add Button component"`
+- [x] `src/components/ui/Button.jsx` créé
+- [x] 6 variants testés (primary, secondary, outline, ghost, danger, success)
+- [x] 3 sizes testés (sm, md, lg)
+- [x] Loading state testé
+- [x] Disabled state testé
 
 ### 2.2 Card
-- [ ] `src/components/ui/Card.jsx` créé
-- [ ] Sous-composants créés : CardImage, CardContent, CardFooter, CardTitle, CardDescription
-- [ ] Hover effect testé
-- [ ] Git commit : `git commit -m "feat: add Card component"`
+- [x] `src/components/ui/Card.jsx` créé
+- [x] Sous-composants créés : CardImage, CardContent, CardFooter, CardTitle, CardDescription
+- [x] Hover effect testé
 
 ### 2.3 Badge
-- [ ] `src/components/ui/Badge.jsx` créé
-- [ ] Variants de statuts testés (draft, active, completed, failed, cancelled, suspended)
-- [ ] Sizes testés
-- [ ] Git commit : `git commit -m "feat: add Badge component"`
+- [x] `src/components/ui/Badge.jsx` créé
+- [x] Variants de statuts testés (draft, active, completed, failed, cancelled, suspended)
+- [x] Sizes testés
 
 ### 2.4 Input
-- [ ] `src/components/ui/Input.jsx` créé
-- [ ] Label fonctionnel
-- [ ] Icône optionnelle testée
-- [ ] États error et helperText testés
-- [ ] ForwardRef implémenté (pour React Hook Form)
-- [ ] Git commit : `git commit -m "feat: add Input component"`
+- [x] `src/components/ui/Input.jsx` créé
+- [x] Label fonctionnel
+- [x] Icône optionnelle testée
+- [x] États error et helperText testés
+- [x] ForwardRef implémenté (pour React Hook Form)
 
 ### 2.5 Textarea
-- [ ] `src/components/ui/Textarea.jsx` créé
-- [ ] Compteur de caractères fonctionnel
-- [ ] MaxLength testé
-- [ ] Git commit : `git commit -m "feat: add Textarea component"`
+- [x] `src/components/ui/Textarea.jsx` créé
+- [x] Compteur de caractères fonctionnel
+- [x] MaxLength testé
 
 ### 2.6 ProgressBar
-- [ ] `src/components/ui/ProgressBar.jsx` créé
-- [ ] Animation shimmer fonctionnelle
-- [ ] Variants testés
-- [ ] Pourcentage > 100% géré
-- [ ] Git commit : `git commit -m "feat: add ProgressBar component"`
+- [x] `src/components/ui/ProgressBar.jsx` créé
+- [x] Animation shimmer fonctionnelle
+- [x] Variants testés
+- [x] Pourcentage > 100% géré
 
 ### 2.7 Avatar
-- [ ] `src/components/ui/Avatar.jsx` créé
-- [ ] Fallback avec initiales testé
-- [ ] Fallback avec icône testé
-- [ ] Différentes tailles testées
-- [ ] Git commit : `git commit -m "feat: add Avatar component"`
+- [x] `src/components/ui/Avatar.jsx` créé
+- [x] Fallback avec initiales testé
+- [x] Fallback avec icône testé
+- [x] Différentes tailles testées
 
 ### 2.8 Skeleton
-- [ ] `src/components/ui/Skeleton.jsx` créé
-- [ ] `SkeletonCard` créé
-- [ ] Animation loading testée
-- [ ] Git commit : `git commit -m "feat: add Skeleton component"`
+- [x] `src/components/ui/Skeleton.jsx` créé
+- [x] `SkeletonCard` créé
+- [x] Animation loading testée
 
 ### 2.9 Modal
-- [ ] `src/components/ui/Modal.jsx` créé
-- [ ] Fermeture avec Escape fonctionnelle
-- [ ] Fermeture avec backdrop fonctionnelle
-- [ ] Scroll body bloqué quand modal ouverte
-- [ ] Footer optionnel testé
-- [ ] Git commit : `git commit -m "feat: add Modal component"`
+- [x] `src/components/ui/Modal.jsx` créé
+- [x] Fermeture avec Escape fonctionnelle
+- [x] Fermeture avec backdrop fonctionnelle
+- [x] Scroll body bloqué quand modal ouverte
+- [x] Footer optionnel testé
 
 ### 2.10 Select
-- [ ] `src/components/ui/Select.jsx` créé
-- [ ] Icône chevron affichée
-- [ ] Options dynamiques testées
-- [ ] Git commit : `git commit -m "feat: add Select component"`
+- [x] `src/components/ui/Select.jsx` créé
+- [x] Icône chevron affichée
+- [x] Options dynamiques testées
 
 ### 2.11 Page de démo (optionnel)
-- [ ] `src/pages/ComponentsDemo.jsx` créé
-- [ ] Tous les composants visibles sur une page
+- [x] `src/pages/ComponentsDemo.jsx` créé
+- [x] Tous les composants visibles sur une page
 
 ### 2.12 Git commit final
-- [ ] Commit : `git commit -m "feat: complete UI base components (Phase 2)"`
+- [ ] Commit : `git commit -m "feat: ajout des composants UI de base (Phase 2)"`
 
-**Date de completion :** ___________
+**Date de completion :** 03 janvier 2026
 
 ---
 
