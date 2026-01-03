@@ -10,10 +10,10 @@
 
 | Phase | Statut | Progrès | Durée estimée | Durée réelle |
 |-------|--------|---------|---------------|--------------|
-| 0. Prérequis | ⏳ | 0% | 10 min | - |
-| 1. Setup & Config | ⏳ | 0% | 30 min | - |
-| 2. Composants UI | ⏳ | 0% | 2h | - |
-| 3. Layout | ⏳ | 0% | 30 min | - |
+| 0. Prérequis | ✅ | 100% | 10 min | - |
+| 1. Setup & Config | ✅ | 100% | 30 min | - |
+| 2. Composants UI | ✅ | 100% | 2h | - |
+| 3. Layout | ✅ | 100% | 30 min | - |
 | 4. Supabase | ⏳ | 0% | 1h | - |
 | 5. Auth Pages | ⏳ | 0% | 1h | - |
 | 6. Galerie Publique | ⏳ | 0% | 2h | - |
@@ -184,31 +184,31 @@
 **Objectif :** Créer les composants de structure (Header, Footer, Container)
 
 ### 3.1 Container
-- [ ] `src/components/layout/Container.jsx` créé
-- [ ] Différentes tailles testées (sm, default, lg, full)
-- [ ] Git commit : `git commit -m "feat: add Container component"`
+- [x] `src/components/layout/Container.jsx` créé
+- [x] Différentes tailles testées (sm, default, lg, full)
+- [x] Git commit : `git commit -m "feat: add Container component"`
 
 ### 3.2 Header
-- [ ] `src/components/layout/Header.jsx` créé
-- [ ] Logo affiché
-- [ ] Navigation basique affichée
-- [ ] Boutons auth affichés (Login/Signup)
-- [ ] Git commit : `git commit -m "feat: add Header component"`
+- [x] `src/components/layout/Header.jsx` créé
+- [x] Logo affiché
+- [x] Navigation basique affichée
+- [x] Boutons auth affichés (Login/Signup)
+- [x] Git commit : `git commit -m "feat: add Header component"`
 
 ### 3.3 Footer
-- [ ] `src/components/layout/Footer.jsx` créé
-- [ ] Liens fonctionnels
-- [ ] Icônes sociales affichées
-- [ ] Git commit : `git commit -m "feat: add Footer component"`
+- [x] `src/components/layout/Footer.jsx` créé
+- [x] Liens fonctionnels
+- [x] Icônes sociales affichées
+- [x] Git commit : `git commit -m "feat: add Footer component"`
 
 ### 3.4 Test layout complet
-- [ ] Header + Footer testés ensemble
-- [ ] Layout responsive vérifié
+- [x] Header + Footer testés ensemble
+- [x] Layout responsive vérifié
 
 ### 3.5 Git commit final
-- [ ] Commit : `git commit -m "feat: complete layout components (Phase 3)"`
+- [x] Commit : `git commit -m "feat: complete layout components (Phase 3)"`
 
-**Date de completion :** ___________
+**Date de completion :** 03 janvier 2026
 
 ---
 

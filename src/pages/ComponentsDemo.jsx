@@ -11,6 +11,8 @@ import { Skeleton, SkeletonCard } from '../components/ui/Skeleton'
 import { Modal } from '../components/ui/Modal'
 import { Select } from '../components/ui/Select'
 import { FilePicker } from '../components/ui/FilePicker'
+import { Header } from '../components/layout/Header'
+import { Footer } from '../components/layout/Footer'
 
 export default function ComponentsDemo() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -23,8 +25,10 @@ export default function ComponentsDemo() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <>
+      <Header />
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
@@ -380,5 +384,7 @@ export default function ComponentsDemo() {
         </section>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }
