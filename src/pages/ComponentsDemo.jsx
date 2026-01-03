@@ -10,9 +10,11 @@ import { Avatar } from '../components/ui/Avatar'
 import { Skeleton, SkeletonCard } from '../components/ui/Skeleton'
 import { Modal } from '../components/ui/Modal'
 import { Select } from '../components/ui/Select'
+import { FilePicker } from '../components/ui/FilePicker'
 
 export default function ComponentsDemo() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
 
   const selectOptions = [
     { value: 'rpg', label: 'RPG' },
@@ -214,6 +216,23 @@ export default function ComponentsDemo() {
                 options={selectOptions}
                 error="Veuillez sélectionner une option"
               />
+
+              <div className="md:col-span-2">
+                <FilePicker
+                  label="Image du projet"
+                  accept="image/*"
+                  maxSize={5 * 1024 * 1024}
+                  onFileSelect={(file) => {
+                    setSelectedFile(file)
+                    console.log('Fichier sélectionné:', file)
+                  }}
+                  onFileRemove={() => {
+                    setSelectedFile(null)
+                    console.log('Fichier supprimé')
+                  }}
+                  helperText="PNG, JPG ou GIF jusqu'à 5MB"
+                />
+              </div>
             </div>
           </div>
         </section>

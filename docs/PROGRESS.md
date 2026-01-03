@@ -173,7 +173,7 @@
 - [x] Tous les composants visibles sur une page
 
 ### 2.12 Git commit final
-- [ ] Commit : `git commit -m "feat: ajout des composants UI de base (Phase 2)"`
+- [x] Commit : `git commit -m "feat: ajout des composants UI de base (Phase 2)"`
 
 **Date de completion :** 03 janvier 2026
 
