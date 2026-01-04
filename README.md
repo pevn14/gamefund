@@ -1,16 +1,138 @@
-# React + Vite
+# GameFund 🎮
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plateforme de crowdfunding dédiée aux créateurs de jeux vidéo indépendants.
 
-Currently, two official plugins are available:
+> **🧪 Projet Expérimental**
+> dont l'objectif principal est d'explorer et de mettre en œuvre la stack **React + Supabase**, entièrement développé avec **Claude Code**.
+> Il sert de démonstration technique et de base réutilisable pour de futurs projets similaires.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Description
 
-## React Compiler
+GameFund permet aux développeurs de jeux vidéo de financer leurs projets grâce au soutien de la communauté. Les donateurs peuvent découvrir et soutenir les projets qui les passionnent, suivre leur évolution et participer à la création des jeux de demain.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Stack Technique
 
-## Expanding the ESLint configuration
+- **Frontend** : React 18 + Vite
+- **Styling** : Tailwind CSS v4
+- **Routing** : React Router v7
+- **Backend** : Supabase (PostgreSQL + Auth + Storage)
+- **Icons** : Lucide React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📁 Documentation
+
+- [📖 PRD - Product Requirements Document](docs/PRD_GameFund.md)
+- [🎨 Design Guide](docs/DESIGN_GUIDE.md)
+- [📋 Action Plan](docs/ACTION_PLAN.md)
+- [✅ Progress Tracker](docs/PROGRESS.md)
+- [🔧 Supabase Setup](docs/SUPABASE_SETUP.md)
+- [📝 Changelog](docs/CHANGELOG.md)
+- [ℹ️ How To](docs/HOWTO.md)
+
+## 🎯 Fonctionnalités
+
+### Phase 1-3 (✅ Terminées)
+- ✅ Configuration Tailwind CSS v4
+- ✅ 11 composants UI réutilisables
+- ✅ Layout responsive avec menu mobile
+- ✅ Design system GameFund
+
+### Phases suivantes (⏳ En cours)
+- ⏳ Intégration Supabase
+- ⏳ Authentification utilisateurs
+- ⏳ Galerie de projets publique
+- ⏳ CRUD projets (créateurs)
+- ⏳ Système de dons
+- ⏳ Dashboards (créateur, donateur, admin)
+
+## 🛠️ Installation
+
+```bash
+# Cloner le projet
+git clone <repository-url>
+cd gamefund
+
+# Installer les dépendances
+npm install
+
+# Copier le fichier d'environnement
+cp .env.example .env
+
+# Configurer les variables Supabase dans .env
+# VITE_SUPABASE_URL=votre_url
+# VITE_SUPABASE_ANON_KEY=votre_cle
+
+# Lancer le serveur de développement
+npm run dev
+```
+
+L'application sera accessible sur [http://localhost:5173](http://localhost:5173)
+
+## 📦 Scripts disponibles
+
+```bash
+npm run dev          # Serveur de développement
+npm run build        # Build de production
+npm run preview      # Prévisualiser le build
+npm run lint         # Linter ESLint
+```
+
+## 🎨 Composants UI
+
+Le projet inclut 11 composants UI réutilisables :
+
+- **Button** - 6 variants, 3 tailles, états loading/disabled
+- **Card** - Composant modulaire avec image, contenu, footer
+- **Badge** - Statuts de projets avec variants sémantiques
+- **Input** - Champs texte avec icônes et validation
+- **Textarea** - Zone de texte avec compteur de caractères
+- **ProgressBar** - Barres de progression animées
+- **Avatar** - Avatars avec fallback initiales
+- **Skeleton** - États de chargement
+- **Modal** - Modales avec overlay et animations
+- **Select** - Sélecteurs personnalisés
+- **FilePicker** - Upload de fichiers avec drag & drop
+
+Voir la démo complète : `/` (page ComponentsDemo)
+
+## 📐 Structure du projet
+
+```
+src/
+├── components/
+│   ├── ui/              # Composants UI réutilisables
+│   ├── layout/          # Header, Footer, Container
+│   ├── projects/        # Composants projets (à venir)
+│   └── donations/       # Composants donations (à venir)
+├── pages/
+│   ├── public/          # Pages publiques (à venir)
+│   ├── creator/         # Pages créateur (à venir)
+│   ├── donor/           # Pages donateur (à venir)
+│   └── admin/           # Pages admin (à venir)
+├── hooks/               # Custom hooks (à venir)
+├── services/            # Services Supabase (à venir)
+└── utils/               # Utilitaires (à venir)
+```
+
+## 🎨 Palette de couleurs
+
+- **Primary** : Purple (#9333ea) - Actions principales
+- **Accent** : Green (#22c55e) - Succès, validation
+- **Gray** : Échelle complète pour le contenu
+
+## 🏷️ Versions
+
+- **v0.3.0** - Phase 3 : Layout Components complets
+- **v0.2.0** - Phase 2 : Composants UI de base
+- **v0.1.0** - Phase 1 : Setup & Configuration
+
+## 📄 Licence
+
+[À définir]
+
+## 👥 Contribution
+
+[À définir]
+
+---
+
+**🤖 Développé avec Claude Code**
