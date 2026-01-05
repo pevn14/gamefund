@@ -176,13 +176,13 @@ export default function SupabaseTest() {
 
         {/* Messages */}
         {message && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
+          <div data-testid="success-message" className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800">
             {message}
           </div>
         )}
 
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
+          <div data-testid="error-message" className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
             {error}
           </div>
         )}
@@ -196,6 +196,7 @@ export default function SupabaseTest() {
                 <CardTitle>Inscription</CardTitle>
                 <form onSubmit={handleSignUp} className="space-y-4">
                   <Input
+                    data-testid="signup-display-name-input"
                     label="Nom d'affichage"
                     type="text"
                     value={displayName}
@@ -203,6 +204,7 @@ export default function SupabaseTest() {
                     required
                   />
                   <Input
+                    data-testid="signup-email-input"
                     label="Email"
                     type="email"
                     value={email}
@@ -210,13 +212,14 @@ export default function SupabaseTest() {
                     required
                   />
                   <Input
+                    data-testid="signup-password-input"
                     label="Mot de passe"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <Button type="submit" variant="primary" className="w-full">
+                  <Button data-testid="signup-submit-button" type="submit" variant="primary" className="w-full">
                     S'inscrire
                   </Button>
                 </form>
@@ -229,6 +232,7 @@ export default function SupabaseTest() {
                 <CardTitle>Connexion</CardTitle>
                 <form onSubmit={handleSignIn} className="space-y-4">
                   <Input
+                    data-testid="signin-email-input"
                     label="Email"
                     type="email"
                     value={email}
@@ -236,13 +240,14 @@ export default function SupabaseTest() {
                     required
                   />
                   <Input
+                    data-testid="signin-password-input"
                     label="Mot de passe"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
-                  <Button type="submit" variant="primary" className="w-full">
+                  <Button data-testid="signin-submit-button" type="submit" variant="primary" className="w-full">
                     Se connecter
                   </Button>
                 </form>
@@ -253,7 +258,7 @@ export default function SupabaseTest() {
           <Card>
             <CardContent>
               <CardTitle>Actions</CardTitle>
-              <Button onClick={handleSignOut} variant="danger">
+              <Button data-testid="signout-button" onClick={handleSignOut} variant="danger">
                 Se déconnecter
               </Button>
             </CardContent>

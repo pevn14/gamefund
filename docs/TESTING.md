@@ -837,7 +837,322 @@ Object.defineProperty(window, 'matchMedia', {
 ### Phase 4 (actuelle)
 
 - ✅ Document TESTING.md créé
-- ⏳ Pas de tests encore (fonctionnalités non utilisées)
+- ✅ `data-testid` ajoutés à SupabaseTest (page de test)
+- ⏳ Pas de tests E2E/unitaires encore (fonctionnalités non utilisées)
+
+### Phase 4.5 : Échauffement Playwright (OPTIONNEL)
+
+**⚠️ Cette phase est optionnelle et destinée à se familiariser avec Playwright avant Phase 5.**
+
+**Objectif** : Créer des tests E2E sur la page `SupabaseTest.jsx` pour apprendre Playwright sans pression.
+
+**Avantages** :
+- Apprentissage progressif de Playwright
+- Expérimentation sans impact sur tests critiques
+- Création de patterns réutilisables pour Phase 5
+- Configuration du projet Playwright séparé
+
+**Étape 1 : Créer projet Playwright** (dans un dossier séparé)
+
+```bash
+# Créer dossier à côté de gamefund/
+cd ..
+mkdir gamefund-e2e
+cd gamefund-e2e
+
+# Initialiser projet
+npm init -y
+
+# Installer Playwright
+npm install -D @playwright/test
+
+# Installer navigateurs
+npx playwright install
+```
+
+**Étape 2 : Configuration Playwright**
+
+Créer `playwright.config.js` :
+
+```javascript
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: 'html',
+
+  use: {
+    baseURL: 'http://localhost:5173',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+  ],
+
+  // Optionnel : lancer le serveur dev automatiquement
+  webServer: {
+    command: 'cd ../gamefund && npm run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
+  },
+})
+```
+
+**Étape 3 : Premier test - Vérification page**
+
+Créer `tests/warmup/page-load.spec.js` :
+
+```javascript
+import { test, expect } from '@playwright/test'
+
+test.describe('SupabaseTest - Chargement page', () => {
+  test('devrait afficher la page de test', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // Vérifier titre
+    await expect(page.locator('h1')).toContainText('Test Supabase')
+
+    // Vérifier que la page contient les sections attendues
+    await expect(page.getByText('Test de connexion Supabase')).toBeVisible()
+    await expect(page.getByText('État de connexion utilisateur')).toBeVisible()
+  })
+
+  test('devrait afficher badge de connexion Supabase', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // Attendre que le test de connexion soit terminé
+    await page.waitForSelector('[data-testid="success-message"], text=✅ Connecté à Supabase', {
+      timeout: 5000
+    })
+
+    // Vérifier le badge vert
+    const badge = page.locator('text=✅ Connecté à Supabase')
+    await expect(badge).toBeVisible()
+  })
+})
+```
+
+Lancer le test :
+```bash
+npx playwright test
+```
+
+**Étape 4 : Test inscription**
+
+Créer `tests/warmup/signup.spec.js` :
+
+```javascript
+import { test, expect } from '@playwright/test'
+
+test.describe('SupabaseTest - Inscription', () => {
+  test('devrait créer un nouveau compte', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // Générer email unique pour éviter conflits
+    const timestamp = Date.now()
+    const email = `test${timestamp}@example.com`
+    const password = 'TestPass123!'
+    const displayName = 'Test User'
+
+    // Remplir formulaire d'inscription
+    await page.getByTestId('signup-display-name-input').fill(displayName)
+    await page.getByTestId('signup-email-input').fill(email)
+    await page.getByTestId('signup-password-input').fill(password)
+
+    // Soumettre
+    await page.getByTestId('signup-submit-button').click()
+
+    // Attendre message de succès
+    await expect(page.getByTestId('success-message')).toBeVisible()
+    await expect(page.getByTestId('success-message')).toContainText('Inscription réussie')
+  })
+
+  test('devrait afficher erreur si email déjà utilisé', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // Utiliser un email existant (admin par exemple)
+    await page.getByTestId('signup-email-input').fill('pevn14@gmail.com')
+    await page.getByTestId('signup-password-input').fill('password123')
+    await page.getByTestId('signup-submit-button').click()
+
+    // Note: Supabase ne retourne pas toujours d'erreur explicite
+    // Ce test peut être ajusté selon le comportement réel
+    await page.waitForTimeout(2000)
+  })
+})
+```
+
+**Étape 5 : Test connexion**
+
+Créer `tests/warmup/signin.spec.js` :
+
+```javascript
+import { test, expect } from '@playwright/test'
+
+test.describe('SupabaseTest - Connexion', () => {
+  test('devrait se connecter avec un compte existant', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // Utiliser un compte créé précédemment
+    // À adapter avec vos credentials de test
+    await page.getByTestId('signin-email-input').fill('pevn14+1@gmail.com')
+    await page.getByTestId('signin-password-input').fill('votre_password')
+
+    await page.getByTestId('signin-submit-button').click()
+
+    // Attendre message de succès
+    await expect(page.getByTestId('success-message')).toBeVisible()
+    await expect(page.getByTestId('success-message')).toContainText('Connexion réussie')
+
+    // Vérifier que le bouton de déconnexion est visible
+    await expect(page.getByTestId('signout-button')).toBeVisible()
+  })
+
+  test('devrait afficher erreur si credentials invalides', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    await page.getByTestId('signin-email-input').fill('wrong@example.com')
+    await page.getByTestId('signin-password-input').fill('wrongpassword')
+    await page.getByTestId('signin-submit-button').click()
+
+    // Attendre message d'erreur
+    await expect(page.getByTestId('error-message')).toBeVisible()
+  })
+})
+```
+
+**Étape 6 : Test déconnexion**
+
+Créer `tests/warmup/signout.spec.js` :
+
+```javascript
+import { test, expect } from '@playwright/test'
+
+test.describe('SupabaseTest - Déconnexion', () => {
+  test('devrait se déconnecter après connexion', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    // 1. Se connecter d'abord
+    await page.getByTestId('signin-email-input').fill('pevn14+1@gmail.com')
+    await page.getByTestId('signin-password-input').fill('votre_password')
+    await page.getByTestId('signin-submit-button').click()
+
+    // Attendre connexion
+    await expect(page.getByTestId('signout-button')).toBeVisible()
+
+    // 2. Se déconnecter
+    await page.getByTestId('signout-button').click()
+
+    // Attendre message de succès
+    await expect(page.getByTestId('success-message')).toContainText('Déconnexion réussie')
+
+    // 3. Vérifier que les formulaires sont de nouveau visibles
+    await expect(page.getByTestId('signup-submit-button')).toBeVisible()
+    await expect(page.getByTestId('signin-submit-button')).toBeVisible()
+  })
+})
+```
+
+**Étape 7 : Flux complet**
+
+Créer `tests/warmup/complete-flow.spec.js` :
+
+```javascript
+import { test, expect } from '@playwright/test'
+
+test.describe('SupabaseTest - Flux complet', () => {
+  test('devrait gérer signup → signin → signout', async ({ page }) => {
+    await page.goto('/supabase-test')
+
+    const timestamp = Date.now()
+    const email = `flow${timestamp}@example.com`
+    const password = 'FlowTest123!'
+
+    // 1. Inscription
+    await page.getByTestId('signup-display-name-input').fill('Flow User')
+    await page.getByTestId('signup-email-input').fill(email)
+    await page.getByTestId('signup-password-input').fill(password)
+    await page.getByTestId('signup-submit-button').click()
+
+    await expect(page.getByTestId('success-message')).toBeVisible()
+
+    // 2. Connexion (avec le compte fraîchement créé)
+    await page.reload() // Réinitialiser la page
+    await page.getByTestId('signin-email-input').fill(email)
+    await page.getByTestId('signin-password-input').fill(password)
+    await page.getByTestId('signin-submit-button').click()
+
+    await expect(page.getByTestId('signout-button')).toBeVisible()
+
+    // 3. Déconnexion
+    await page.getByTestId('signout-button').click()
+    await expect(page.getByTestId('success-message')).toContainText('Déconnexion')
+  })
+})
+```
+
+**Étape 8 : Scripts npm**
+
+Ajouter dans `package.json` :
+
+```json
+{
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report"
+  }
+}
+```
+
+**Commandes utiles** :
+
+```bash
+# Lancer tous les tests
+npm test
+
+# Mode UI (interface graphique)
+npm run test:ui
+
+# Mode debug (pas à pas)
+npm run test:debug
+
+# Mode headed (voir navigateur)
+npm run test:headed
+
+# Lancer un seul fichier
+npx playwright test tests/warmup/signin.spec.js
+
+# Générer code automatiquement
+npx playwright codegen http://localhost:5173/supabase-test
+```
+
+**Résultats attendus** :
+
+À la fin de cet échauffement, vous aurez :
+- ✅ Projet Playwright configuré
+- ✅ 5-6 tests E2E fonctionnels
+- ✅ Maîtrise des commandes de base
+- ✅ Compréhension du debugging
+- ✅ Patterns réutilisables pour Phase 5
+
+**Temps estimé** : 3-4 heures (configuration + tests + expérimentation)
+
+**Note importante** : Ces tests ne font PAS partie du projet principal et ne seront pas maintenus. Ils servent uniquement à l'apprentissage de Playwright.
+
+---
 
 ### Phase 5 : Pages d'authentification
 
