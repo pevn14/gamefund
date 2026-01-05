@@ -2108,6 +2108,27 @@ import { motion } from 'framer-motion'
 
 ---
 
+## 📝 Note importante pour le développement
+
+**À chaque phase importante du projet, il est fortement recommandé de créer/mettre à jour un document d'architecture** (`ARCHITECTURE.md`) qui documente :
+
+- L'architecture globale du projet
+- Les services et leurs responsabilités
+- Les hooks et la gestion d'état
+- L'architecture backend (tables, RLS, fonctions)
+- Les flux métier (authentification, CRUD, etc.)
+- Les décisions architecturales et leurs justifications
+- Les points d'attention (sécurité, performance, accessibilité)
+
+Ce document est **essentiel** pour :
+- La reprise du projet par un nouveau développeur ou une IA
+- La compréhension rapide de l'architecture technique
+- La documentation vivante qui évolue avec le projet
+
+Voir [ARCHITECTURE.md](./ARCHITECTURE.md) pour un exemple complet.
+
+---
+
 ## 🚀 Changements importants v3 → v4
 
 ### ✅ Ce qui a changé
