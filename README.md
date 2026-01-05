@@ -21,13 +21,14 @@ GameFund permet aux développeurs de jeux vidéo de financer leurs projets grâc
 ## 📁 Documentation
 
 - [🏗️ Architecture](docs/ARCHITECTURE.md) - **Documentation technique complète du projet**
+- [🧪 Stratégie de Tests](docs/TESTING.md) - **E2E, unitaires, data-testid, configuration**
 - [📖 PRD - Product Requirements Document](docs/PRD_GameFund.md)
 - [🎨 Design Guide](docs/DESIGN_GUIDE.md)
 - [📋 Action Plan](docs/ACTION_PLAN.md)
 - [✅ Progress Tracker](docs/PROGRESS.md)
 - [🔧 Supabase Setup](docs/SUPABASE_SETUP.md)
-- [🧪 Tests](docs/TESTS.md)
-- [📝 Changelog](docs/CHANGELOG.md)
+- [📝 Tests Journal](docs/TESTS.md)
+- [📜 Changelog](docs/CHANGELOG.md)
 - [ℹ️ How To](docs/HOWTO.md)
 
 ## 🎯 Fonctionnalités
