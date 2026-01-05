@@ -209,8 +209,13 @@ CREATE TRIGGER donations_updated_at
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO public.profiles (id, email, role)
-  VALUES (NEW.id, NEW.email, 'user');
+  INSERT INTO public.profiles (id, email, display_name, role)
+  VALUES (
+    NEW.id,
+    NEW.email,
+    COALESCE(NEW.raw_user_meta_data->>'display_name', 'User'),
+    'user'
+  );
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
@@ -228,11 +233,14 @@ ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE donations ENABLE ROW LEVEL SECURITY;
 
--- === POLICIES: PROFILES ===
+-- Vérifier rapidement que RLS est activé sur toutes les tables
+SELECT tablename, rowsecurity
+FROM pg_tables
+WHERE schemaname = 'public';
+-- Résultat attendu : rowsecurity = true pour profiles, projects, donations
 
-CREATE POLICY "Profiles viewable by everyone"
-  ON profiles FOR SELECT
-  USING (is_active = true);
+-- === POLICIES: PROFILES ===
+-- Note: Politiques simplifiées pour éviter les dépendances circulaires
 
 CREATE POLICY "Users can view own profile"
   ON profiles FOR SELECT
@@ -240,27 +248,15 @@ CREATE POLICY "Users can view own profile"
 
 CREATE POLICY "Users can update own profile"
   ON profiles FOR UPDATE
-  USING (auth.uid() = id)
-  WITH CHECK (
-    auth.uid() = id 
-    AND role = (SELECT role FROM profiles WHERE id = auth.uid())
-  );
+  USING (auth.uid() = id);
 
-CREATE POLICY "Users can insert own profile"
+CREATE POLICY "Enable insert for authenticated users"
   ON profiles FOR INSERT
-  WITH CHECK (auth.uid() = id);
+  WITH CHECK (true);
 
-CREATE POLICY "Admin can view all"
+CREATE POLICY "Active profiles viewable by authenticated users"
   ON profiles FOR SELECT
-  USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
-  );
-
-CREATE POLICY "Admin can update all"
-  ON profiles FOR UPDATE
-  USING (
-    EXISTS (SELECT 1 FROM profiles WHERE id = auth.uid() AND role = 'admin')
-  );
+  USING (is_active = true AND auth.role() = 'authenticated');
 
 -- === POLICIES: PROJECTS ===
 

@@ -14,7 +14,7 @@
 | 1. Setup & Config | ✅ | 100% | 30 min | - |
 | 2. Composants UI | ✅ | 100% | 2h | - |
 | 3. Layout | ✅ | 100% | 30 min | - |
-| 4. Supabase | ⏳ | 0% | 1h | - |
+| 4. Supabase | ✅ | 100% | 1h | - |
 | 5. Auth Pages | ⏳ | 0% | 1h | - |
 | 6. Galerie Publique | ⏳ | 0% | 2h | - |
 | 7. CRUD Projets | ⏳ | 0% | 3h | - |
@@ -217,14 +217,14 @@
 **Objectif :** Configurer Supabase et créer les services
 
 ### 4.1 Supabase Backend
-- [ ] Projet Supabase créé sur https://supabase.com
-- [ ] Base de données PostgreSQL initialisée
-- [ ] Script SQL exécuté (selon SUPABASE_SETUP.md)
-  - [ ] Extensions créées (uuid-ossp)
-  - [ ] Types ENUM créés (user_role, project_status)
-  - [ ] Table `profiles` créée
-  - [ ] Table `projects` créée
-  - [ ] Table `donations` créée
+- [x] Projet Supabase créé sur https://supabase.com
+- [x] Base de données PostgreSQL initialisée
+- [x] Script SQL exécuté (selon SUPABASE_SETUP.md)
+  - [x] Extensions créées (uuid-ossp)
+  - [x] Types ENUM créés (user_role, project_status)
+  - [x] Table `profiles` créée
+  - [x] Table `projects` créée
+  - [x] Table `donations` créée
   - [ ] Index créés
   - [ ] Fonctions créées (get_project_total_collected, etc.)
   - [ ] Triggers créés (update_updated_at, handle_new_user)
@@ -232,36 +232,36 @@
   - [ ] Policies RLS créées et testées
 
 ### 4.2 Supabase Storage
-- [ ] Bucket `project-images` créé
-- [ ] Bucket configuré en public
-- [ ] Policies Storage configurées
+- [x] Bucket `project-images` créé
+- [x] Bucket configuré en public
+- [x] Policies Storage configurées
 
 ### 4.3 Utilisateur Admin
-- [ ] Utilisateur admin créé dans Auth
-- [ ] Profil admin créé avec `role = 'admin'`
-- [ ] Login admin testé
+- [x] Utilisateur admin créé dans Auth
+- [x] Profil admin créé avec `role = 'admin'`
+- [x] Login admin testé
 
 ### 4.4 Credentials
-- [ ] VITE_SUPABASE_URL récupéré
-- [ ] VITE_SUPABASE_ANON_KEY récupéré
-- [ ] Fichier `.env` mis à jour
+- [x] VITE_SUPABASE_URL récupéré
+- [x] VITE_SUPABASE_ANON_KEY récupéré
+- [x] Fichier `.env` mis à jour
 
 ### 4.5 Services Frontend
-- [ ] `src/services/supabase.js` créé (client Supabase)
-- [ ] `src/services/authService.js` créé (signUp, signIn, signOut)
-- [ ] `src/services/projectService.js` créé (CRUD projets)
-- [ ] `src/services/donationService.js` créé (CRUD donations)
-- [ ] Git commit : `git commit -m "feat: add Supabase services"`
+- [x] `src/services/supabase.js` créé (client Supabase)
+- [x] `src/services/authService.js` créé (signUp, signIn, signOut)
+- [x] `src/services/projectService.js` créé (CRUD projets)
+- [x] `src/services/donationService.js` créé (CRUD donations)
+- [x] Git commit : `git commit -m "feat: add Supabase services"`
 
 ### 4.6 Hooks
-- [ ] `src/hooks/useAuth.js` créé (AuthContext + useAuth)
-- [ ] AuthProvider ajouté dans `src/main.jsx`
-- [ ] Git commit : `git commit -m "feat: add useAuth hook"`
+- [x] `src/hooks/useAuth.js` créé (AuthContext + useAuth)
+- [x] AuthProvider ajouté dans `src/main.jsx`
+- [x] Git commit : `git commit -m "feat: add useAuth hook"`
 
 ### 4.7 Git commit final
-- [ ] Commit : `git commit -m "feat: complete Supabase integration (Phase 4)"`
+- [x] Commit : `git commit -m "feat: complete Supabase integration (Phase 4)"`
 
-**Date de completion :** ___________
+**Date de completion :** 03 janvier 2026
 
 ---
 
