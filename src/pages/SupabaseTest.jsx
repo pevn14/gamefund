@@ -33,13 +33,16 @@ export default function SupabaseTest() {
         throw new Error('Client Supabase non initialisé')
       }
 
-      // Test 2: Récupérer la session (ne nécessite pas de RLS)
-      const { data: sessionData, error: sessionError } = await supabase.auth.getSession()
+      // Test 2: Faire un vrai appel réseau à Supabase pour vérifier la connexion
+      // On teste avec une requête simple qui nécessite une vraie connexion
+      const { data, error: healthError } = await supabase
+        .from('profiles')
+        .select('count', { count: 'exact', head: true })
 
-      if (sessionError) {
-        console.error('Erreur session:', sessionError)
+      if (healthError) {
+        console.error('Erreur de connexion:', healthError)
         setDbConnected(false)
-        setError(`Erreur: ${sessionError.message}`)
+        setError(`Erreur: ${healthError.message}`)
         return
       }
 
@@ -48,7 +51,6 @@ export default function SupabaseTest() {
       setMessage('✅ Connexion à Supabase réussie ! Client configuré correctement.')
 
       console.log('✅ Supabase connecté')
-      console.log('Session:', sessionData.session ? 'Active' : 'Aucune')
 
     } catch (err) {
       console.error('Erreur:', err)
