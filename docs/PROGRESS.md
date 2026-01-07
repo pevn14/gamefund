@@ -270,41 +270,58 @@
 **Objectif :** Créer les pages de login et signup
 
 ### 5.1 LoginPage
-- [ ] `src/pages/public/LoginPage.jsx` créé
-- [ ] Formulaire email + password
-- [ ] Gestion des erreurs affichée
-- [ ] Redirection après login fonctionnelle
-- [ ] Git commit : `git commit -m "feat: add LoginPage"`
+- [x] `src/pages/LoginPage.jsx` créé
+- [x] Formulaire email + password
+- [x] Gestion des erreurs affichée
+- [x] Redirection après login fonctionnelle (via useEffect)
+- [x] Redirection si déjà connecté
+- [x] Loading state avec spinner
+- [x] data-testid ajoutés pour tests E2E
 
 ### 5.2 SignupPage
-- [ ] `src/pages/public/SignupPage.jsx` créé
-- [ ] Formulaire email + password + display_name
-- [ ] Validation password (min 6 caractères)
-- [ ] Gestion des erreurs affichée
-- [ ] Redirection après signup fonctionnelle
-- [ ] Git commit : `git commit -m "feat: add SignupPage"`
+- [x] `src/pages/SignupPage.jsx` créé
+- [x] Formulaire email + password + display_name + confirm_password
+- [x] Validation password (min 6 caractères)
+- [x] Validation correspondance des mots de passe
+- [x] Gestion des erreurs affichée
+- [x] Message de succès affiché
+- [x] Redirection après signup fonctionnelle (vers /login après 2s)
+- [x] Redirection si déjà connecté
+- [x] Loading state avec spinner
+- [x] data-testid ajoutés pour tests E2E
 
 ### 5.3 React Router
-- [ ] `src/App.jsx` modifié avec BrowserRouter
-- [ ] Route `/login` configurée
-- [ ] Route `/signup` configurée
-- [ ] Route `/` configurée (home)
-- [ ] Git commit : `git commit -m "feat: configure React Router"`
+- [x] `src/App.jsx` modifié avec routes
+- [x] Route `/login` configurée
+- [x] Route `/signup` configurée
+- [x] Route `/` configurée (TestHome)
+- [x] Route `/components` configurée
 
-### 5.4 ProtectedRoute (optionnel)
-- [ ] Composant `ProtectedRoute.jsx` créé
-- [ ] Redirection vers login si non authentifié
+### 5.4 ProtectedRoute
+- [x] Composant `src/components/ProtectedRoute.jsx` créé
+- [x] Redirection vers /login si non authentifié
+- [x] Loading state pendant vérification auth
 
-### 5.5 Test authentification
-- [ ] Création de compte test via /signup
-- [ ] Vérification dans Supabase Auth → Users
-- [ ] Login avec compte test via /login
-- [ ] Logout fonctionnel
+### 5.5 TestHome amélioré
+- [x] Suppression de la page SupabaseTest.jsx
+- [x] Test connexion Supabase intégré dans TestHome
+- [x] Statut utilisateur avec nom, email et bouton déconnexion
+- [x] Deux cartes séparées : Connexion Supabase + Utilisateur
+- [x] Tous les data-testid ajoutés (22 au total)
+- [x] Liens vers /login et /signup
 
-### 5.6 Git commit final
+### 5.6 Test authentification
+- [x] Création de compte test via /signup
+- [x] Vérification dans Supabase Auth → Users
+- [x] Login avec compte test via /login
+- [x] Logout fonctionnel
+- [x] Redirection automatique testée
+- [x] Fix erreur React (navigate dans useEffect)
+
+### 5.7 Git commit final
 - [ ] Commit : `git commit -m "feat: complete authentication pages (Phase 5)"`
 
-**Date de completion :** ___________
+**Date de completion :** 07 janvier 2026
 
 ---
 
