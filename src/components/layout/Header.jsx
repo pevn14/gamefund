@@ -1,15 +1,21 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { LogIn, User, LayoutDashboard, Menu, X } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { LogIn, LayoutDashboard, Menu, X, LogOut } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Avatar } from '../ui/Avatar'
 import { Container } from './Container'
+import { useAuth } from '../../hooks/useAuth'
 
 export function Header() {
-  // Pour l'instant, pas d'authentification (sera ajouté en Phase 5)
-  const user = null
-  const profile = null
+  const { user, profile, signOut } = useAuth()
+  const navigate = useNavigate()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const handleLogout = async () => {
+    await signOut()
+    navigate('/')
+    setMobileMenuOpen(false)
+  }
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-gray-200">
@@ -46,43 +52,46 @@ export function Header() {
           <div className="hidden md:flex items-center gap-3">
             {!user ? (
               <>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => console.log('Login')}
-                >
-                  <LogIn size={18} />
-                  Connexion
-                </Button>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => console.log('Signup')}
-                >
-                  Inscription
-                </Button>
+                <Link to="/login">
+                  <Button variant="ghost" size="sm">
+                    <LogIn size={18} />
+                    Connexion
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button variant="primary" size="sm">
+                    Inscription
+                  </Button>
+                </Link>
               </>
             ) : (
               <div className="flex items-center gap-3">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => console.log('Dashboard')}
-                >
-                  <LayoutDashboard size={18} />
-                  Dashboard
-                </Button>
+                <Link to="/dashboard">
+                  <Button variant="ghost" size="sm">
+                    <LayoutDashboard size={18} />
+                    Dashboard
+                  </Button>
+                </Link>
 
-                <button
-                  onClick={() => console.log('Profile')}
-                  className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-                >
+                <div className="flex items-center gap-2">
                   <Avatar
                     src={profile?.avatar_url}
                     alt={profile?.display_name || user.email}
                     size="sm"
                   />
-                </button>
+                  <span className="text-sm font-medium text-gray-700">
+                    {profile?.display_name || user.email}
+                  </span>
+                </div>
+
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                >
+                  <LogOut size={18} />
+                  Déconnexion
+                </Button>
               </div>
             )}
           </div>
@@ -125,41 +134,40 @@ export function Header() {
             <div className="flex flex-col gap-3 pt-3 border-t border-gray-200">
               {!user ? (
                 <>
+                  <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="ghost" size="md" className="w-full">
+                      <LogIn size={18} />
+                      Connexion
+                    </Button>
+                  </Link>
+                  <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
+                    <Button variant="primary" size="md" className="w-full">
+                      Inscription
+                    </Button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-3 pb-3">
+                    <Avatar
+                      src={profile?.avatar_url}
+                      alt={profile?.display_name || user.email}
+                      size="sm"
+                    />
+                    <span className="font-medium text-gray-900">
+                      {profile?.display_name || user.email}
+                    </span>
+                  </div>
                   <Button
                     variant="ghost"
                     size="md"
-                    onClick={() => {
-                      console.log('Login')
-                      setMobileMenuOpen(false)
-                    }}
+                    onClick={handleLogout}
                     className="w-full"
                   >
-                    <LogIn size={18} />
-                    Connexion
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="md"
-                    onClick={() => {
-                      console.log('Signup')
-                      setMobileMenuOpen(false)
-                    }}
-                    className="w-full"
-                  >
-                    Inscription
+                    <LogOut size={18} />
+                    Déconnexion
                   </Button>
                 </>
-              ) : (
-                <div className="flex items-center gap-3">
-                  <Avatar
-                    src={profile?.avatar_url}
-                    alt={profile?.display_name || user.email}
-                    size="sm"
-                  />
-                  <span className="font-medium text-gray-900">
-                    {profile?.display_name || user.email}
-                  </span>
-                </div>
               )}
             </div>
           </div>
