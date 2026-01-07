@@ -1,4 +1,4 @@
-export function Badge({ children, variant = 'default', size = 'md', className = '' }) {
+export function Badge({ children, variant = 'default', size = 'md', className = '', ...props }) {
   const baseClasses = "inline-flex items-center gap-1.5 font-medium rounded-full uppercase tracking-wide"
 
   const variants = {
@@ -24,7 +24,7 @@ export function Badge({ children, variant = 'default', size = 'md', className = 
   }
 
   return (
-    <span className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}>
+    <span className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`} {...props}>
       {children}
     </span>
   )
