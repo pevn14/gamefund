@@ -319,7 +319,7 @@
 - [x] Fix erreur React (navigate dans useEffect)
 
 ### 5.7 Git commit final
-- [ ] Commit : `git commit -m "feat: complete authentication pages (Phase 5)"`
+- [x] Commit : `git commit -m "feat: complete authentication pages (Phase 5)"`
 
 **Date de completion :** 07 janvier 2026
 
@@ -329,50 +329,88 @@
 
 **Objectif :** Créer la page d'accueil avec la galerie de projets
 
-### 6.1 ProjectCard
-- [ ] `src/components/projects/ProjectCard.jsx` créé
-- [ ] Image affichée
-- [ ] Badge de statut affiché
-- [ ] Progression affichée (ProgressBar)
-- [ ] Infos créateur affichées (Avatar + nom)
-- [ ] Stats affichées (donateurs, jours restants)
-- [ ] Hover effect fonctionnel
-- [ ] Link vers détail projet
-- [ ] Git commit : `git commit -m "feat: add ProjectCard component"`
+### 6.1 Services Backend
+- [x] `projectService.js` - Amélioration getProjects() pour inclure stats automatiquement
+- [x] Enrichissement avec `total_collected` et `donors_count` via RPCs PostgreSQL
+- [x] Git commit : `git commit -m "feat: enhance getProjects() to include stats"`
 
-### 6.2 ProjectGrid
-- [ ] `src/components/projects/ProjectGrid.jsx` créé
-- [ ] Grille responsive (1 col mobile, 2 tablet, 3 desktop)
-- [ ] Loading state avec Skeletons
-- [ ] Empty state si aucun projet
-- [ ] Git commit : `git commit -m "feat: add ProjectGrid component"`
+### 6.2 Données de test
+- [x] Script SQL créé dans `docs/SQL_TEST_DATA.md`
+- [x] 5 projets de test créés dans Supabase (différents genres, objectifs, deadlines)
+- [x] Donations de test créées pour valider les statistiques
 
-### 6.3 ProjectFilters
-- [ ] `src/components/projects/ProjectFilters.jsx` créé
-- [ ] Recherche par texte fonctionnelle
-- [ ] Filtre par statut fonctionnel
-- [ ] Tri fonctionnel (newest, most-funded, etc.)
-- [ ] Git commit : `git commit -m "feat: add ProjectFilters component"`
+### 6.3 ProjectCard
+- [x] `src/components/projects/ProjectCard.jsx` créé
+- [x] Image affichée (avec fallback Picsum)
+- [x] Badge de statut affiché
+- [x] Progression affichée (ProgressBar avec pourcentage)
+- [x] Infos créateur affichées (Avatar + nom)
+- [x] Stats affichées (montant collecté, donateurs, jours restants)
+- [x] Hover effect fonctionnel
+- [x] Link vers détail projet
+- [x] Formatage montants en euros
+- [x] Calcul dynamique des jours restants
+- [x] Troncature de description à 100 caractères
 
-### 6.4 HomePage
-- [ ] `src/pages/public/HomePage.jsx` créé
-- [ ] Fetch des projets actifs depuis Supabase
-- [ ] Filtres appliqués
-- [ ] Tri appliqué
-- [ ] Pagination (optionnel MVP)
-- [ ] Git commit : `git commit -m "feat: add HomePage with project gallery"`
+### 6.4 ProjectGrid
+- [x] `src/components/projects/ProjectGrid.jsx` créé
+- [x] Grille responsive (1 col mobile, 2 tablet, 3 desktop)
+- [x] Loading state avec 6 SkeletonCards
+- [x] Empty state si aucun projet
+- [x] Error state pour erreurs de chargement
 
-### 6.5 Route
-- [ ] Route `/` pointant vers HomePage dans App.jsx
+### 6.5 ProjectFilters
+- [x] `src/components/projects/ProjectFilters.jsx` créé
+- [x] Recherche par texte avec debounce 300ms
+- [x] Filtre par statut (Tous, Actifs, Terminés, Échoués, Brouillons)
+- [x] Tri fonctionnel (Plus récents, Plus anciens, Par objectif, Par deadline)
+- [x] États contrôlés pour tous les inputs
 
-### 6.6 Test avec données
-- [ ] Test avec projets mockés (si BDD vide)
-- [ ] Test avec vrais projets (si BDD peuplée)
+### 6.6 ProjectsPage (Homepage)
+- [x] `src/pages/public/ProjectsPage.jsx` créé
+- [x] Fetch des projets depuis Supabase avec getProjects()
+- [x] Filtres appliqués dynamiquement
+- [x] Tri appliqué avec parsing des valeurs
+- [x] Re-fetch automatique lors des changements de filtres
+- [x] Gestion d'erreurs complète
 
-### 6.7 Git commit final
-- [ ] Commit : `git commit -m "feat: complete public project gallery (Phase 6)"`
+### 6.7 ProjectDetailPage
+- [x] `src/pages/public/ProjectDetailPage.jsx` créé
+- [x] Page placeholder avec message "En construction"
+- [x] Affichage de l'ID du projet
+- [x] Bouton retour vers galerie
 
-**Date de completion :** ___________
+### 6.8 Layout System
+- [x] `src/components/layout/MainLayout.jsx` créé
+- [x] Header mis à jour avec useAuth pour authentification réelle
+- [x] Header - Navigation vers login/signup fonctionnelle
+- [x] Header - Affichage conditionnel (connecté/non connecté)
+- [x] Header - Bouton déconnexion fonctionnel
+- [x] Header - Menu mobile responsive
+- [x] MainLayout intégré dans ProjectsPage et ProjectDetailPage
+- [x] Architecture Header + main + Footer avec flexbox
+
+### 6.9 Routes
+- [x] Route `/` pointant vers ProjectsPage (nouvelle homepage)
+- [x] Route `/projects/:id` pointant vers ProjectDetailPage
+- [x] Route `/test` pour TestHome (ancienne homepage déplacée)
+
+### 6.10 Tests
+- [x] Compilation réussie sans erreurs
+- [x] Serveur de dev fonctionnel
+- [x] Affichage de la galerie avec données réelles
+- [ ] Tests manuels en cours (checklist utilisateur)
+
+### 6.11 Documentation
+- [x] Plan détaillé sauvegardé dans `docs/PLAN_PHASE_6.md`
+- [x] Script SQL documenté dans `docs/SQL_TEST_DATA.md`
+
+### 6.12 Git commits
+- [ ] Commit 1 : Integration du layout system (MainLayout + Header auth)
+- [ ] Commit 2 : Galerie de projets complète (Phase 6)
+
+**Date de completion :** En cours - 07 janvier 2026
+**Status :** ⚠️ EN VALIDATION (tests utilisateur en cours)
 
 ---
 

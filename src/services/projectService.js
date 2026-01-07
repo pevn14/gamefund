@@ -34,7 +34,26 @@ export async function getProjects(filters = {}) {
 
   const { data, error } = await query
 
-  return { projects: data, error }
+  if (error) return { projects: null, error }
+
+  // Enrichir chaque projet avec ses stats
+  const projectsWithStats = await Promise.all(
+    data.map(async (project) => {
+      const { data: statsData } = await supabase
+        .rpc('get_project_total_collected', { project_uuid: project.id })
+
+      const { data: donorsData } = await supabase
+        .rpc('get_project_donors_count', { project_uuid: project.id })
+
+      return {
+        ...project,
+        total_collected: statsData || 0,
+        donors_count: donorsData || 0
+      }
+    })
+  )
+
+  return { projects: projectsWithStats, error: null }
 }
 
 /**
