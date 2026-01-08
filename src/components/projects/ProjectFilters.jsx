@@ -40,13 +40,14 @@ export default function ProjectFilters({
   }
 
   return (
-    <div className="mb-8 space-y-4">
+    <div className="mb-8 space-y-4" data-testid="project-filters">
       {/* Search Bar */}
       <Input
         type="search"
         placeholder="Rechercher un projet par titre ou description..."
         value={search}
         onChange={handleSearchChange}
+        data-testid="search-input"
       />
 
       <div className="flex flex-wrap gap-4">
@@ -56,6 +57,7 @@ export default function ProjectFilters({
             label="Statut"
             value={status}
             onChange={handleStatusChange}
+            data-testid="status-filter"
           >
             <option value="all">Tous les projets</option>
             <option value="active">Actifs</option>
@@ -71,12 +73,13 @@ export default function ProjectFilters({
             label="Trier par"
             value={sort}
             onChange={handleSortChange}
+            data-testid="sort-select"
           >
             <option value="created_at">Plus récents</option>
             <option value="created_at_asc">Plus anciens</option>
-            <option value="goal_amount">Objectif (croissant)</option>
-            <option value="goal_amount_desc">Objectif (décroissant)</option>
-            <option value="deadline">Date limite (proche)</option>
+            <option value="goal_amount_asc">Budget (croissant)</option>
+            <option value="goal_amount_desc">Budget (décroissant)</option>
+            <option value="deadline_asc">Date limite (proche)</option>
             <option value="deadline_desc">Date limite (lointaine)</option>
           </Select>
         </div>

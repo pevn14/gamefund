@@ -48,14 +48,17 @@ export default function ProjectsPage() {
   }
 
   const handleSortChange = (sortValue) => {
-    // Parse sort value (e.g., "created_at_desc" or "goal_amount")
+    // Parse sort value (e.g., "created_at_desc" or "goal_amount_asc")
     if (sortValue.endsWith('_desc')) {
-      setSortBy(sortValue.replace('_desc', ''))
+      const field = sortValue.replace('_desc', '')
+      setSortBy(field)
       setSortOrder('desc')
     } else if (sortValue.endsWith('_asc')) {
-      setSortBy(sortValue.replace('_asc', ''))
+      const field = sortValue.replace('_asc', '')
+      setSortBy(field)
       setSortOrder('asc')
     } else {
+      // Par défaut (created_at, deadline, etc.) = desc
       setSortBy(sortValue)
       setSortOrder('desc')
     }
@@ -63,13 +66,13 @@ export default function ProjectsPage() {
 
   return (
     <MainLayout>
-      <div className="bg-gray-50 py-12">
+      <div className="bg-gray-50 py-12" data-testid="projects-page">
         <Container>
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-gray-900 mb-2" data-testid="projects-page-title">
               Découvrez les projets
             </h1>
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-600 text-lg" data-testid="projects-page-subtitle">
               Soutenez les créateurs de jeux vidéo indépendants
             </p>
           </div>

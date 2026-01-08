@@ -15,8 +15,8 @@
 | 2. Composants UI | ✅ | 100% | 2h | - |
 | 3. Layout | ✅ | 100% | 30 min | - |
 | 4. Supabase | ✅ | 100% | 1h | - |
-| 5. Auth Pages | ⏳ | 0% | 1h | - |
-| 6. Galerie Publique | ⏳ | 0% | 2h | - |
+| 5. Auth Pages | ✅ | 100% | 1h | - |
+| 6. Galerie Publique | ✅ | 100% | 2h | - |
 | 7. CRUD Projets | ⏳ | 0% | 3h | - |
 | 8. Dashboard Créateur | ⏳ | 0% | 2h | - |
 | 9. Système Dons | ⏳ | 0% | 2h | - |
@@ -399,18 +399,28 @@
 - [x] Compilation réussie sans erreurs
 - [x] Serveur de dev fonctionnel
 - [x] Affichage de la galerie avec données réelles
-- [ ] Tests manuels en cours (checklist utilisateur)
+- [x] Tests manuels complétés (23/24 validés)
+  - [x] Affichage grille responsive (1/2/3 colonnes)
+  - [x] Recherche par titre/description
+  - [x] Filtres par statut
+  - [x] Tri (récents, anciens, budget, deadline)
+  - [x] Debounce recherche (300ms)
+  - [x] Navigation vers détail projet
+  - [x] Skeletons loading
+  - [x] État vide
+  - [ ] Gestion erreurs (reporté en tests automatiques)
+- [x] data-testid ajoutés (27 au total) pour tests E2E Playwright
 
 ### 6.11 Documentation
 - [x] Plan détaillé sauvegardé dans `docs/PLAN_PHASE_6.md`
 - [x] Script SQL documenté dans `docs/SQL_TEST_DATA.md`
 
 ### 6.12 Git commits
-- [ ] Commit 1 : Integration du layout system (MainLayout + Header auth)
-- [ ] Commit 2 : Galerie de projets complète (Phase 6)
+- [x] Commit 1 : "feat: intégration du MainLayout avec Header authentifié"
+- [x] Commit 2 : "feat: galerie de projets publique complète (Phase 6)"
 
-**Date de completion :** En cours - 07 janvier 2026
-**Status :** ⚠️ EN VALIDATION (tests utilisateur en cours)
+**Date de completion :** 08 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
 
 ---
 

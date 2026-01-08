@@ -44,20 +44,27 @@ export default function ProjectCard({ project }) {
   const daysRemaining = getDaysRemaining(deadline)
 
   return (
-    <Link to={`/projects/${id}`} className="block">
-      <Card hover>
+    <Link to={`/projects/${id}`} className="block" data-testid="project-card-link">
+      <Card hover data-testid="project-card">
         <CardImage
           src={image_url || `https://picsum.photos/seed/${id}/800/400`}
           alt={title}
+          data-testid="project-card-image"
         />
         <CardContent>
           <div className="flex items-center justify-between mb-2">
-            <Badge variant={status}>{status === 'active' ? 'Actif' : status}</Badge>
-            <span className="text-xs text-gray-500">{daysRemaining}</span>
+            <Badge variant={status} data-testid="project-card-status-badge">
+              {status === 'active' ? 'Actif' : status}
+            </Badge>
+            <span className="text-xs text-gray-500" data-testid="project-card-days-remaining">
+              {daysRemaining}
+            </span>
           </div>
 
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{truncateText(description)}</CardDescription>
+          <CardTitle data-testid="project-card-title">{title}</CardTitle>
+          <CardDescription data-testid="project-card-description">
+            {truncateText(description)}
+          </CardDescription>
 
           <div className="mt-4">
             <ProgressBar
@@ -66,14 +73,15 @@ export default function ProjectCard({ project }) {
               variant="success"
               showPercentage
               animated
+              data-testid="project-card-progress"
             />
           </div>
 
           <div className="flex items-center justify-between text-sm mt-3">
-            <span className="font-semibold text-gray-900">
+            <span className="font-semibold text-gray-900" data-testid="project-card-amount">
               {formatAmount(total_collected)} € / {formatAmount(goal_amount)} €
             </span>
-            <span className="text-gray-600">
+            <span className="text-gray-600" data-testid="project-card-donors">
               {donors_count} {donors_count <= 1 ? 'donateur' : 'donateurs'}
             </span>
           </div>
@@ -86,10 +94,13 @@ export default function ProjectCard({ project }) {
                 src={creator?.avatar_url}
                 alt={creator?.display_name}
                 size="sm"
+                data-testid="project-card-creator-avatar"
               />
-              <span className="text-sm text-gray-700">{creator?.display_name || 'Anonyme'}</span>
+              <span className="text-sm text-gray-700" data-testid="project-card-creator-name">
+                {creator?.display_name || 'Anonyme'}
+              </span>
             </div>
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm" data-testid="project-card-view-button">
               Voir le projet
             </Button>
           </div>
