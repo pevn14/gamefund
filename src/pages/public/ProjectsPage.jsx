@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { MainLayout } from '../../components/layout/MainLayout'
 import { Container } from '../../components/layout/Container'
+import { Button } from '../../components/ui/Button'
 import ProjectFilters from '../../components/projects/ProjectFilters'
 import ProjectGrid from '../../components/projects/ProjectGrid'
 import * as projectService from '../../services/projectService'
+import { useAuth } from '../../hooks/useAuth'
+import { Plus } from 'lucide-react'
 
 export default function ProjectsPage() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { user } = useAuth()
+
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -15,6 +23,11 @@ export default function ProjectsPage() {
   const [status, setStatus] = useState('active')
   const [sortBy, setSortBy] = useState('created_at')
   const [sortOrder, setSortOrder] = useState('desc')
+
+  // Scroll vers le haut quand l'URL change (ex: / -> /projects)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
 
   useEffect(() => {
     fetchProjects()
@@ -68,13 +81,28 @@ export default function ProjectsPage() {
     <MainLayout>
       <div className="bg-gray-50 py-12" data-testid="projects-page">
         <Container>
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2" data-testid="projects-page-title">
-              Découvrez les projets
-            </h1>
-            <p className="text-gray-600 text-lg" data-testid="projects-page-subtitle">
-              Soutenez les créateurs de jeux vidéo indépendants
-            </p>
+          <div className="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold text-gray-900 mb-2" data-testid="projects-page-title">
+                Découvrez les projets
+              </h1>
+              <p className="text-gray-600 text-lg" data-testid="projects-page-subtitle">
+                Soutenez les créateurs de jeux vidéo indépendants
+              </p>
+            </div>
+
+            {/* Bouton "Créer un projet" visible uniquement si connecté */}
+            {user && (
+              <Button
+                variant="primary"
+                size="lg"
+                onClick={() => navigate('/projects/create')}
+                className="flex-shrink-0 w-full md:w-auto"
+              >
+                <Plus size={20} />
+                Créer un projet
+              </Button>
+            )}
           </div>
 
           <ProjectFilters

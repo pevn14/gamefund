@@ -51,3 +51,40 @@ Demandes et modifications ajoutées au plan initial.
 
 ---
 
+## Phase 7 - CRUD Projets (Créateur)
+
+### 📅 08/01/2026 - Storage Policies ✅ (Partiel)
+
+**État actuel :**
+- Le bucket `project-images` est **public** avec policy DELETE ajoutée
+- ✅ Policy DELETE implémentée : permet aux utilisateurs authentifiés de supprimer les images
+- ⏳ Policies SELECT, INSERT, UPDATE à implémenter (Phase 12)
+
+**Policy implémentée :**
+```sql
+CREATE POLICY "Authenticated users can delete images"
+ON storage.objects FOR DELETE
+USING (
+  bucket_id = 'project-images' AND
+  auth.role() = 'authenticated'
+);
+```
+
+**Fonctionnalités actives :**
+- ✅ Suppression automatique des images lors du changement d'image d'un projet
+- ✅ Suppression automatique des images lors de la suppression d'un projet
+- ✅ Images stockées directement à la racine du bucket (format: `projectId-timestamp.ext`)
+
+**À implémenter (Phase 12 - Polish) :**
+- Rendre le bucket privé et ajouter les policies SELECT, INSERT, UPDATE
+- Voir détails complets dans `docs/TODO_SECURITY.md`
+
+**Priorité :** MOYENNE pour développement, HAUTE pour production
+
+**Impact :** Aucune modification du code frontend requise
+
+**Fichier de référence :**
+- `docs/TODO_SECURITY.md` (contient le code SQL exact à exécuter)
+
+---
+

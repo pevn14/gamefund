@@ -31,19 +31,12 @@ export function Header() {
 
           {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link
-              to="/projects"
-              className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-            >
-              Projets
-            </Link>
-
             {user && (
               <Link
-                to="/dashboard"
+                to="/dashboard/projects"
                 className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
               >
-                Dashboard
+                Mes Projets
               </Link>
             )}
           </nav>
@@ -111,21 +104,13 @@ export function Header() {
           <div className="md:hidden border-t border-gray-200 py-4 space-y-4">
             {/* Navigation Links */}
             <nav className="flex flex-col space-y-3">
-              <Link
-                to="/projects"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Projets
-              </Link>
-
               {user && (
                 <Link
-                  to="/dashboard"
+                  to="/dashboard/projects"
                   className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Dashboard
+                  Mes Projets
                 </Link>
               )}
             </nav>

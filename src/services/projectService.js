@@ -122,11 +122,24 @@ export async function updateProject(projectId, updates) {
 }
 
 /**
- * Supprime un projet
+ * Supprime un projet et son image
  * @param {string} projectId
  * @returns {Promise<{error}>}
  */
 export async function deleteProject(projectId) {
+  // Récupérer le projet pour obtenir l'URL de l'image
+  const { data: project } = await supabase
+    .from('projects')
+    .select('image_url')
+    .eq('id', projectId)
+    .single()
+
+  // Supprimer l'image si elle existe
+  if (project?.image_url) {
+    await deleteProjectImage(project.image_url)
+  }
+
+  // Supprimer le projet de la base de données
   const { error } = await supabase
     .from('projects')
     .delete()
@@ -145,25 +158,68 @@ export async function publishProject(projectId) {
 }
 
 /**
+ * Supprime une image du bucket Supabase Storage
+ * @param {string} imageUrl - URL publique de l'image
+ * @returns {Promise<{error}>}
+ */
+export async function deleteProjectImage(imageUrl) {
+  if (!imageUrl || imageUrl === '') return { error: null }
+
+  try {
+    // Extraire le nom du fichier de l'URL
+    // Format: https://...supabase.co/storage/v1/object/public/project-images/filename.jpg
+    const parts = imageUrl.split('/project-images/')
+    if (parts.length < 2) {
+      return { error: null }
+    }
+
+    // Extraire le nom de fichier et enlever les paramètres de query éventuels
+    let fileName = parts[1].split('?')[0]
+
+    if (!fileName) {
+      return { error: null }
+    }
+
+    const { error } = await supabase.storage
+      .from('project-images')
+      .remove([fileName])
+
+    if (error) {
+      console.error('Erreur suppression image:', error)
+    }
+
+    return { error }
+  } catch (err) {
+    console.error('Erreur dans deleteProjectImage:', err)
+    return { error: err }
+  }
+}
+
+/**
  * Upload une image de projet vers Supabase Storage
  * @param {File} file
  * @param {string} projectId
+ * @param {string} oldImageUrl - URL de l'ancienne image à supprimer (optionnel)
  * @returns {Promise<{url, error}>}
  */
-export async function uploadProjectImage(file, projectId) {
+export async function uploadProjectImage(file, projectId, oldImageUrl = null) {
+  // Supprimer l'ancienne image si elle existe
+  if (oldImageUrl) {
+    await deleteProjectImage(oldImageUrl)
+  }
+
   const fileExt = file.name.split('.').pop()
   const fileName = `${projectId}-${Date.now()}.${fileExt}`
-  const filePath = `${projectId}/${fileName}`
 
   const { error: uploadError } = await supabase.storage
     .from('project-images')
-    .upload(filePath, file)
+    .upload(fileName, file)
 
   if (uploadError) return { url: null, error: uploadError }
 
   const { data } = supabase.storage
     .from('project-images')
-    .getPublicUrl(filePath)
+    .getPublicUrl(fileName)
 
   return { url: data.publicUrl, error: null }
 }
