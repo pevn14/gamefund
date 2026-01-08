@@ -257,6 +257,7 @@ export function CreateProjectPage() {
                 <div className="space-y-6">
                   {/* Titre */}
                   <Input
+                    data-testid="project-title-input"
                     label="Titre du projet"
                     placeholder="Ex: Mystic Quest - Un RPG épique"
                     value={formData.title}
@@ -272,6 +273,7 @@ export function CreateProjectPage() {
 
                   {/* Description */}
                   <Textarea
+                    data-testid="project-description-input"
                     label="Description"
                     placeholder="Décrivez votre projet en détail : l'histoire, le gameplay, les fonctionnalités principales..."
                     value={formData.description}
@@ -312,6 +314,7 @@ export function CreateProjectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Montant cible */}
                   <Input
+                    data-testid="project-goal-input"
                     label="Montant cible"
                     type="number"
                     placeholder="Ex: 50000"
@@ -326,6 +329,7 @@ export function CreateProjectPage() {
 
                   {/* Date d'échéance */}
                   <Input
+                    data-testid="project-deadline-input"
                     label="Date d'échéance"
                     type="date"
                     value={formData.deadline}
@@ -358,6 +362,7 @@ export function CreateProjectPage() {
                   <div className="space-y-3">
                     {/* Bouton Publier */}
                     <Button
+                      data-testid="publish-project-button"
                       variant="primary"
                       size="md"
                       className="w-full"
@@ -371,6 +376,7 @@ export function CreateProjectPage() {
 
                     {/* Bouton Sauvegarder brouillon */}
                     <Button
+                      data-testid="save-draft-button"
                       variant="outline"
                       size="md"
                       className="w-full"

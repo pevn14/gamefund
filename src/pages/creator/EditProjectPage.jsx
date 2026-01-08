@@ -353,6 +353,7 @@ export function EditProjectPage() {
                 <div className="space-y-6">
                   {/* Titre */}
                   <Input
+                    data-testid="project-title-input"
                     label="Titre du projet"
                     placeholder="Ex: Mystic Quest - Un RPG épique"
                     value={formData.title}
@@ -375,6 +376,7 @@ export function EditProjectPage() {
 
                   {/* Description */}
                   <Textarea
+                    data-testid="project-description-input"
                     label="Description"
                     placeholder="Décrivez votre projet en détail..."
                     value={formData.description}
@@ -411,6 +413,7 @@ export function EditProjectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Montant cible */}
                   <Input
+                    data-testid="project-goal-input"
                     label="Montant cible"
                     type="number"
                     placeholder="Ex: 50000"
@@ -426,6 +429,7 @@ export function EditProjectPage() {
 
                   {/* Date d'échéance */}
                   <Input
+                    data-testid="project-deadline-input"
                     label="Date d'échéance"
                     type="date"
                     value={formData.deadline}
@@ -459,6 +463,7 @@ export function EditProjectPage() {
                   <div className="space-y-3">
                     {/* Bouton Sauvegarder */}
                     <Button
+                      data-testid="save-project-button"
                       variant="primary"
                       size="md"
                       className="w-full"
@@ -473,6 +478,7 @@ export function EditProjectPage() {
                     {/* Bouton Publier (si brouillon) */}
                     {formData.status === 'draft' && (
                       <Button
+                        data-testid="publish-project-button"
                         variant="success"
                         size="md"
                         className="w-full"
@@ -486,6 +492,7 @@ export function EditProjectPage() {
 
                     {/* Bouton Supprimer */}
                     <Button
+                      data-testid="delete-project-button"
                       variant="danger"
                       size="md"
                       className="w-full"
