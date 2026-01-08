@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MainLayout } from '../../components/layout/MainLayout'
 import { Container } from '../../components/layout/Container'
 import { Card, CardContent } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
@@ -8,6 +9,7 @@ import { RecentProjectsList } from '../../components/dashboard/RecentProjectsLis
 import { QuickActions } from '../../components/dashboard/QuickActions'
 import { useAuth } from '../../hooks/useAuth'
 import { getProjectsByCreator } from '../../services/projectService'
+import { supabase } from '../../services/supabase'
 import { Target, FolderOpen, Users, TrendingUp, AlertCircle } from 'lucide-react'
 
 /**
@@ -43,17 +45,34 @@ export function CreatorDashboardPage() {
 
       if (error) throw error
 
-      setProjects(projectsData || [])
+      // Enrichir chaque projet avec ses stats
+      const projectsWithStats = await Promise.all(
+        (projectsData || []).map(async (project) => {
+          const { data: statsData } = await supabase
+            .rpc('get_project_total_collected', { project_uuid: project.id })
 
-      // Calculer les statistiques
-      const totalCollected = (projectsData || []).reduce((sum, p) => sum + (p.total_collected || 0), 0)
-      const totalDonors = (projectsData || []).reduce((sum, p) => sum + (p.donors_count || 0), 0)
+          const { data: donorsData } = await supabase
+            .rpc('get_project_donors_count', { project_uuid: project.id })
+
+          return {
+            ...project,
+            total_collected: statsData || 0,
+            donors_count: donorsData || 0
+          }
+        })
+      )
+
+      setProjects(projectsWithStats)
+
+      // Calculer les statistiques globales
+      const totalCollected = projectsWithStats.reduce((sum, p) => sum + (p.total_collected || 0), 0)
+      const totalDonors = projectsWithStats.reduce((sum, p) => sum + (p.donors_count || 0), 0)
 
       setStats({
-        totalProjects: (projectsData || []).length,
-        activeProjects: (projectsData || []).filter(p => p.status === 'active').length,
-        draftProjects: (projectsData || []).filter(p => p.status === 'draft').length,
-        completedProjects: (projectsData || []).filter(p => p.status === 'completed').length,
+        totalProjects: projectsWithStats.length,
+        activeProjects: projectsWithStats.filter(p => p.status === 'active').length,
+        draftProjects: projectsWithStats.filter(p => p.status === 'draft').length,
+        completedProjects: projectsWithStats.filter(p => p.status === 'completed').length,
         totalCollected,
         totalDonors
       })
@@ -70,47 +89,53 @@ export function CreatorDashboardPage() {
     .slice(0, 5)
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <Container>
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Dashboard Créateur
-          </h1>
-          <p className="text-gray-600">
-            Bienvenue {user?.user_metadata?.display_name || user?.email} 👋
-          </p>
-        </div>
+    <MainLayout>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <Container>
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-4xl font-bold text-gray-900">
+              Dashboard Créateur
+            </h1>
+          </div>
 
         {/* Statistiques principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <StatsCard
-            icon={<FolderOpen size={24} />}
-            label="Total projets"
-            value={stats.totalProjects}
-            variant="primary"
-          />
+        <div data-testid="dashboard-stats-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div data-testid="stat-total-projects">
+            <StatsCard
+              icon={<FolderOpen size={24} />}
+              label="Total projets"
+              value={stats.totalProjects}
+              variant="primary"
+            />
+          </div>
 
-          <StatsCard
-            icon={<Target size={24} />}
-            label="Projets actifs"
-            value={stats.activeProjects}
-            variant="success"
-          />
+          <div data-testid="stat-active-projects">
+            <StatsCard
+              icon={<Target size={24} />}
+              label="Projets actifs"
+              value={stats.activeProjects}
+              variant="success"
+            />
+          </div>
 
-          <StatsCard
-            icon={<TrendingUp size={24} />}
-            label="Fonds collectés"
-            value={`${stats.totalCollected.toLocaleString('fr-FR')}€`}
-            variant="default"
-          />
+          <div data-testid="stat-total-collected">
+            <StatsCard
+              icon={<TrendingUp size={24} />}
+              label="Fonds collectés"
+              value={`${stats.totalCollected.toLocaleString('fr-FR')}€`}
+              variant="default"
+            />
+          </div>
 
-          <StatsCard
-            icon={<Users size={24} />}
-            label="Donateurs"
-            value={stats.totalDonors}
-            variant="default"
-          />
+          <div data-testid="stat-total-donors">
+            <StatsCard
+              icon={<Users size={24} />}
+              label="Donateurs"
+              value={stats.totalDonors}
+              variant="default"
+            />
+          </div>
         </div>
 
         {/* Contenu principal */}
@@ -131,7 +156,7 @@ export function CreatorDashboardPage() {
 
             {/* Brouillons en attente */}
             {stats.draftProjects > 0 && (
-              <Card>
+              <Card data-testid="drafts-alert">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-3">
                     <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">
@@ -145,6 +170,7 @@ export function CreatorDashboardPage() {
                         Terminez et publiez vos projets pour commencer à collecter des dons
                       </p>
                       <Button
+                        data-testid="view-drafts-button"
                         variant="outline"
                         size="sm"
                         onClick={() => navigate('/dashboard/projects?filter=draft')}
@@ -183,5 +209,6 @@ export function CreatorDashboardPage() {
         </div>
       </Container>
     </div>
+    </MainLayout>
   )
 }

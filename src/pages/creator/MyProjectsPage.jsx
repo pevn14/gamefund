@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { MainLayout } from '../../components/layout/MainLayout'
 import { Container } from '../../components/layout/Container'
 import { Button } from '../../components/ui/Button'
 import { Card, CardImage, CardContent, CardFooter } from '../../components/ui/Card'
@@ -8,7 +9,7 @@ import { ProgressBar } from '../../components/ui/ProgressBar'
 import { SkeletonCard } from '../../components/ui/Skeleton'
 import { useAuth } from '../../hooks/useAuth'
 import { getProjectsByCreator } from '../../services/projectService'
-import { Plus, Edit, Eye, Calendar, Target, Home } from 'lucide-react'
+import { Plus, Edit, Eye, Calendar, Target } from 'lucide-react'
 import { supabase } from '../../services/supabase'
 
 /**
@@ -112,18 +113,9 @@ export function MyProjectsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <Container>
-        {/* Bouton retour */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => navigate('/')}
-          className="mb-4"
-        >
-          <Home size={16} />
-          Retour à l'accueil
-        </Button>
+    <MainLayout>
+      <div className="min-h-screen bg-gray-50 py-8">
+        <Container>
 
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
@@ -131,9 +123,6 @@ export function MyProjectsPage() {
             <h1 className="text-4xl font-bold text-gray-900 mb-2">
               Mes Projets
             </h1>
-            <p className="text-gray-600">
-              Gérez vos projets de crowdfunding
-            </p>
           </div>
 
           <Button
@@ -334,5 +323,6 @@ export function MyProjectsPage() {
         )}
       </Container>
     </div>
+    </MainLayout>
   )
 }

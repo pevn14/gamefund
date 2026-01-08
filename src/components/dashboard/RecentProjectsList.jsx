@@ -4,7 +4,7 @@ import { Button } from '../ui/Button'
 import { Badge } from '../ui/Badge'
 import { ProgressBar } from '../ui/ProgressBar'
 import { Skeleton } from '../ui/Skeleton'
-import { Plus, ChevronRight, Edit, Eye } from 'lucide-react'
+import { Plus, ChevronRight, Edit, Eye, Calendar } from 'lucide-react'
 
 /**
  * Composant de liste des projets récents pour le dashboard
@@ -27,12 +27,26 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
     failed: 'Échoué'
   }
 
+  // Calcule le nombre de jours restants
+  const getDaysRemaining = (deadline) => {
+    const deadlineDate = new Date(deadline)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const diffTime = deadlineDate - today
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+
+    if (diffDays < 0) return 'Terminé'
+    if (diffDays === 0) return "Dernier jour"
+    if (diffDays === 1) return "1 jour restant"
+    return `${diffDays} jours restants`
+  }
+
   return (
     <Card>
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">Projets récents</h2>
-          <Button variant="ghost" size="sm" onClick={onViewAll}>
+          <Button data-testid="view-all-projects-button" variant="ghost" size="sm" onClick={onViewAll}>
             Voir tout
             <ChevronRight size={16} />
           </Button>
@@ -52,6 +66,7 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
             <p className="mb-2 font-medium text-gray-700">Aucun projet pour le moment</p>
             <p className="text-sm mb-6">Créez votre premier projet pour commencer</p>
             <Button
+              data-testid="create-first-project-button"
               variant="primary"
               size="md"
               onClick={() => navigate('/projects/create')}
@@ -61,10 +76,11 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
             </Button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div data-testid="recent-projects-list" className="space-y-4">
             {projects.map(project => (
               <div
                 key={project.id}
+                data-testid="recent-project-item"
                 className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 {/* Image miniature */}
@@ -94,19 +110,22 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
                   </div>
 
                   {project.status === 'active' && (
-                    <div>
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="text-gray-600">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-sm text-gray-600">
+                        <Calendar size={14} />
+                        <span>{getDaysRemaining(project.deadline)}</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex-1">
+                          <ProgressBar
+                            value={((project.total_collected || 0) / project.goal_amount) * 100}
+                            size="sm"
+                          />
+                        </div>
+                        <span className="text-xs text-gray-600 whitespace-nowrap">
                           {project.total_collected || 0}€ / {project.goal_amount}€
                         </span>
-                        <span className="text-gray-600">
-                          {Math.round(((project.total_collected || 0) / project.goal_amount) * 100)}%
-                        </span>
                       </div>
-                      <ProgressBar
-                        value={((project.total_collected || 0) / project.goal_amount) * 100}
-                        size="sm"
-                      />
                     </div>
                   )}
 
@@ -132,6 +151,7 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <Button
+                    data-testid="recent-project-edit-button"
                     variant="outline"
                     size="sm"
                     onClick={() => navigate(`/projects/${project.id}/edit`)}
@@ -140,6 +160,7 @@ export function RecentProjectsList({ projects, loading, onViewAll }) {
                     <Edit size={16} />
                   </Button>
                   <Button
+                    data-testid="recent-project-view-button"
                     variant="secondary"
                     size="sm"
                     onClick={() => navigate(`/projects/${project.id}`)}

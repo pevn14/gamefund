@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { LogIn, LayoutDashboard, Menu, X, LogOut } from 'lucide-react'
+import { LogIn, LayoutDashboard, Menu, X, LogOut, FolderOpen } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Avatar } from '../ui/Avatar'
 import { Container } from './Container'
@@ -29,44 +29,41 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Navigation Desktop */}
-          <nav className="hidden md:flex items-center gap-8">
-            {user && (
-              <Link
-                to="/dashboard/projects"
-                className="text-gray-600 hover:text-primary-600 font-medium transition-colors"
-              >
-                Mes Projets
-              </Link>
-            )}
-          </nav>
+          {/* Spacer pour pousser tout à droite */}
+          <div className="flex-1"></div>
 
           {/* Auth buttons Desktop */}
           <div className="hidden md:flex items-center gap-3">
             {!user ? (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" size="sm">
+                  <Button data-testid="header-login-button" variant="ghost" size="sm">
                     <LogIn size={18} />
                     Connexion
                   </Button>
                 </Link>
                 <Link to="/signup">
-                  <Button variant="primary" size="sm">
+                  <Button data-testid="header-signup-button" variant="primary" size="sm">
                     Inscription
                   </Button>
                 </Link>
               </>
             ) : (
-              <div className="flex items-center gap-3">
+              <>
                 <Link to="/dashboard">
-                  <Button variant="ghost" size="sm">
+                  <Button data-testid="header-dashboard-link" variant="ghost" size="sm">
                     <LayoutDashboard size={18} />
                     Dashboard
                   </Button>
                 </Link>
+                <Link to="/dashboard/projects">
+                  <Button data-testid="header-projects-link" variant="ghost" size="sm">
+                    <FolderOpen size={18} />
+                    Mes Projets
+                  </Button>
+                </Link>
 
-                <div className="flex items-center gap-2">
+                <div data-testid="header-user-info" className="flex items-center gap-2">
                   <Avatar
                     src={profile?.avatar_url}
                     alt={profile?.display_name || user.email}
@@ -78,6 +75,7 @@ export function Header() {
                 </div>
 
                 <Button
+                  data-testid="header-logout-button"
                   variant="ghost"
                   size="sm"
                   onClick={handleLogout}
@@ -85,12 +83,13 @@ export function Header() {
                   <LogOut size={18} />
                   Déconnexion
                 </Button>
-              </div>
+              </>
             )}
           </div>
 
           {/* Burger Menu Button (Mobile only) */}
           <button
+            data-testid="header-mobile-menu-button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 text-gray-600 hover:text-primary-600 transition-colors"
             aria-label="Menu"
@@ -101,12 +100,13 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 py-4 space-y-4">
+          <div data-testid="header-mobile-menu" className="md:hidden border-t border-gray-200 py-4 space-y-4">
             {/* Navigation Links */}
             <nav className="flex flex-col space-y-3">
               {user && (
                 <>
                   <Link
+                    data-testid="header-mobile-dashboard-link"
                     to="/dashboard"
                     className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
                     onClick={() => setMobileMenuOpen(false)}
@@ -114,6 +114,7 @@ export function Header() {
                     Dashboard
                   </Link>
                   <Link
+                    data-testid="header-mobile-projects-link"
                     to="/dashboard/projects"
                     className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
                     onClick={() => setMobileMenuOpen(false)}
@@ -129,20 +130,20 @@ export function Header() {
               {!user ? (
                 <>
                   <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                    <Button variant="ghost" size="md" className="w-full">
+                    <Button data-testid="header-mobile-login-button" variant="ghost" size="md" className="w-full">
                       <LogIn size={18} />
                       Connexion
                     </Button>
                   </Link>
                   <Link to="/signup" onClick={() => setMobileMenuOpen(false)}>
-                    <Button variant="primary" size="md" className="w-full">
+                    <Button data-testid="header-mobile-signup-button" variant="primary" size="md" className="w-full">
                       Inscription
                     </Button>
                   </Link>
                 </>
               ) : (
                 <>
-                  <div className="flex items-center gap-3 pb-3">
+                  <div data-testid="header-mobile-user-info" className="flex items-center gap-3 pb-3">
                     <Avatar
                       src={profile?.avatar_url}
                       alt={profile?.display_name || user.email}
@@ -153,6 +154,7 @@ export function Header() {
                     </span>
                   </div>
                   <Button
+                    data-testid="header-mobile-logout-button"
                     variant="ghost"
                     size="md"
                     onClick={handleLogout}

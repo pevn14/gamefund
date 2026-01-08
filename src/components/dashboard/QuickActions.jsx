@@ -17,16 +17,18 @@ export function QuickActions() {
 
         <div className="grid grid-cols-1 gap-3">
           <Button
+            data-testid="quick-action-create-project"
             variant="primary"
-            size="lg"
+            size="md"
             className="w-full justify-start"
             onClick={() => navigate('/projects/create')}
           >
-            <Plus size={20} />
+            <Plus size={18} />
             Créer un nouveau projet
           </Button>
 
           <Button
+            data-testid="quick-action-manage-projects"
             variant="outline"
             size="md"
             className="w-full justify-start"
@@ -37,6 +39,7 @@ export function QuickActions() {
           </Button>
 
           <Button
+            data-testid="quick-action-edit-profile"
             variant="outline"
             size="md"
             className="w-full justify-start"
