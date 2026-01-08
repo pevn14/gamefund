@@ -18,7 +18,7 @@
 | 5. Auth Pages | ✅ | 100% | 1h | - |
 | 6. Galerie Publique | ✅ | 100% | 2h | - |
 | 7. CRUD Projets | ✅ | 100% | 3h | 2h |
-| 8. Dashboard Créateur | ⏳ | 0% | 2h | - |
+| 8. Dashboard Créateur | ✅ | 100% | 2h | 1h |
 | 9. Système Dons | ⏳ | 0% | 2h | - |
 | 10. Dashboard Donateur | ⏳ | 0% | 1h | - |
 | 11. Dashboard Admin | ⏳ | 0% | 2h | - |
@@ -512,28 +512,43 @@
 
 **Objectif :** Dashboard avec statistiques pour les créateurs
 
-### 8.1 StatsWidget
-- [ ] `src/components/dashboard/StatsWidget.jsx` créé
-- [ ] Affichage nombre projets
-- [ ] Affichage montant total collecté
-- [ ] Affichage nombre donateurs
-- [ ] Git commit : `git commit -m "feat: add StatsWidget component"`
+### 8.1 Composants Dashboard
+- [x] `src/components/dashboard/StatsCard.jsx` créé
+- [x] `src/components/dashboard/QuickActions.jsx` créé
+- [x] `src/components/dashboard/RecentProjectsList.jsx` créé
+- [x] Affichage 4 stats principales (Total projets, Actifs, Fonds collectés, Donateurs)
+- [x] Variants de couleur pour StatsCard (default, primary, success, warning)
+- [x] Actions rapides (Créer projet, Gérer projets, Modifier profil)
+- [x] Liste des 5 projets récents avec miniatures et stats
 
 ### 8.2 CreatorDashboardPage
-- [ ] `src/pages/creator/CreatorDashboardPage.jsx` créé
-- [ ] Widgets de stats affichés
-- [ ] Liste des projets récents
-- [ ] Accès rapides (créer projet, voir projets)
-- [ ] Git commit : `git commit -m "feat: add CreatorDashboardPage"`
+- [x] `src/pages/creator/CreatorDashboardPage.jsx` créé
+- [x] Grid responsive 4 colonnes pour stats (mobile 1 col, tablet 2 cols, desktop 4 cols)
+- [x] Layout 2/3 + 1/3 (Projets récents + Sidebar)
+- [x] Calcul automatique des statistiques globales
+- [x] Message de bienvenue avec nom d'utilisateur
+- [x] Alert conditionnelle pour brouillons en attente
+- [x] Section conseils pour les créateurs
+- [x] Navigation vers tous les projets
+- [x] États de chargement avec skeletons
+- [x] État vide avec CTA si aucun projet
 
-### 8.3 Route
-- [ ] Route `/dashboard` configurée
-- [ ] Redirection selon rôle (user → dashboard créateur)
+### 8.3 Route et Navigation
+- [x] Route `/dashboard` configurée et protégée
+- [x] Ajout de l'import CreatorDashboardPage dans App.jsx
+- [x] Lien "Dashboard" dans Header (desktop + mobile)
+- [x] Navigation fonctionnelle depuis tous les composants
 
-### 8.4 Git commit final
-- [ ] Commit : `git commit -m "feat: complete creator dashboard (Phase 8)"`
+### 8.4 Tests
+- [x] Serveur démarre sans erreur
+- [x] Compilation réussie avec HMR
+- [x] Routes accessibles
+- [x] Composants s'affichent correctement
 
-**Date de completion :** ___________
+### 8.5 Git commit final
+- [ ] Commit : `git commit -m "feat: dashboard créateur complet avec statistiques (Phase 8)"`
+
+**Date de completion :** 08 janvier 2026
 
 ---
 

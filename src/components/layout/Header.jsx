@@ -105,13 +105,22 @@ export function Header() {
             {/* Navigation Links */}
             <nav className="flex flex-col space-y-3">
               {user && (
-                <Link
-                  to="/dashboard/projects"
-                  className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Mes Projets
-                </Link>
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/dashboard/projects"
+                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Mes Projets
+                  </Link>
+                </>
               )}
             </nav>
 

@@ -8,6 +8,7 @@ import SignupPage from './pages/SignupPage'
 import { CreateProjectPage } from './pages/creator/CreateProjectPage'
 import { EditProjectPage } from './pages/creator/EditProjectPage'
 import { MyProjectsPage } from './pages/creator/MyProjectsPage'
+import { CreatorDashboardPage } from './pages/creator/CreatorDashboardPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -28,6 +29,14 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
 
       {/* Creator - Routes protégées */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <CreatorDashboardPage />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path="/dashboard/projects"
         element={
