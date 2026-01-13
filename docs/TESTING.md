@@ -1,8 +1,8 @@
 # GameFund - Stratégie de Tests
 
-**Version** : 1.0
-**Dernière mise à jour** : 05 janvier 2026
-**Phase actuelle** : Phase 4 - Préparation des tests
+**Version** : 1.2
+**Dernière mise à jour** : 13 janvier 2026
+**Phase actuelle** : Phases 9 & 10 - Système de Dons et Dashboard Donateur
 
 ---
 
@@ -2209,7 +2209,143 @@ describe('NomDuModule', () => {
 
 ---
 
-**Dernière mise à jour** : 05 janvier 2026
-**Version** : 1.0
+## Phase 9 & 10 - Tests E2E Système de Dons et Dashboard Donateur
+
+### Scénarios critiques à tester
+
+#### 1. Faire un don sur un projet actif
+**Prérequis** : Utilisateur authentifié, projet actif avec objectif
+
+**Étapes** :
+1. Naviguer vers la page détail d'un projet actif
+2. Cliquer sur "Faire un don"
+3. Saisir un montant valide (>= 1€)
+4. Saisir un message optionnel
+5. Cliquer sur "Continuer"
+6. Vérifier le résumé dans la modal de confirmation
+7. Confirmer le don
+
+**Assertions** :
+- Le formulaire valide le montant minimum
+- La modal affiche le bon montant et le nouveau total
+- Le don apparaît dans la liste des donations
+- Les statistiques du projet sont mises à jour
+- L'utilisateur reçoit un message de succès
+
+**data-testid** :
+- `donation-form`
+- `donation-amount-input`
+- `donation-message-input`
+- `donation-submit-button`
+- `donation-confirm-modal`
+- `donation-confirm-button`
+
+#### 2. Modifier une donation existante
+**Prérequis** : Utilisateur a déjà fait un don sur un projet actif
+
+**Étapes** :
+1. Naviguer vers "Mes Dons"
+2. Trouver la donation à modifier
+3. Cliquer sur "Modifier"
+4. Changer le montant ou le message
+5. Sauvegarder
+
+**Assertions** :
+- Seules les donations sur projets actifs peuvent être modifiées
+- Le nouveau montant est >= 1€
+- Les statistiques sont recalculées
+
+**data-testid** :
+- `donation-edit-button`
+- `donation-edit-amount-input`
+- `donation-edit-message-input`
+- `donation-save-button`
+
+#### 3. Dashboard Donateur - Vue d'ensemble
+**Prérequis** : Utilisateur a fait au moins un don
+
+**Étapes** :
+1. Se connecter
+2. Naviguer vers "Dashboard Donateur"
+3. Vérifier les statistiques affichées
+4. Vérifier les projets soutenus (max 6 actifs)
+5. Vérifier les 5 dernières donations
+6. Cliquer sur "Voir tous mes dons"
+
+**Assertions** :
+- Total donné correct
+- Nombre de projets soutenus correct
+- Seuls les projets actifs sont affichés dans la grille
+- Les 5 dernières donations sont triées par date décroissante
+- Le lien "Voir tous mes dons" redirige vers /my-donations
+
+**data-testid** :
+- `donor-dashboard-page`
+- `donor-dashboard-stats`
+- `donor-dashboard-projects-grid`
+- `donor-dashboard-recent-donations`
+- `donor-dashboard-view-all-button`
+
+#### 4. Vue créateur - Donations reçues
+**Prérequis** : Créateur avec projet ayant reçu des dons
+
+**Étapes** :
+1. Se connecter en tant que créateur
+2. Aller dans "Mes Projets"
+3. Cliquer sur "Voir les dons" pour un projet
+4. Vérifier les statistiques (total, moyenne, nombre)
+5. Consulter la liste complète des donations
+6. Exporter en CSV
+
+**Assertions** :
+- Statistiques correctes (total, nb donations, nb donateurs, moyenne)
+- Liste complète visible avec infos des donateurs
+- Export CSV contient toutes les données
+- Top donateur et dernière donation affichés
+
+**data-testid** :
+- `project-donations-page`
+- `project-donations-stats`
+- `project-donations-export-button`
+- `project-donations-empty` (si aucune donation)
+
+#### 5. Validation montant don
+**Prérequis** : Utilisateur sur page projet actif
+
+**Étapes** :
+1. Ouvrir le formulaire de don
+2. Tenter de saisir 0€
+3. Vérifier le message d'erreur
+4. Tenter de saisir 0.5€
+5. Vérifier le message d'erreur
+6. Saisir 1€
+7. Vérifier qu'il n'y a pas d'erreur
+
+**Assertions** :
+- Montant < 1€ affiche erreur
+- Montant >= 1€ valide le formulaire
+- Message d'erreur clair et en français
+
+#### 6. Navigation entre dashboards
+**Prérequis** : Utilisateur ayant les deux rôles (créateur + donateur)
+
+**Étapes** :
+1. Se connecter
+2. Aller dans "Dashboard Créateur"
+3. Vérifier l'affichage des projets créés
+4. Cliquer sur "Dashboard Donateur" dans le header
+5. Vérifier l'affichage des projets soutenus
+6. Naviguer entre les deux dashboards
+
+**Assertions** :
+- Les deux dashboards sont accessibles depuis le header
+- Dashboard Créateur affiche uniquement les projets créés
+- Dashboard Donateur affiche uniquement les projets soutenus
+- Pas de confusion entre les deux vues
+
+---
+
+**Dernière mise à jour** : 13 janvier 2026
+**Version** : 1.2
 
 Cette stratégie doit être mise à jour à chaque phase importante.

@@ -47,6 +47,9 @@ export async function getProjects(filters = {}) {
 
       return {
         ...project,
+        goal: project.goal_amount,
+        start_date: project.created_at,
+        end_date: project.deadline,
         total_collected: statsData || 0,
         donors_count: donorsData || 0
       }
@@ -59,7 +62,7 @@ export async function getProjects(filters = {}) {
 /**
  * Récupère un projet par son ID
  * @param {string} projectId
- * @returns {Promise<{project, error}>}
+ * @returns {Promise<{data, error}>}
  */
 export async function getProjectById(projectId) {
   const { data, error } = await supabase
@@ -71,7 +74,14 @@ export async function getProjectById(projectId) {
     .eq('id', projectId)
     .single()
 
-  return { project: data, error }
+  // Mapper goal_amount vers goal pour compatibilité avec le frontend
+  if (data) {
+    data.goal = data.goal_amount
+    data.start_date = data.created_at
+    data.end_date = data.deadline
+  }
+
+  return { data, error }
 }
 
 /**
@@ -86,7 +96,15 @@ export async function getProjectsByCreator(creatorId) {
     .eq('creator_id', creatorId)
     .order('created_at', { ascending: false })
 
-  return { projects: data, error }
+  // Mapper goal_amount vers goal pour compatibilité avec le frontend
+  const projects = data?.map(project => ({
+    ...project,
+    goal: project.goal_amount,
+    start_date: project.created_at,
+    end_date: project.deadline
+  }))
+
+  return { projects, error }
 }
 
 /**
@@ -95,11 +113,30 @@ export async function getProjectsByCreator(creatorId) {
  * @returns {Promise<{project, error}>}
  */
 export async function createProject(projectData) {
+  // Mapper les noms de colonnes du frontend vers la base de données
+  const dbData = {
+    ...projectData,
+    goal_amount: projectData.goal,
+    deadline: projectData.end_date
+  }
+
+  // Supprimer les propriétés du frontend qui n'existent pas en base
+  delete dbData.goal
+  delete dbData.end_date
+  delete dbData.start_date
+
   const { data, error } = await supabase
     .from('projects')
-    .insert([projectData])
+    .insert([dbData])
     .select()
     .single()
+
+  // Mapper les colonnes de la base vers le frontend
+  if (data) {
+    data.goal = data.goal_amount
+    data.start_date = data.created_at
+    data.end_date = data.deadline
+  }
 
   return { project: data, error }
 }
@@ -111,12 +148,34 @@ export async function createProject(projectData) {
  * @returns {Promise<{project, error}>}
  */
 export async function updateProject(projectId, updates) {
+  // Mapper les noms de colonnes du frontend vers la base de données
+  const dbUpdates = { ...updates }
+
+  if (updates.goal !== undefined) {
+    dbUpdates.goal_amount = updates.goal
+    delete dbUpdates.goal
+  }
+
+  if (updates.end_date !== undefined) {
+    dbUpdates.deadline = updates.end_date
+    delete dbUpdates.end_date
+  }
+
+  delete dbUpdates.start_date // created_at ne peut pas être modifié
+
   const { data, error } = await supabase
     .from('projects')
-    .update(updates)
+    .update(dbUpdates)
     .eq('id', projectId)
     .select()
     .single()
+
+  // Mapper les colonnes de la base vers le frontend
+  if (data) {
+    data.goal = data.goal_amount
+    data.start_date = data.created_at
+    data.end_date = data.deadline
+  }
 
   return { project: data, error }
 }
@@ -227,19 +286,40 @@ export async function uploadProjectImage(file, projectId, oldImageUrl = null) {
 /**
  * Récupère les statistiques d'un projet (montant collecté, nombre de donateurs)
  * @param {string} projectId
- * @returns {Promise<{stats, error}>}
+ * @returns {Promise<{data, error}>}
  */
 export async function getProjectStats(projectId) {
-  const { data, error } = await supabase.rpc('get_project_total_collected', {
-    project_id: projectId,
+  const { data: totalData, error: totalError } = await supabase.rpc('get_project_total_collected', {
+    project_uuid: projectId,
   })
 
-  if (error) return { stats: null, error }
+  if (totalError) return { data: null, error: totalError }
+
+  const { data: donorsData, error: donorsError } = await supabase.rpc('get_project_donors_count', {
+    project_uuid: projectId,
+  })
+
+  if (donorsError) return { data: null, error: donorsError }
 
   return {
-    stats: {
-      totalCollected: data || 0,
+    data: {
+      total_collected: totalData || 0,
+      donors_count: donorsData || 0,
     },
     error: null,
   }
+}
+
+// Export par défaut pour faciliter l'import
+export const projectService = {
+  getProjects,
+  getProjectById,
+  getProjectsByCreator,
+  createProject,
+  updateProject,
+  deleteProject,
+  publishProject,
+  deleteProjectImage,
+  uploadProjectImage,
+  getProjectStats,
 }

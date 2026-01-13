@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { LogIn, LayoutDashboard, Menu, X, LogOut, FolderOpen } from 'lucide-react'
+import { LogIn, LayoutDashboard, Menu, X, LogOut, FolderOpen, Heart, HandHeart } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Avatar } from '../ui/Avatar'
 import { Container } from './Container'
@@ -50,16 +50,22 @@ export function Header() {
               </>
             ) : (
               <>
-                <Link to="/dashboard">
-                  <Button data-testid="header-dashboard-link" variant="ghost" size="sm">
-                    <LayoutDashboard size={18} />
-                    Dashboard
-                  </Button>
-                </Link>
-                <Link to="/dashboard/projects">
+                 <Link to="/dashboard/projects">
                   <Button data-testid="header-projects-link" variant="ghost" size="sm">
                     <FolderOpen size={18} />
                     Mes Projets
+                  </Button>
+                </Link>
+                <Link to="/dashboard">
+                  <Button data-testid="header-dashboard-link" variant="ghost" size="sm">
+                    <LayoutDashboard size={18} />
+                    Dashboard Createur
+                  </Button>
+                </Link>
+                <Link to="/donor-dashboard">
+                  <Button data-testid="header-donor-dashboard-link" variant="ghost" size="sm">
+                    <HandHeart size={18} />
+                    Dashboard Donateur
                   </Button>
                 </Link>
 
@@ -120,6 +126,14 @@ export function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Mes Projets
+                  </Link>
+                  <Link
+                    data-testid="header-mobile-donor-dashboard-link"
+                    to="/donor-dashboard"
+                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Dashboard Donateur
                   </Link>
                 </>
               )}

@@ -9,6 +9,9 @@ import { CreateProjectPage } from './pages/creator/CreateProjectPage'
 import { EditProjectPage } from './pages/creator/EditProjectPage'
 import { MyProjectsPage } from './pages/creator/MyProjectsPage'
 import { CreatorDashboardPage } from './pages/creator/CreatorDashboardPage'
+import MyDonationsPage from './pages/MyDonationsPage'
+import ProjectDonationsPage from './pages/ProjectDonationsPage'
+import DonorDashboardPage from './pages/DonorDashboardPage'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -58,6 +61,34 @@ function App() {
         element={
           <ProtectedRoute>
             <EditProjectPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Donations - Routes protégées */}
+      <Route
+        path="/my-donations"
+        element={
+          <ProtectedRoute>
+            <MyDonationsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/my-projects/:projectId/donations"
+        element={
+          <ProtectedRoute>
+            <ProjectDonationsPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Donor Dashboard - Route protégée */}
+      <Route
+        path="/donor-dashboard"
+        element={
+          <ProtectedRoute>
+            <DonorDashboardPage />
           </ProtectedRoute>
         }
       />

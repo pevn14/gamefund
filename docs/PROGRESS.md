@@ -546,9 +546,141 @@
 - [x] Composants s'affichent correctement
 
 ### 8.5 Git commit final
-- [ ] Commit : `git commit -m "feat: dashboard créateur complet avec statistiques (Phase 8)"`
+- [x] Commit : `d87d061 - feat: dashboard créateur complet avec statistiques (Phase 8)`
 
 **Date de completion :** 08 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
+
+---
+
+## 📊 Phase 9 : Système de Dons
+
+**Objectif :** Permettre aux donateurs de faire des dons, les modifier et les annuler
+
+### 9.1 Composants Donations
+- [x] `src/components/donations/DonationForm.jsx` créé
+  - Formulaire avec validation (montant >= 1€, message <= 500 chars)
+  - Process en 2 étapes: formulaire → modal de confirmation
+  - Preview du nouveau total collecté
+  - Gestion d'erreurs complète
+- [x] `src/components/donations/DonationCard.jsx` créé
+  - 2 variants: default (carte complète) et compact (liste)
+  - Actions: éditer et supprimer
+  - Modales de confirmation pour édition/suppression
+  - Affichage conditionnel selon statut projet
+- [x] `src/components/donations/DonationsList.jsx` créé
+  - Mode autonome (charge ses données) ou contrôlé (données passées en prop)
+  - Filtrage par projectId ou donorId
+  - Support limite de résultats
+  - États loading, error, empty
+- [x] `src/components/projects/ProjectStats.jsx` créé
+  - 2 variants: detailed et compact
+  - Affichage: objectif, collecté, progression, donateurs, jours restants
+  - Barre de progression visuelle
+  - Message de succès si objectif atteint
+
+### 9.2 Pages Donations
+- [x] `src/pages/public/ProjectDetailPage.jsx` créé
+  - Vue complète du projet (publique et créateur)
+  - Formulaire de don intégré
+  - Liste des donations du projet
+  - Statistiques en temps réel
+  - Informations créateur
+- [x] `src/pages/MyDonationsPage.jsx` créé
+  - Historique complet des donations de l'utilisateur
+  - 3 statistiques: total donné, projets soutenus, projets réussis
+  - Édition/suppression des donations
+  - Bouton retour au dashboard donateur
+- [x] `src/pages/ProjectDonationsPage.jsx` créé
+  - Vue créateur des donations reçues
+  - 4 statistiques: total collecté, nb donations, nb donateurs, moyenne
+  - Liste complète des donations avec infos donateurs
+  - Export CSV
+  - Top donateur et dernière donation
+
+### 9.3 Services et Mappings
+- [x] `donationService.js` complété
+  - 9 fonctions: getDonationsByProject, getDonationsByDonor, getDonationById, createDonation, updateDonation, cancelDonation, deleteDonation, getDonorStats, hasUserDonatedToProject
+  - Format standardisé: toutes les fonctions retournent `{data, error}`
+  - Support colonne `cancelled` pour soft delete
+- [x] `projectService.js` mis à jour
+  - Mapping colonnes DB ↔ Frontend:
+    - `goal_amount` ↔ `goal`
+    - `deadline` ↔ `end_date`
+    - `created_at` ↔ `start_date`
+  - Mapping bidirectionnel (lecture et écriture)
+  - getProjectStats avec RPC functions
+
+### 9.4 Base de données
+- [x] Colonne `cancelled` ajoutée à table donations
+- [x] Fonctions RPC mises à jour:
+  - `get_project_total_collected` filtre donations annulées
+  - `get_project_donors_count` filtre donations annulées
+
+### 9.5 Routes et Navigation
+- [x] Route `/projects/:id` - Détail projet public
+- [x] Route `/my-donations` - Mes donations (accessible depuis dashboard donateur)
+- [x] Route `/my-projects/:projectId/donations` - Donations reçues (créateur)
+- [x] Liens dans Header et navigation contextuelle
+
+### 9.6 Corrections et Améliorations
+- [x] Protection contre valeurs undefined dans ProjectDetailPage
+- [x] Déplacement calculs après check `if (!project)`
+- [x] Correction icônes: passées comme enfants, pas via prop `icon`
+- [x] MainLayout ajouté sur toutes les pages donations
+- [x] 85+ data-testid pour tests E2E
+- [x] Pattern cohérent: `{component}-{action}-{element}`
+
+### 9.7 Git commit final
+- [x] Commit : Phases 9 & 10 complètes
+
+**Date de completion :** 13 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
+
+---
+
+## 📊 Phase 10 : Dashboard Donateur
+
+**Objectif :** Dashboard avec statistiques et vue d'ensemble pour les donateurs
+
+### 10.1 Composants Dashboard Donateur
+- [x] `src/components/projects/SupportedProjectCard.jsx` créé
+  - Carte projet avec badge montant donation
+  - Statistiques: collecté, objectif, progression, donateurs
+  - Bouton "Voir" vers détail projet
+- [x] `src/components/donations/RecentDonationsList.jsx` créé
+  - Liste compacte des donations récentes
+  - Click sur donation → navigation vers projet
+  - Format date lisible
+  - État vide géré
+
+### 10.2 DonorDashboardPage
+- [x] `src/pages/DonorDashboardPage.jsx` créé
+  - 3 statistiques: total donné, projets soutenus, projets réussis
+  - Grid projets soutenus actifs (max 6)
+  - 5 dernières donations
+  - 2 boutons "Voir tous mes dons" (après projets et donations)
+  - Message d'encouragement si donations existantes
+  - État vide avec CTA si aucune donation
+  - MainLayout avec header/footer
+
+### 10.3 Routes et Navigation
+- [x] Route `/donor-dashboard` configurée et protégée
+- [x] Lien "Dashboard Donateur" dans Header (desktop + mobile)
+- [x] "Mes Dons" retiré du menu principal (redondant)
+- [x] Navigation contextuelle: Dashboard Donateur → Mes Dons (liste complète)
+
+### 10.4 Corrections
+- [x] Toutes les icônes corrigées (10 fichiers)
+- [x] DonationsList mode contrôlé avec prop `donations`
+- [x] ProjectDonationsPage affiche liste complète
+- [x] Ordre navigation Header optimisé: Mes Projets → Dashboard Créateur → Dashboard Donateur
+
+### 10.5 Git commit final
+- [x] Commit : Phases 9 & 10 complètes
+
+**Date de completion :** 13 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
 
 ---
 
