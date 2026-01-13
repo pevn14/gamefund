@@ -632,7 +632,7 @@
 - [x] Pattern cohérent: `{component}-{action}-{element}`
 
 ### 9.7 Git commit final
-- [x] Commit : Phases 9 & 10 complètes
+- [x] Commit : `eac6adc - feat: système de dons complet et dashboard donateur (Phases 9 & 10)`
 
 **Date de completion :** 13 janvier 2026
 **Status :** ✅ TERMINÉ ET VALIDÉ
@@ -677,7 +677,7 @@
 - [x] Ordre navigation Header optimisé: Mes Projets → Dashboard Créateur → Dashboard Donateur
 
 ### 10.5 Git commit final
-- [x] Commit : Phases 9 & 10 complètes
+- [x] Commit : `eac6adc - feat: système de dons complet et dashboard donateur (Phases 9 & 10)`
 
 **Date de completion :** 13 janvier 2026
 **Status :** ✅ TERMINÉ ET VALIDÉ
