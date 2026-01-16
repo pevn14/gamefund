@@ -7,12 +7,14 @@ import ProjectFilters from '../../components/projects/ProjectFilters'
 import ProjectGrid from '../../components/projects/ProjectGrid'
 import * as projectService from '../../services/projectService'
 import { useAuth } from '../../hooks/useAuth'
+import { useAdmin } from '../../hooks/useAdmin'
 import { Plus } from 'lucide-react'
 
 export default function ProjectsPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const { user } = useAuth()
+  const { isAdmin } = useAdmin()
 
   const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
@@ -91,8 +93,8 @@ export default function ProjectsPage() {
               </p>
             </div>
 
-            {/* Bouton "Créer un projet" visible uniquement si connecté */}
-            {user && (
+            {/* Bouton "Créer un projet" visible uniquement si connecté et pas admin */}
+            {user && !isAdmin && (
               <Button
                 variant="primary"
                 size="lg"

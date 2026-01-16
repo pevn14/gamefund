@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { projectService } from '../../services/projectService'
 import { donationService } from '../../services/donationService'
 import { useAuth } from '../../hooks/useAuth'
+import { useAdmin } from '../../hooks/useAdmin'
 import { MainLayout } from '../../components/layout/MainLayout'
 import { Container } from '../../components/layout/Container'
 import { Button } from '../../components/ui/Button'
@@ -28,6 +29,7 @@ export default function ProjectDetailPage() {
   const { id: projectId } = useParams()
   const navigate = useNavigate()
   const { user, profile } = useAuth()
+  const { isAdmin } = useAdmin()
 
   const [project, setProject] = useState(null)
   const [stats, setStats] = useState(null)
@@ -139,8 +141,8 @@ export default function ProjectDetailPage() {
 
   const daysRemaining = getDaysRemaining()
 
-  // Vérifier si le projet accepte les dons
-  const canDonate = project?.status === 'active' && daysRemaining > 0
+  // Vérifier si le projet accepte les dons (pas les admins)
+  const canDonate = project?.status === 'active' && daysRemaining > 0 && !isAdmin
 
   const formattedStartDate = project.start_date
     ? new Date(project.start_date).toLocaleDateString('fr-FR', {
@@ -263,7 +265,7 @@ export default function ProjectDetailPage() {
           {/* Statistiques */}
           <div data-testid="project-detail-stats" className="bg-white rounded-xl border border-gray-200 p-6">
             <ProjectStats
-              goal={project.goal || 0}
+              goal={project.goal_amount || 0}
               totalCollected={stats?.total_collected || 0}
               donorsCount={stats?.donors_count || 0}
               daysRemaining={daysRemaining}
@@ -300,32 +302,37 @@ export default function ProjectDetailPage() {
                   </div>
                 ) : (
                   <>
-                    {/* Si le projet accepte les dons */}
-                    {canDonate ? (
+                    {/* Ne rien afficher pour les admins */}
+                    {!isAdmin && (
                       <>
-                        <Button
-                          data-testid="project-detail-donate-button"
-                          variant="primary"
-                          icon={<Heart size={18} />}
-                          onClick={() => setShowDonationForm(true)}
-                          className="w-full mb-4"
-                        >
-                          Faire un don
-                        </Button>
-                        {hasUserDonated && (
-                          <p className="text-sm text-green-600 text-center">
-                            ✓ Vous avez déjà contribué à ce projet
-                          </p>
+                        {/* Si le projet accepte les dons */}
+                        {canDonate ? (
+                          <>
+                            <Button
+                              data-testid="project-detail-donate-button"
+                              variant="primary"
+                              icon={<Heart size={18} />}
+                              onClick={() => setShowDonationForm(true)}
+                              className="w-full mb-4"
+                            >
+                              Faire un don
+                            </Button>
+                            {hasUserDonated && (
+                              <p className="text-sm text-green-600 text-center">
+                                ✓ Vous avez déjà contribué à ce projet
+                              </p>
+                            )}
+                          </>
+                        ) : (
+                          <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
+                            <p className="text-sm text-yellow-800">
+                              {project.status !== 'active'
+                                ? 'Ce projet n\'accepte plus de dons'
+                                : 'La campagne de financement est terminée'}
+                            </p>
+                          </div>
                         )}
                       </>
-                    ) : (
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 text-center">
-                        <p className="text-sm text-yellow-800">
-                          {project.status !== 'active'
-                            ? 'Ce projet n\'accepte plus de dons'
-                            : 'La campagne de financement est terminée'}
-                        </p>
-                      </div>
                     )}
                   </>
                 )}

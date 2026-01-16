@@ -85,8 +85,8 @@ export default function ProjectStats({
         </div>
       </div>
 
-      {/* Grille de statistiques */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Grille de statistiques - Version verticale */}
+      <div className="space-y-4">
         {/* Nombre de donateurs */}
         <div
           data-testid="project-stats-donors"

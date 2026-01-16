@@ -12,7 +12,11 @@ import { CreatorDashboardPage } from './pages/creator/CreatorDashboardPage'
 import MyDonationsPage from './pages/MyDonationsPage'
 import ProjectDonationsPage from './pages/ProjectDonationsPage'
 import DonorDashboardPage from './pages/DonorDashboardPage'
+import { AdminDashboardPage } from './pages/AdminDashboardPage'
+import { AdminProjectsPage } from './pages/AdminProjectsPage'
+import { AdminUsersPage } from './pages/AdminUsersPage'
 import ProtectedRoute from './components/ProtectedRoute'
+import { AdminRoute } from './components/auth/AdminRoute'
 
 function App() {
   return (
@@ -89,6 +93,38 @@ function App() {
         element={
           <ProtectedRoute>
             <DonorDashboardPage />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Admin - Routes protégées admin */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <AdminDashboardPage />
+            </AdminRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/projects"
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <AdminProjectsPage />
+            </AdminRoute>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/users"
+        element={
+          <ProtectedRoute>
+            <AdminRoute>
+              <AdminUsersPage />
+            </AdminRoute>
           </ProtectedRoute>
         }
       />

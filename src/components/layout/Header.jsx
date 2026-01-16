@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { LogIn, LayoutDashboard, Menu, X, LogOut, FolderOpen, Heart, HandHeart } from 'lucide-react'
+import { LogIn, LayoutDashboard, Menu, X, LogOut, FolderOpen, HandHeart, Shield } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Avatar } from '../ui/Avatar'
 import { Container } from './Container'
 import { useAuth } from '../../hooks/useAuth'
+import { useAdmin } from '../../hooks/useAdmin'
 
 export function Header() {
   const { user, profile, signOut } = useAuth()
+  const { isAdmin } = useAdmin()
   const navigate = useNavigate()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -50,24 +52,37 @@ export function Header() {
               </>
             ) : (
               <>
-                 <Link to="/dashboard/projects">
-                  <Button data-testid="header-projects-link" variant="ghost" size="sm">
-                    <FolderOpen size={18} />
-                    Mes Projets
-                  </Button>
-                </Link>
-                <Link to="/dashboard">
-                  <Button data-testid="header-dashboard-link" variant="ghost" size="sm">
-                    <LayoutDashboard size={18} />
-                    Dashboard Createur
-                  </Button>
-                </Link>
-                <Link to="/donor-dashboard">
-                  <Button data-testid="header-donor-dashboard-link" variant="ghost" size="sm">
-                    <HandHeart size={18} />
-                    Dashboard Donateur
-                  </Button>
-                </Link>
+                {isAdmin ? (
+                  // Menu simplifié pour admin
+                  <Link to="/admin">
+                    <Button data-testid="header-admin-link" variant="ghost" size="sm">
+                      <Shield size={18} />
+                      Dashboard Admin
+                    </Button>
+                  </Link>
+                ) : (
+                  // Menu complet pour utilisateurs normaux
+                  <>
+                    <Link to="/dashboard/projects">
+                      <Button data-testid="header-projects-link" variant="ghost" size="sm">
+                        <FolderOpen size={18} />
+                        Mes Projets
+                      </Button>
+                    </Link>
+                    <Link to="/dashboard">
+                      <Button data-testid="header-dashboard-link" variant="ghost" size="sm">
+                        <LayoutDashboard size={18} />
+                        Dashboard Createur
+                      </Button>
+                    </Link>
+                    <Link to="/donor-dashboard">
+                      <Button data-testid="header-donor-dashboard-link" variant="ghost" size="sm">
+                        <HandHeart size={18} />
+                        Dashboard Donateur
+                      </Button>
+                    </Link>
+                  </>
+                )}
 
                 <div data-testid="header-user-info" className="flex items-center gap-2">
                   <Avatar
@@ -111,30 +126,45 @@ export function Header() {
             <nav className="flex flex-col space-y-3">
               {user && (
                 <>
-                  <Link
-                    data-testid="header-mobile-dashboard-link"
-                    to="/dashboard"
-                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  <Link
-                    data-testid="header-mobile-projects-link"
-                    to="/dashboard/projects"
-                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Mes Projets
-                  </Link>
-                  <Link
-                    data-testid="header-mobile-donor-dashboard-link"
-                    to="/donor-dashboard"
-                    className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Dashboard Donateur
-                  </Link>
+                  {isAdmin ? (
+                    // Menu mobile simplifié pour admin
+                    <Link
+                      data-testid="header-mobile-admin-link"
+                      to="/admin"
+                      className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Dashboard Admin
+                    </Link>
+                  ) : (
+                    // Menu mobile complet pour utilisateurs normaux
+                    <>
+                      <Link
+                        data-testid="header-mobile-dashboard-link"
+                        to="/dashboard"
+                        className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <Link
+                        data-testid="header-mobile-projects-link"
+                        to="/dashboard/projects"
+                        className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Mes Projets
+                      </Link>
+                      <Link
+                        data-testid="header-mobile-donor-dashboard-link"
+                        to="/donor-dashboard"
+                        className="text-gray-600 hover:text-primary-600 font-medium transition-colors py-2"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Dashboard Donateur
+                      </Link>
+                    </>
+                  )}
                 </>
               )}
             </nav>
