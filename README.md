@@ -3,7 +3,7 @@
 Plateforme de crowdfunding dédiée aux créateurs de jeux vidéo indépendants.
 
 > **🧪 Projet Expérimental**
-> dont l'objectif principal est d'explorer et de mettre en œuvre la stack **React + Supabase**, entièrement développé avec **Claude Code**.
+> Projet dont l'objectif principal est d'explorer et de mettre en œuvre la stack **React + Supabase**, entièrement développé avec **Claude Code**.
 > Il sert de démonstration technique et de base réutilisable pour de futurs projets similaires.
 
 ## 📋 Description
@@ -12,40 +12,41 @@ GameFund permet aux développeurs de jeux vidéo de financer leurs projets grâc
 
 ## 🚀 Stack Technique
 
-- **Frontend** : React 18 + Vite
-- **Styling** : Tailwind CSS v4
-- **Routing** : React Router v7
-- **Backend** : Supabase (PostgreSQL + Auth + Storage)
-- **Icons** : Lucide React
+| Technologie | Version | Usage |
+|------------|---------|-------|
+| **React** | 19.x | Framework UI |
+| **Vite** | 7.x | Build tool & dev server |
+| **Tailwind CSS** | 4.x | Framework CSS |
+| **React Router** | 7.x | Routing SPA |
+| **Supabase** | 2.89+ | Backend (PostgreSQL + Auth + Storage) |
+| **Lucide React** | 0.562+ | Icônes |
+
+## 🎯 Fonctionnalités (MVP)
+
+| Fonctionnalité | Description |
+|----------------|-------------|
+| **Authentification** | Inscription, connexion, gestion de session |
+| **Galerie publique** | Liste des projets avec filtres et recherche |
+| **CRUD Projets** | Création, édition, publication, suppression |
+| **Système de dons** | Faire des dons avec messages optionnels |
+| **Dashboard Créateur** | Gestion projets, statistiques, profil avec avatar |
+| **Dashboard Donateur** | Historique des dons, projets soutenus |
+| **Dashboard Admin** | Gestion utilisateurs et projets |
+| **Profils Créateurs** | Avatar, bio, page créateurs publique |
 
 ## 📁 Documentation
 
-- [🏗️ Architecture](docs/ARCHITECTURE.md) - **Documentation technique complète du projet**
-- [🧪 Stratégie de Tests](docs/TESTING.md) - **E2E, unitaires, data-testid, configuration**
-- [📖 PRD - Product Requirements Document](docs/PRD_GameFund.md)
-- [🎨 Design Guide](docs/DESIGN_GUIDE.md)
-- [📋 Action Plan](docs/ACTION_PLAN.md)
-- [✅ Progress Tracker](docs/PROGRESS.md)
-- [🔧 Supabase Setup](docs/SUPABASE_SETUP.md)
-- [📝 Tests Journal](docs/TESTS.md)
-- [📜 Changelog](docs/CHANGELOG.md)
-- [ℹ️ How To](docs/HOWTO.md)
-
-## 🎯 Fonctionnalités
-
-### Phase 1-3 (✅ Terminées)
-- ✅ Configuration Tailwind CSS v4
-- ✅ 11 composants UI réutilisables
-- ✅ Layout responsive avec menu mobile
-- ✅ Design system GameFund
-
-### Phases suivantes (⏳ En cours)
-- ⏳ Intégration Supabase
-- ⏳ Authentification utilisateurs
-- ⏳ Galerie de projets publique
-- ⏳ CRUD projets (créateurs)
-- ⏳ Système de dons
-- ⏳ Dashboards (créateur, donateur, admin)
+| Document | Description |
+|----------|-------------|
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Documentation technique complète |
+| [TESTING.md](docs/TESTING.md) | Guide de tests E2E |
+| [PRD_GameFund.md](docs/PRD_GameFund.md) | Product Requirements Document |
+| [DESIGN_GUIDE.md](docs/DESIGN_GUIDE.md) | Guide de design Tailwind v4 |
+| [ACTION_PLAN.md](docs/ACTION_PLAN.md) | Plan d'action par phases |
+| [PROGRESS.md](docs/PROGRESS.md) | Suivi de progression |
+| [SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) | Configuration Supabase |
+| [RLS_POLICIES.md](docs/RLS_POLICIES.md) | Politiques Row Level Security |
+| [HOWTO.md](docs/HOWTO.md) | Guides pratiques |
 
 ## 🛠️ Installation
 
@@ -79,60 +80,69 @@ npm run preview      # Prévisualiser le build
 npm run lint         # Linter ESLint
 ```
 
-## 🎨 Composants UI
-
-Le projet inclut 11 composants UI réutilisables :
-
-- **Button** - 6 variants, 3 tailles, états loading/disabled
-- **Card** - Composant modulaire avec image, contenu, footer
-- **Badge** - Statuts de projets avec variants sémantiques
-- **Input** - Champs texte avec icônes et validation
-- **Textarea** - Zone de texte avec compteur de caractères
-- **ProgressBar** - Barres de progression animées
-- **Avatar** - Avatars avec fallback initiales
-- **Skeleton** - États de chargement
-- **Modal** - Modales avec overlay et animations
-- **Select** - Sélecteurs personnalisés
-- **FilePicker** - Upload de fichiers avec drag & drop
-
-Voir la démo complète : `/` (page ComponentsDemo)
-
 ## 📐 Structure du projet
 
 ```
 src/
 ├── components/
-│   ├── ui/              # Composants UI réutilisables
-│   ├── layout/          # Header, Footer, Container
-│   ├── projects/        # Composants projets (à venir)
-│   └── donations/       # Composants donations (à venir)
+│   ├── ui/           # 12 composants UI réutilisables
+│   ├── layout/       # Header, Footer, Container, MainLayout
+│   ├── projects/     # ProjectCard, ProjectGrid, ProjectFilters...
+│   ├── donations/    # DonationCard, DonationForm, DonationsList...
+│   ├── dashboard/    # StatsCard, QuickActions, RecentProjectsList
+│   ├── profile/      # AvatarUpload, ProfileEditor
+│   ├── creators/     # CreatorCard, CreatorsGrid
+│   └── admin/        # StatsGrid
 ├── pages/
-│   ├── public/          # Pages publiques (à venir)
-│   ├── creator/         # Pages créateur (à venir)
-│   ├── donor/           # Pages donateur (à venir)
-│   └── admin/           # Pages admin (à venir)
-├── hooks/               # Custom hooks (à venir)
-├── services/            # Services Supabase (à venir)
-└── utils/               # Utilitaires (à venir)
+│   ├── public/       # ProjectsPage, ProjectDetailPage, CreatorsPage...
+│   ├── creator/      # CreatorDashboardPage, CreateProjectPage...
+│   └── *.jsx         # LoginPage, SignupPage, AdminDashboardPage...
+├── hooks/            # useAuth, useProfile, useAdmin
+├── services/         # supabase, authService, projectService...
+├── App.jsx           # Routing
+└── main.jsx          # Point d'entrée
 ```
 
-## 🎨 Palette de couleurs
+## 🗄️ Base de données
 
-- **Primary** : Purple (#9333ea) - Actions principales
-- **Accent** : Green (#22c55e) - Succès, validation
-- **Gray** : Échelle complète pour le contenu
+| Table | Description |
+|-------|-------------|
+| `profiles` | Utilisateurs (id, email, display_name, avatar_url, bio, role) |
+| `projects` | Projets (title, description, goal_amount, deadline, status) |
+| `donations` | Dons (project_id, donor_id, amount, message) |
 
-## 🏷️ Versions
+**Storage Buckets :**
+- `project-images` : Images des projets
+- `avatars` : Avatars utilisateurs
 
-- **v0.3.0** - Phase 3 : Layout Components complets
-- **v0.2.0** - Phase 2 : Composants UI de base
-- **v0.1.0** - Phase 1 : Setup & Configuration
+## 🎨 Composants UI
+
+12 composants réutilisables dans `src/components/ui/` :
+
+- **Avatar** - Avec fallback initiales
+- **Badge** - Statuts avec variants sémantiques
+- **Button** - 6 variants, 3 tailles, loading/disabled
+- **Card** - Modulaire avec image, contenu, footer
+- **FilePicker** - Upload avec drag & drop
+- **ImageUpload** - Upload image avec validation
+- **Input** - Champs texte avec icônes et erreurs
+- **Modal** - Avec overlay et fermeture Escape
+- **ProgressBar** - Barres animées
+- **Select** - Sélecteurs personnalisés
+- **Skeleton** - États de chargement
+- **Textarea** - Avec compteur de caractères
+
+## 🔐 Sécurité
+
+- **Row Level Security (RLS)** activé sur toutes les tables
+- **JWT** pour l'authentification
+- Politiques par rôle (user, admin)
+
+## 🏷️ Version
+
+**v1.0.0** - MVP complet (Phases 1-11b)
 
 ## 📄 Licence
-
-[À définir]
-
-## 👥 Contribution
 
 [À définir]
 
