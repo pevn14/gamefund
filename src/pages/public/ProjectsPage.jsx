@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom'
 import { MainLayout } from '../../components/layout/MainLayout'
 import { Container } from '../../components/layout/Container'
 import { Button } from '../../components/ui/Button'
+import { Avatar } from '../../components/ui/Avatar'
 import ProjectFilters from '../../components/projects/ProjectFilters'
 import ProjectGrid from '../../components/projects/ProjectGrid'
 import * as projectService from '../../services/projectService'
+import * as profileService from '../../services/profileService'
 import { useAuth } from '../../hooks/useAuth'
 import { useAdmin } from '../../hooks/useAdmin'
-import { Plus } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 
 export default function ProjectsPage() {
   const navigate = useNavigate()
   const location = useLocation()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { user } = useAuth()
   const { isAdmin } = useAdmin()
 
@@ -26,14 +29,34 @@ export default function ProjectsPage() {
   const [sortBy, setSortBy] = useState('created_at')
   const [sortOrder, setSortOrder] = useState('desc')
 
+  // Creator filter from URL
+  const creatorId = searchParams.get('creator')
+  const [creatorProfile, setCreatorProfile] = useState(null)
+
   // Scroll vers le haut quand l'URL change (ex: / -> /projects)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
+  // Charger le profil du créateur si le filtre est actif
+  useEffect(() => {
+    if (creatorId) {
+      loadCreatorProfile()
+    } else {
+      setCreatorProfile(null)
+    }
+  }, [creatorId])
+
+  async function loadCreatorProfile() {
+    const { data } = await profileService.getProfile(creatorId)
+    if (data) {
+      setCreatorProfile(data)
+    }
+  }
+
   useEffect(() => {
     fetchProjects()
-  }, [search, status, sortBy, sortOrder])
+  }, [search, status, sortBy, sortOrder, creatorId])
 
   async function fetchProjects() {
     setLoading(true)
@@ -43,6 +66,7 @@ export default function ProjectsPage() {
       const filters = {
         status: status === 'all' ? undefined : status,
         search: search || undefined,
+        creator_id: creatorId || undefined,
         sortBy,
         sortOrder
       }
@@ -79,6 +103,12 @@ export default function ProjectsPage() {
     }
   }
 
+  function clearCreatorFilter() {
+    const newSearchParams = new URLSearchParams(searchParams)
+    newSearchParams.delete('creator')
+    setSearchParams(newSearchParams)
+  }
+
   return (
     <MainLayout>
       <div className="bg-gray-50 py-12" data-testid="projects-page">
@@ -106,6 +136,39 @@ export default function ProjectsPage() {
               </Button>
             )}
           </div>
+
+          {/* Bandeau de filtrage par créateur */}
+          {creatorId && creatorProfile && (
+            <div
+              className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between"
+              data-testid="projects-page-creator-filter"
+            >
+              <div className="flex items-center gap-3">
+                <Avatar
+                  src={creatorProfile.avatar_url}
+                  name={creatorProfile.display_name}
+                  size="md"
+                />
+                <div>
+                  <p className="text-sm text-blue-600 font-medium">
+                    Projets de {creatorProfile.display_name || 'ce créateur'}
+                  </p>
+                  <p className="text-xs text-blue-500">
+                    Filtrage actif
+                  </p>
+                </div>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearCreatorFilter}
+                icon={<X size={16} />}
+                data-testid="projects-page-clear-creator-filter"
+              >
+                Effacer
+              </Button>
+            </div>
+          )}
 
           <ProjectFilters
             onSearchChange={setSearch}

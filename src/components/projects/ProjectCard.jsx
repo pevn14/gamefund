@@ -4,6 +4,7 @@ import { Badge } from '../ui/Badge'
 import { ProgressBar } from '../ui/ProgressBar'
 import { Avatar } from '../ui/Avatar'
 import { Button } from '../ui/Button'
+import { useAuth } from '../../hooks/useAuth'
 
 function getDaysRemaining(deadline) {
   const now = new Date()
@@ -28,6 +29,7 @@ function formatAmount(amount) {
 }
 
 export default function ProjectCard({ project }) {
+  const { user } = useAuth()
   const {
     id,
     title,
@@ -42,6 +44,7 @@ export default function ProjectCard({ project }) {
   } = project
 
   const daysRemaining = getDaysRemaining(deadline)
+  const isAuthenticated = !!user
 
   return (
     <Link to={`/projects/${id}`} className="block" data-testid="project-card-link">
@@ -89,17 +92,21 @@ export default function ProjectCard({ project }) {
 
         <CardFooter>
           <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-2">
-              <Avatar
-                src={creator?.avatar_url}
-                alt={creator?.display_name}
-                size="sm"
-                data-testid="project-card-creator-avatar"
-              />
-              <span className="text-sm text-gray-700" data-testid="project-card-creator-name">
-                {creator?.display_name || 'Anonyme'}
-              </span>
-            </div>
+            {isAuthenticated ? (
+              <div className="flex items-center gap-2">
+                <Avatar
+                  src={creator?.avatar_url}
+                  alt={creator?.display_name}
+                  size="sm"
+                  data-testid="project-card-creator-avatar"
+                />
+                <span className="text-sm text-gray-700" data-testid="project-card-creator-name">
+                  {creator?.display_name || 'Anonyme'}
+                </span>
+              </div>
+            ) : (
+              <div />
+            )}
             <Button variant="primary" size="sm" data-testid="project-card-view-button">
               Voir le projet
             </Button>

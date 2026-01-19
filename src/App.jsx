@@ -2,6 +2,9 @@ import { Routes, Route } from 'react-router-dom'
 import TestHome from './pages/TestHome'
 import ProjectsPage from './pages/public/ProjectsPage'
 import ProjectDetailPage from './pages/public/ProjectDetailPage'
+import { CreatorsPage } from './pages/public/CreatorsPage'
+import { AboutPage } from './pages/public/AboutPage'
+import { FaqPage } from './pages/public/FaqPage'
 import ComponentsDemo from './pages/ComponentsDemo'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
@@ -26,6 +29,11 @@ function App() {
 
       {/* Détail projet */}
       <Route path="/projects/:id" element={<ProjectDetailPage />} />
+
+      {/* Pages publiques */}
+      <Route path="/creators" element={<CreatorsPage />} />
+      <Route path="/about" element={<AboutPage />} />
+      <Route path="/faq" element={<FaqPage />} />
 
       {/* Pages de test (dev) */}
       <Route path="/test" element={<TestHome />} />

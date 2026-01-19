@@ -5,6 +5,7 @@ import { supabase } from './supabase'
  * @param {Object} filters - Filtres optionnels
  * @param {string} filters.status - Statut du projet
  * @param {string} filters.search - Recherche textuelle
+ * @param {string} filters.creator_id - ID du créateur
  * @param {string} filters.sortBy - Tri ('created_at', 'title', 'goal')
  * @param {string} filters.sortOrder - Ordre ('asc', 'desc')
  * @returns {Promise<{projects, error}>}
@@ -20,6 +21,11 @@ export async function getProjects(filters = {}) {
   // Filtre par statut
   if (filters.status) {
     query = query.eq('status', filters.status)
+  }
+
+  // Filtre par créateur
+  if (filters.creator_id) {
+    query = query.eq('creator_id', filters.creator_id)
   }
 
   // Recherche textuelle

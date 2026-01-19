@@ -7,6 +7,7 @@ import { Button } from '../../components/ui/Button'
 import { StatsCard } from '../../components/dashboard/StatsCard'
 import { RecentProjectsList } from '../../components/dashboard/RecentProjectsList'
 import { QuickActions } from '../../components/dashboard/QuickActions'
+import { ProfileEditor } from '../../components/profile/ProfileEditor'
 import { useAuth } from '../../hooks/useAuth'
 import { getProjectsByCreator } from '../../services/projectService'
 import { supabase } from '../../services/supabase'
@@ -141,7 +142,11 @@ export function CreatorDashboardPage() {
         {/* Contenu principal */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Projets récents (2/3) */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 space-y-8">
+            {/* Profil */}
+            <ProfileEditor />
+
+            {/* Projets récents */}
             <RecentProjectsList
               projects={recentProjects}
               loading={loading}

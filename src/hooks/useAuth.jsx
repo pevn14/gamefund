@@ -44,10 +44,20 @@ export function AuthProvider({ children }) {
     setLoading(false)
   }
 
+  async function refreshProfile() {
+    if (user?.id) {
+      const { profile: userProfile, error } = await getUserProfile(user.id)
+      if (!error && userProfile) {
+        setProfile(userProfile)
+      }
+    }
+  }
+
   const value = {
     user,
     profile,
     loading,
+    refreshProfile,
     signOut: async () => {
       await supabase.auth.signOut()
       setUser(null)

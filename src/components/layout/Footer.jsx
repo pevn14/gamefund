@@ -23,7 +23,7 @@ export function Footer() {
             <div>
               <h3 className="font-semibold text-white mb-4">Découvrir</h3>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/projects" className="hover:text-white transition-colors">Projets</Link></li>
+                <li><Link to="/" className="hover:text-white transition-colors">Projets</Link></li>
                 <li><Link to="/creators" className="hover:text-white transition-colors">Créateurs</Link></li>
               </ul>
             </div>
@@ -39,15 +39,15 @@ export function Footer() {
             <div>
               <h3 className="font-semibold text-white mb-4">Suivez-nous</h3>
               <div className="flex gap-4">
-                <a href="#" className="hover:text-white transition-colors">
+                <span className="cursor-pointer hover:text-white transition-colors">
                   <Github size={20} />
-                </a>
-                <a href="#" className="hover:text-white transition-colors">
+                </span>
+                <span className="cursor-pointer hover:text-white transition-colors">
                   <Twitter size={20} />
-                </a>
-                <a href="#" className="hover:text-white transition-colors">
+                </span>
+                <span className="cursor-pointer hover:text-white transition-colors">
                   <Mail size={20} />
-                </a>
+                </span>
               </div>
             </div>
           </div>

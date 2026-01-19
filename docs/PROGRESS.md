@@ -19,9 +19,10 @@
 | 6. Galerie Publique | ✅ | 100% | 2h | - |
 | 7. CRUD Projets | ✅ | 100% | 3h | 2h |
 | 8. Dashboard Créateur | ✅ | 100% | 2h | 1h |
-| 9. Système Dons | ⏳ | 0% | 2h | - |
-| 10. Dashboard Donateur | ⏳ | 0% | 1h | - |
-| 11. Dashboard Admin | ⏳ | 0% | 2h | - |
+| 9. Système Dons | ✅ | 100% | 2h | 2h |
+| 10. Dashboard Donateur | ✅ | 100% | 1h | 1h |
+| 11. Dashboard Admin | ✅ | 100% | 2h | 1h |
+| 11b. Profils Créateurs | ✅ | 100% | 2h | 1h30 |
 | 12. Polish & Déploiement | ⏳ | 0% | 2h | - |
 
 **Légende :** ⏳ À faire | 🚧 En cours | ✅ Terminé | ❌ Bloqué
@@ -684,113 +685,177 @@
 
 ---
 
-## 💰 Phase 9 : Système de Dons
-
-**Objectif :** Permettre aux donateurs de faire des dons
-
-### 9.1 DonationForm
-- [ ] `src/components/donations/DonationForm.jsx` créé
-- [ ] Formulaire montant + message
-- [ ] Validation (montant > 0, projet actif)
-- [ ] Confirmation avant envoi
-- [ ] Git commit : `git commit -m "feat: add DonationForm component"`
-
-### 9.2 DonationCard
-- [ ] `src/components/donations/DonationCard.jsx` créé
-- [ ] Affichage donation (donateur, montant, message, date)
-- [ ] Git commit : `git commit -m "feat: add DonationCard component"`
-
-### 9.3 ProjectDetailPage
-- [ ] `src/pages/public/ProjectDetailPage.jsx` créé
-- [ ] Toutes les infos du projet affichées
-- [ ] Barre de progression
-- [ ] Liste des dons récents
-- [ ] Bouton "Faire un don" (ouvre modal ou page)
-- [ ] Git commit : `git commit -m "feat: add ProjectDetailPage"`
-
-### 9.4 MyDonationsPage
-- [ ] `src/pages/donor/MyDonationsPage.jsx` créé
-- [ ] Liste de toutes les donations du donateur
-- [ ] Filtres (par statut projet, par date)
-- [ ] Actions : Modifier, Annuler (si projet actif)
-- [ ] Git commit : `git commit -m "feat: add MyDonationsPage"`
-
-### 9.5 Fonctionnalités
-- [ ] Faire un don fonctionnel
-- [ ] Modifier une donation fonctionnel
-- [ ] Annuler une donation fonctionnel
-- [ ] Recalcul automatique de la progression
-
-### 9.6 Routes
-- [ ] Route `/projects/:id` configurée
-- [ ] Route `/my-donations` configurée
-
-### 9.7 Git commit final
-- [ ] Commit : `git commit -m "feat: complete donation system (Phase 9)"`
-
-**Date de completion :** ___________
-
----
-
-## 📈 Phase 10 : Dashboard Donateur
-
-**Objectif :** Dashboard avec statistiques pour les donateurs
-
-### 10.1 DonorDashboardPage
-- [ ] `src/pages/donor/DonorDashboardPage.jsx` créé
-- [ ] Stats affichées (montant total donné, projets soutenus)
-- [ ] Liste des projets soutenus actifs
-- [ ] Dernières donations
-- [ ] Git commit : `git commit -m "feat: add DonorDashboardPage"`
-
-### 10.2 Route
-- [ ] Route `/dashboard` redirige vers dashboard donateur si pertinent
-
-### 10.3 Git commit final
-- [ ] Commit : `git commit -m "feat: complete donor dashboard (Phase 10)"`
-
-**Date de completion :** ___________
-
----
-
 ## 🛡️ Phase 11 : Dashboard Admin
 
 **Objectif :** Dashboard admin avec gestion globale
 
 ### 11.1 AdminDashboardPage
-- [ ] `src/pages/admin/AdminDashboardPage.jsx` créé
-- [ ] Stats globales affichées (users, projets, montant total)
-- [ ] Graphiques (optionnel)
-- [ ] Git commit : `git commit -m "feat: add AdminDashboardPage"`
+- [x] `src/pages/AdminDashboardPage.jsx` créé
+- [x] Stats globales affichées (users, projets, montant total, donations)
+- [x] Navigation vers gestion projets et utilisateurs
+- [x] data-testid ajoutés pour tests E2E
 
 ### 11.2 AdminProjectsPage
-- [ ] `src/pages/admin/AdminProjectsPage.jsx` créé
-- [ ] Liste TOUS les projets (tous créateurs, tous statuts)
-- [ ] Filtres avancés
-- [ ] Actions : Voir, Modifier, Supprimer, Changer statut
-- [ ] Git commit : `git commit -m "feat: add AdminProjectsPage"`
+- [x] `src/pages/AdminProjectsPage.jsx` créé
+- [x] Liste TOUS les projets (tous créateurs, tous statuts)
+- [x] Filtres par statut et recherche
+- [x] Tri par date, montant, titre
+- [x] Actions : Voir, Changer statut, Modifier deadline, Supprimer
+- [x] Modales de confirmation pour actions destructives
+- [x] data-testid ajoutés pour tests E2E
 
 ### 11.3 AdminUsersPage
-- [ ] `src/pages/admin/AdminUsersPage.jsx` créé
-- [ ] Liste tous les utilisateurs
-- [ ] Infos : nom, email, rôle, date inscription
-- [ ] Actions : Voir profil, Désactiver/Réactiver
-- [ ] Git commit : `git commit -m "feat: add AdminUsersPage"`
+- [x] `src/pages/AdminUsersPage.jsx` créé
+- [x] Liste tous les utilisateurs
+- [x] Infos : nom, email, rôle, date inscription, statut
+- [x] Actions : Changer rôle (user/creator/admin), Suspendre/Réactiver
+- [x] Indicateurs visuels (badges rôle, statut)
+- [x] data-testid ajoutés pour tests E2E
 
 ### 11.4 Routes
-- [ ] Route `/admin` configurée (AdminRoute)
-- [ ] Route `/admin/projects` configurée
-- [ ] Route `/admin/users` configurée
+- [x] Route `/admin` configurée (AdminRoute)
+- [x] Route `/admin/projects` configurée
+- [x] Route `/admin/users` configurée
 
 ### 11.5 AdminRoute
-- [ ] Composant `AdminRoute.jsx` créé
-- [ ] Vérifie `profile.role === 'admin'`
-- [ ] Redirige si non admin
+- [x] Composant `src/components/auth/AdminRoute.jsx` créé
+- [x] Vérifie `profile.role === 'admin'`
+- [x] Redirige vers `/` si non admin
+- [x] Loading state pendant vérification
 
-### 11.6 Git commit final
-- [ ] Commit : `git commit -m "feat: complete admin dashboard (Phase 11)"`
+### 11.6 Services et Hooks
+- [x] `src/services/adminService.js` créé (getStats, getAllProjects, getAllUsers, updateProject, deleteProject, updateUserRole, updateUserStatus)
+- [x] `src/hooks/useAdmin.js` créé (vérification rôle admin)
+- [x] `src/components/admin/StatsGrid.jsx` créé (grille de statistiques)
 
-**Date de completion :** ___________
+### 11.7 Sécurité RLS
+- [x] Fonction `public.is_admin()` créée avec SECURITY DEFINER
+- [x] Politiques admin migrées vers `is_admin()` (profiles, projects, donations)
+- [x] Documentation RLS complète (`docs/RLS_POLICIES.md`)
+- [x] Script SQL (`supabase/add_admin_policies.sql`)
+
+### 11.8 Git commit final
+- [x] Commit : `8946cb9 - feat: dashboard admin complet avec gestion utilisateurs et projets (Phase 11)`
+
+**Date de completion :** 16 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
+
+---
+
+## 👤 Phase 11b : Profils Créateurs avec Avatar et Bio
+
+**Objectif :** Système complet de profils créateurs avec upload avatar et bio
+
+### 11b.1 Services Backend
+- [x] `src/services/profileService.js` créé
+  - `getProfile(userId)` : récupérer un profil
+  - `updateProfile(userId, data)` : mise à jour display_name et bio
+  - `uploadAvatar(userId, file)` : upload vers Supabase Storage
+  - `deleteAvatar(userId, avatarUrl)` : suppression avatar
+  - `getCreatorsWithProjects()` : liste créateurs avec compteur projets
+- [x] `src/hooks/useProfile.js` créé
+  - Hook personnalisé pour gestion profil
+  - États : profile, loading, error
+  - Méthodes : updateProfile, uploadAvatar, deleteAvatar, refresh
+  - Intégration avec useAuth pour rafraîchir le Header
+- [x] `src/hooks/useAuth.jsx` mis à jour
+  - Ajout fonction `refreshProfile()` pour mettre à jour contexte Auth
+  - Permet mise à jour automatique avatar dans Header
+
+### 11b.2 Composants Profil
+- [x] `src/components/profile/AvatarUpload.jsx` créé
+  - Upload par clic ou drag & drop
+  - Validation taille (max 2MB)
+  - Validation format (JPG, PNG, WEBP)
+  - Prévisualisation immédiate
+  - Bouton supprimer avatar
+  - Loading state avec spinner
+- [x] `src/components/profile/ProfileEditor.jsx` créé
+  - Formulaire complet : avatar + nom + bio
+  - Compteur de caractères bio (max 500)
+  - Messages succès/erreur
+  - Intégration AvatarUpload
+  - Sauvegarde automatique dans contexte Auth
+
+### 11b.3 Composants Créateurs
+- [x] `src/components/creators/CreatorCard.jsx` créé
+  - Avatar créateur
+  - Nom d'affichage
+  - Bio (troncature 3 lignes)
+  - Nombre de projets
+  - Bouton "Voir les projets" → filtrage par créateur
+- [x] `src/components/creators/CreatorsGrid.jsx` créé
+  - Grille responsive (1/2/3 colonnes)
+  - Loading skeletons
+  - État vide
+  - Utilise CreatorCard
+
+### 11b.4 Pages
+- [x] `src/pages/public/CreatorsPage.jsx` créé
+  - Page auth-gated (connexion requise)
+  - Message de connexion si non authentifié
+  - Grille de créateurs si authentifié
+  - Liste uniquement créateurs avec projets
+  - data-testid pour tests E2E
+- [x] `src/pages/creator/CreatorDashboardPage.jsx` mis à jour
+  - Intégration ProfileEditor en première section
+  - Layout 2 colonnes : profil + projets récents
+- [x] `src/pages/public/ProjectDetailPage.jsx` mis à jour
+  - Avatar créateur affiché
+  - Bio créateur affichée (si existante)
+  - Layout amélioré avec `items-start`
+
+### 11b.5 Filtrage par Créateur
+- [x] `src/services/projectService.js` mis à jour
+  - Ajout filtre `creator_id` dans `getProjects()`
+  - Documentation JSDoc mise à jour
+- [x] `src/pages/public/ProjectsPage.jsx` mis à jour
+  - Lecture paramètre URL `?creator=xxx`
+  - Chargement profil créateur pour affichage
+  - Bandeau filtrage avec avatar et nom créateur
+  - Bouton "Effacer" pour supprimer filtre
+  - Re-fetch automatique lors changement filtre
+  - data-testid pour bandeau
+
+### 11b.6 Supabase Storage
+- [x] Script SQL `supabase/add_avatar_storage.sql` créé
+  - Colonne `bio TEXT` ajoutée à table profiles
+  - Bucket `avatars` créé (public)
+  - Politique "Public can view avatars"
+  - Politique "Authenticated users can upload avatars"
+  - Politique "Users can update own avatar"
+  - Politique "Users can delete own avatar"
+  - Requêtes de vérification incluses
+
+### 11b.7 Routes
+- [x] Route `/creators` configurée
+- [x] Navigation depuis CreatorCard → `/?creator={id}`
+- [x] Liens Footer maintenus
+
+### 11b.8 Tests E2E (data-testid)
+- [x] AvatarUpload : 5 testid
+- [x] ProfileEditor : 7 testid
+- [x] CreatorCard : 5 testid
+- [x] CreatorsGrid : 1 testid
+- [x] CreatorsPage : 5 testid
+- [x] ProjectsPage (filtrage) : 2 testid
+- [x] Total : 25 data-testid Phase 11b
+
+### 11b.9 Améliorations UX
+- [x] Avatar masqué sur ProjectCard si non authentifié
+- [x] Avatar dans Header mis à jour automatiquement
+- [x] Pages placeholder créées : AboutPage, FaqPage
+- [x] Footer : lien "Projets" pointe vers `/`
+- [x] Footer : icônes sociales sans scroll
+
+### 11b.10 Git commit final
+- [x] Commit : `git commit -m "feat: profils créateurs avec avatar et bio (Phase 11b)"`
+- [x] Tag version : `git tag v0.11b.0`
+
+**Date de completion :** 19 janvier 2026
+**Status :** ✅ TERMINÉ ET VALIDÉ
+
+**Note importante :** Le script SQL `supabase/add_avatar_storage.sql` doit être exécuté sur Supabase avant les tests.
 
 ---
 

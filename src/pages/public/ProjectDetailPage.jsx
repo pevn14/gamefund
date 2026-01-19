@@ -229,18 +229,21 @@ export default function ProjectDetailPage() {
               <User size={20} />
               À propos du créateur
             </h2>
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               <Avatar
+                src={project.creator?.avatar_url}
                 name={project.creator?.display_name || 'Créateur'}
                 size="lg"
               />
-              <div>
+              <div className="flex-1">
                 <p className="font-semibold text-gray-900">
                   {project.creator?.display_name || 'Créateur anonyme'}
                 </p>
-                <p className="text-sm text-gray-600">
-                  {project.creator?.email || 'Email non disponible'}
-                </p>
+                {project.creator?.bio && (
+                  <p className="text-sm text-gray-600 mt-2">
+                    {project.creator?.bio}
+                  </p>
+                )}
               </div>
             </div>
           </div>
