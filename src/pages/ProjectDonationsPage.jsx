@@ -283,11 +283,13 @@ export default function ProjectDonationsPage() {
             </Button>
           </div>
         ) : (
-          <DonationsList
-            donations={donations}
-            variant="default"
-            showActions={false}
-          />
+          <div data-testid="project-donations-list">
+            <DonationsList
+              donations={donations}
+              variant="default"
+              showActions={false}
+            />
+          </div>
         )}
       </div>
 

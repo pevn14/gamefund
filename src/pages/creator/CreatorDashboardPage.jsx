@@ -146,18 +146,39 @@ export function CreatorDashboardPage() {
             {/* Profil */}
             <ProfileEditor />
 
-            {/* Projets récents */}
-            <RecentProjectsList
-              projects={recentProjects}
-              loading={loading}
-              onViewAll={() => navigate('/dashboard/projects')}
-            />
-          </div>
+            {/* Projets récents ou État vide */}
+            {projects.length === 0 && !loading ? (
+              <div data-testid="creator-dashboard-empty" className="bg-white border border-gray-200 rounded-xl p-12 text-center">
+                <FolderOpen className="text-gray-400 mx-auto mb-4" size={64} />
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  Bienvenue sur votre dashboard !
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Vous n'avez pas encore créé de projet. Commencez dès maintenant à donner vie à vos idées !
+                </p>
+                <Button
+                  variant="primary"
+                  onClick={() => navigate('/dashboard/projects/new')}
+                >
+                  Créer mon premier projet
+                </Button>
+              </div>
+            ) : (
+              <div data-testid="creator-dashboard-recent-projects">
+                <RecentProjectsList
+                  projects={recentProjects}
+                  loading={loading}
+                  onViewAll={() => navigate('/dashboard/projects')}
+                />
+              </div>
+            )}
 
           {/* Sidebar (1/3) */}
           <div className="lg:col-span-1 space-y-6">
             {/* Actions rapides */}
-            <QuickActions />
+            <div data-testid="creator-dashboard-quick-actions">
+              <QuickActions />
+            </div>
 
             {/* Brouillons en attente */}
             {stats.draftProjects > 0 && (

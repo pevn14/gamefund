@@ -129,6 +129,26 @@ export default function DonorDashboardPage() {
         </p>
       </div>
 
+      {/* État vide - Nouveau donateur */}
+      {stats && stats.total_donated === 0 && recentDonations.length === 0 && !loading && (
+        <div data-testid="donor-dashboard-empty" className="bg-white border border-gray-200 rounded-xl p-12 text-center mb-8">
+          <Heart className="text-primary-400 mx-auto mb-4" size={64} />
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+            Bienvenue sur votre dashboard donateur !
+          </h3>
+          <p className="text-gray-600 mb-6">
+            Vous n'avez pas encore fait de don. Découvrez des projets passionnants et soutenez-les !
+          </p>
+          <Button
+            variant="primary"
+            onClick={() => navigate('/')}
+          >
+            <FolderOpen size={18} />
+            Découvrir les projets
+          </Button>
+        </div>
+      )}
+
       {/* Statistiques */}
       {stats && (
         <div
@@ -270,7 +290,9 @@ export default function DonorDashboardPage() {
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <RecentDonationsList donations={recentDonations} />
+          <div data-testid="donor-dashboard-recent-donations">
+            <RecentDonationsList donations={recentDonations} />
+          </div>
 
           {recentDonations.length > 0 && (
             <div className="mt-6 pt-6 border-t text-center">

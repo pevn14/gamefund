@@ -152,7 +152,7 @@ export function ImageUpload({
 
         {preview ? (
           /* Prévisualisation de l'image */
-          <>
+          <div data-testid="project-form-image-preview">
             <img
               src={preview}
               alt="Preview"
@@ -180,7 +180,7 @@ export function ImageUpload({
                 </Button>
               </div>
             </div>
-          </>
+          </div>
         ) : (
           /* Zone d'upload vide */
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">

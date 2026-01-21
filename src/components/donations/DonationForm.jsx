@@ -20,6 +20,7 @@ export default function DonationForm({
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   // Validation du montant
@@ -87,9 +88,14 @@ export default function DonationForm({
 
       // Succès
       setShowConfirmation(false)
-      if (onSuccess) {
-        onSuccess(data)
-      }
+      setSuccess(true)
+
+      // Appeler onSuccess après 2 secondes
+      setTimeout(() => {
+        if (onSuccess) {
+          onSuccess(data)
+        }
+      }, 2000)
     } catch (err) {
       setError(err.message || 'Une erreur est survenue lors de la création de la donation')
       setShowConfirmation(false)
@@ -144,6 +150,17 @@ export default function DonationForm({
             <p className="text-sm text-primary-600 mt-1">
               {newPercentage}% de l'objectif
             </p>
+          </div>
+        )}
+
+        {/* Message de succès */}
+        {success && (
+          <div
+            data-testid="donation-success-message"
+            className="bg-green-50 border border-green-200 rounded-xl p-4 text-green-700 text-sm flex items-center gap-2"
+          >
+            <span className="text-2xl">✓</span>
+            <span>Merci pour votre don ! Votre contribution a bien été enregistrée.</span>
           </div>
         )}
 
