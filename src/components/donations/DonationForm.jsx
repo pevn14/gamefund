@@ -201,7 +201,7 @@ export default function DonationForm({
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Montant :</span>
-                <span className="font-bold text-primary-700">{amount}€</span>
+                <span data-testid="donation-confirm-amount" className="font-bold text-primary-700">{amount}€</span>
               </div>
               {message && (
                 <div className="pt-2 border-t">

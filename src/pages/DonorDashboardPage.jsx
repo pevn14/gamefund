@@ -136,7 +136,7 @@ export default function DonorDashboardPage() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
         >
           {/* Total donné */}
-          <div className="bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-xl p-6">
+          <div data-testid="donor-dashboard-stat-total-donated" className="bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="bg-primary-500 rounded-full p-2">
                 <Heart className="text-white" size={20} />
@@ -152,7 +152,7 @@ export default function DonorDashboardPage() {
           </div>
 
           {/* Projets soutenus */}
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6">
+          <div data-testid="donor-dashboard-stat-projects-count" className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="bg-blue-500 rounded-full p-2">
                 <FolderOpen className="text-white" size={20} />
@@ -172,7 +172,7 @@ export default function DonorDashboardPage() {
           </div>
 
           {/* Projets réussis */}
-          <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl p-6">
+          <div data-testid="donor-dashboard-stat-successful" className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl p-6">
             <div className="flex items-center gap-3 mb-2">
               <div className="bg-green-500 rounded-full p-2">
                 <TrendingUp className="text-white" size={20} />

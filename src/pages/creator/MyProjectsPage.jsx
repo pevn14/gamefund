@@ -239,13 +239,13 @@ export function MyProjectsPage() {
                   <CardContent className="p-5">
                     {/* Statut */}
                     <div className="mb-3">
-                      <Badge variant={statusColors[project.status]}>
+                      <Badge data-testid="my-project-card-status" variant={statusColors[project.status]}>
                         {statusLabels[project.status]}
                       </Badge>
                     </div>
 
                     {/* Titre */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                    <h3 data-testid="my-project-card-title" className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                       {project.title}
                     </h3>
 
@@ -272,7 +272,7 @@ export function MyProjectsPage() {
                     )}
 
                     {/* Métriques */}
-                    <div className="space-y-2 text-sm text-gray-600">
+                    <div data-testid="my-project-card-stats" className="space-y-2 text-sm text-gray-600">
                       <div className="flex items-center gap-2">
                         <Target size={16} />
                         <span>Objectif : {project.goal_amount}€</span>

@@ -130,24 +130,24 @@ export default function DonationCard({
             <Heart className="text-primary-600" size={20} />
           </div>
           <div>
-            <p className="font-semibold text-gray-900">
+            <p data-testid="donation-card-project" className="font-semibold text-gray-900">
               {donation.project?.title || 'Projet inconnu'}
             </p>
             <div className="flex items-center gap-2 text-sm text-gray-600 mt-1">
               <Calendar size={14} />
-              <span>{formattedDate}</span>
+              <span data-testid="donation-card-date">{formattedDate}</span>
             </div>
           </div>
         </div>
 
         <div className="text-right">
-          <p className="text-lg font-bold text-primary-700">
+          <p data-testid="donation-card-amount" className="text-lg font-bold text-primary-700">
             {donation.amount.toLocaleString('fr-FR')}€
           </p>
           {canModify && (
             <div className="flex gap-2 mt-2">
               <Button
-                data-testid="donation-edit-button"
+                data-testid="donation-card-edit-button"
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowEditModal(true)}
@@ -156,7 +156,7 @@ export default function DonationCard({
                 Modifier
               </Button>
               <Button
-                data-testid="donation-delete-button"
+                data-testid="donation-card-delete-button"
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowDeleteModal(true)}
