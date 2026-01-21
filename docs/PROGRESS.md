@@ -1,8 +1,8 @@
 # GameFund - Checklist de Suivi (Progress Tracker)
 
-**Projet** : GameFund - Plateforme de crowdfunding pour jeux vidéo  
-**Début** : [Date de début]  
-**Statut** : 🚧 En développement
+**Projet** : GameFund - Plateforme de crowdfunding pour jeux vidéo
+**Début** : Janvier 2026
+**Statut** : ✅ MVP complet (v1.0.0)
 
 ---
 

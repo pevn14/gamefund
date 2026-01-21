@@ -1,6 +1,12 @@
 # Guide de Configuration Supabase - GameFund
 
+**Statut** : MVP complet (v1.0.0)
+
 Ce document contient toutes les étapes nécessaires pour configurer Supabase pour le projet GameFund.
+
+**Scripts SQL disponibles :**
+- `supabase/schema.sql` - Schéma complet de la base de données
+- `supabase/add_avatar_storage.sql` - Bucket Storage pour les avatars
 
 ---
 

@@ -1,8 +1,8 @@
 # Design Guide - GameFund (Tailwind CSS v4)
 
-**Version** : 2.0 - Tailwind CSS v4  
-**Framework CSS** : Tailwind CSS v4 (CSS-first configuration)  
-**Optimisé pour** : Claude Code  
+**Version** : 2.0 - Tailwind CSS v4
+**Framework CSS** : Tailwind CSS v4 (CSS-first configuration)
+**Statut** : MVP complet (v1.0.0)
 **Style** : Minimaliste & Moderne
 
 ---
