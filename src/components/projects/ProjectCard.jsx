@@ -56,7 +56,7 @@ export default function ProjectCard({ project }) {
         />
         <CardContent>
           <div className="flex items-center justify-between mb-2">
-            <Badge variant={status} data-testid="project-card-status-badge">
+            <Badge variant={status} data-testid="project-card-badge">
               {status === 'active' ? 'Actif' : status}
             </Badge>
             <span className="text-xs text-gray-500" data-testid="project-card-days-remaining">
@@ -65,7 +65,7 @@ export default function ProjectCard({ project }) {
           </div>
 
           <CardTitle data-testid="project-card-title">{title}</CardTitle>
-          <CardDescription data-testid="project-card-description">
+          <CardDescription data-testid="project-card-tagline">
             {truncateText(description)}
           </CardDescription>
 
@@ -80,11 +80,11 @@ export default function ProjectCard({ project }) {
             />
           </div>
 
-          <div className="flex items-center justify-between text-sm mt-3">
-            <span className="font-semibold text-gray-900" data-testid="project-card-amount">
+          <div data-testid="project-card-stats" className="flex items-center justify-between text-sm mt-3">
+            <span className="font-semibold text-gray-900">
               {formatAmount(total_collected)} € / {formatAmount(goal_amount)} €
             </span>
-            <span className="text-gray-600" data-testid="project-card-donors">
+            <span className="text-gray-600">
               {donors_count} {donors_count <= 1 ? 'donateur' : 'donateurs'}
             </span>
           </div>
@@ -93,14 +93,13 @@ export default function ProjectCard({ project }) {
         <CardFooter>
           <div className="flex items-center justify-between w-full">
             {isAuthenticated ? (
-              <div className="flex items-center gap-2">
+              <div data-testid="project-card-creator" className="flex items-center gap-2">
                 <Avatar
                   src={creator?.avatar_url}
                   alt={creator?.display_name}
                   size="sm"
-                  data-testid="project-card-creator-avatar"
                 />
-                <span className="text-sm text-gray-700" data-testid="project-card-creator-name">
+                <span className="text-sm text-gray-700">
                   {creator?.display_name || 'Anonyme'}
                 </span>
               </div>

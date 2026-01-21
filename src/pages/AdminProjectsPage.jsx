@@ -213,7 +213,7 @@ export function AdminProjectsPage() {
 
   return (
     <MainLayout>
-      <Container className="py-8">
+      <Container data-testid="admin-projects-page" className="py-8">
         {/* Header */}
         <div className="mb-6 flex items-center gap-4">
           <Link to="/admin">
@@ -242,6 +242,7 @@ export function AdminProjectsPage() {
         <div className="mb-6 flex flex-col md:flex-row gap-4">
           {/* Recherche */}
           <input
+            data-testid="admin-projects-search"
             type="text"
             placeholder="Rechercher par titre ou créateur..."
             value={searchTerm}
@@ -251,6 +252,7 @@ export function AdminProjectsPage() {
 
           {/* Filtre par statut */}
           <select
+            data-testid="admin-projects-filter"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
@@ -334,7 +336,7 @@ export function AdminProjectsPage() {
                 </thead>
                 <tbody>
                   {filteredProjects.map((project) => (
-                    <tr key={project.id} className="hover:bg-gray-50">
+                    <tr key={project.id} data-testid="admin-project-row" className="hover:bg-gray-50">
                       <td className="border border-gray-200 px-4 py-2 text-sm">
                         <Link
                           to={`/projects/${project.id}`}
@@ -371,6 +373,7 @@ export function AdminProjectsPage() {
                       <td className="border border-gray-200 px-4 py-2 text-sm">
                         <div className="flex flex-col gap-1">
                           <select
+                            data-testid="admin-project-status-select"
                             className="text-xs border border-gray-300 rounded px-2 py-1"
                             value={project.status}
                             onChange={(e) =>
@@ -393,6 +396,7 @@ export function AdminProjectsPage() {
                             Changer deadline
                           </button>
                           <button
+                            data-testid="admin-project-delete-button"
                             onClick={() => handleDelete(project)}
                             className={`text-xs text-left hover:underline ${
                               project.status === 'cancelled'

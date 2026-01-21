@@ -114,7 +114,7 @@ export function MyProjectsPage() {
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div data-testid="my-projects-page" className="min-h-screen bg-gray-50 py-8">
         <Container>
 
         {/* Header */}
@@ -126,6 +126,7 @@ export function MyProjectsPage() {
           </div>
 
           <Button
+            data-testid="my-projects-create-button"
             variant="primary"
             size="lg"
             onClick={() => navigate('/projects/create')}
@@ -136,9 +137,8 @@ export function MyProjectsPage() {
         </div>
 
         {/* Filtres */}
-        <div className="mb-8 flex flex-wrap gap-3">
+        <div data-testid="my-projects-filter-tabs" className="mb-8 flex flex-wrap gap-3">
           <Button
-            data-testid="filter-all-button"
             variant={filter === 'all' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setFilter('all')}
@@ -146,7 +146,6 @@ export function MyProjectsPage() {
             Tous ({counts.all})
           </Button>
           <Button
-            data-testid="filter-draft-button"
             variant={filter === 'draft' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setFilter('draft')}
@@ -154,7 +153,6 @@ export function MyProjectsPage() {
             Brouillons ({counts.draft})
           </Button>
           <Button
-            data-testid="filter-active-button"
             variant={filter === 'active' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setFilter('active')}
@@ -162,7 +160,6 @@ export function MyProjectsPage() {
             Actifs ({counts.active})
           </Button>
           <Button
-            data-testid="filter-completed-button"
             variant={filter === 'completed' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setFilter('completed')}
@@ -170,7 +167,6 @@ export function MyProjectsPage() {
             Terminés ({counts.completed})
           </Button>
           <Button
-            data-testid="filter-failed-button"
             variant={filter === 'failed' ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setFilter('failed')}
@@ -187,7 +183,7 @@ export function MyProjectsPage() {
             <SkeletonCard />
           </div>
         ) : filteredProjects.length === 0 ? (
-          <Card>
+          <Card data-testid="my-projects-empty">
             <CardContent className="p-12 text-center">
               <div className="max-w-sm mx-auto">
                 <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -218,7 +214,7 @@ export function MyProjectsPage() {
             </CardContent>
           </Card>
         ) : (
-          <div data-testid="projects-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div data-testid="my-projects-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map(project => {
               const percentage = getCompletionPercentage(
                 project.total_collected || 0,
@@ -226,7 +222,7 @@ export function MyProjectsPage() {
               )
 
               return (
-                <Card key={project.id} data-testid="project-card" hover>
+                <Card key={project.id} data-testid="my-project-card" hover>
                   {/* Image */}
                   {project.image_url && project.image_url !== '' ? (
                     <CardImage
@@ -296,7 +292,7 @@ export function MyProjectsPage() {
                   {/* Actions */}
                   <CardFooter className="p-5 pt-0 flex gap-2">
                     <Button
-                      data-testid="edit-project-button"
+                      data-testid="my-project-card-edit-button"
                       variant="outline"
                       size="sm"
                       className="flex-1"
@@ -306,7 +302,7 @@ export function MyProjectsPage() {
                       Éditer
                     </Button>
                     <Button
-                      data-testid="view-project-button"
+                      data-testid="my-project-card-view-button"
                       variant="secondary"
                       size="sm"
                       className="flex-1"

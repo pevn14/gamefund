@@ -82,19 +82,19 @@ export default function SignupPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <div data-testid="error-message" className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                <div data-testid="signup-error-message" className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
                   {error}
                 </div>
               )}
 
               {message && (
-                <div data-testid="success-message" className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
+                <div data-testid="signup-success-message" className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm">
                   {message}
                 </div>
               )}
 
               <Input
-                data-testid="signup-display-name-input"
+                data-testid="signup-displayname-input"
                 label="Nom d'affichage"
                 type="text"
                 value={displayName}
@@ -150,6 +150,7 @@ export default function SignupPage() {
                 Déjà un compte ?{' '}
                 <Link
                   to="/login"
+                  data-testid="signup-login-link"
                   className="text-primary-600 hover:text-primary-700 font-medium"
                 >
                   Se connecter

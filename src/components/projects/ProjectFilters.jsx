@@ -47,7 +47,7 @@ export default function ProjectFilters({
         placeholder="Rechercher un projet par titre ou description..."
         value={search}
         onChange={handleSearchChange}
-        data-testid="search-input"
+        data-testid="projects-search-input"
       />
 
       <div className="flex flex-wrap gap-4">
@@ -57,7 +57,7 @@ export default function ProjectFilters({
             label="Statut"
             value={status}
             onChange={handleStatusChange}
-            data-testid="status-filter"
+            data-testid="projects-status-filter"
           >
             <option value="all">Tous les projets</option>
             <option value="active">Actifs</option>
@@ -73,7 +73,7 @@ export default function ProjectFilters({
             label="Trier par"
             value={sort}
             onChange={handleSortChange}
-            data-testid="sort-select"
+            data-testid="projects-sort-filter"
           >
             <option value="created_at">Plus récents</option>
             <option value="created_at_asc">Plus anciens</option>

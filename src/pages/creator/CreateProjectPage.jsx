@@ -223,7 +223,7 @@ export function CreateProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div data-testid="create-project-page" className="min-h-screen bg-gray-50 py-8">
       <Container>
         {/* Header */}
         <div className="mb-8">
@@ -246,7 +246,7 @@ export function CreateProjectPage() {
         </div>
 
         {/* Formulaire */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div data-testid="project-form" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Colonne principale */}
           <div className="lg:col-span-2 space-y-6">
             {/* Informations de base */}
@@ -257,7 +257,7 @@ export function CreateProjectPage() {
                 <div className="space-y-6">
                   {/* Titre */}
                   <Input
-                    data-testid="project-title-input"
+                    data-testid="project-form-title-input"
                     label="Titre du projet"
                     placeholder="Ex: Mystic Quest - Un RPG épique"
                     value={formData.title}
@@ -273,7 +273,7 @@ export function CreateProjectPage() {
 
                   {/* Description */}
                   <Textarea
-                    data-testid="project-description-input"
+                    data-testid="project-form-description-input"
                     label="Description"
                     placeholder="Décrivez votre projet en détail : l'histoire, le gameplay, les fonctionnalités principales..."
                     value={formData.description}
@@ -296,6 +296,7 @@ export function CreateProjectPage() {
                 <h2 className="text-xl font-semibold mb-6">Image du projet</h2>
 
                 <ImageUpload
+                  data-testid="project-form-image-upload"
                   label="Image de bannière"
                   value={null}
                   onChange={(file) => handleChange('image', file)}
@@ -314,7 +315,7 @@ export function CreateProjectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Montant cible */}
                   <Input
-                    data-testid="project-goal-input"
+                    data-testid="project-form-goal-input"
                     label="Montant cible"
                     type="number"
                     placeholder="Ex: 50000"
@@ -329,7 +330,7 @@ export function CreateProjectPage() {
 
                   {/* Date d'échéance */}
                   <Input
-                    data-testid="project-deadline-input"
+                    data-testid="project-form-deadline-input"
                     label="Date d'échéance"
                     type="date"
                     value={formData.deadline}
@@ -362,7 +363,7 @@ export function CreateProjectPage() {
                   <div className="space-y-3">
                     {/* Bouton Publier */}
                     <Button
-                      data-testid="publish-project-button"
+                      data-testid="project-form-publish-button"
                       variant="primary"
                       size="md"
                       className="w-full"
@@ -376,7 +377,7 @@ export function CreateProjectPage() {
 
                     {/* Bouton Sauvegarder brouillon */}
                     <Button
-                      data-testid="save-draft-button"
+                      data-testid="project-form-save-button"
                       variant="outline"
                       size="md"
                       className="w-full"

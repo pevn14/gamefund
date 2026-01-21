@@ -1,0 +1,183 @@
+nom de la page ou du composant,data-testid,Élément,info complementaire,fichier concerné,implémenté
+Page Login (`/login`),login-email-input,Champ email,input,src/pages/LoginPage.jsx,oui
+Page Login (`/login`),login-password-input,Champ mot de passe,input,src/pages/LoginPage.jsx,oui
+Page Login (`/login`),login-submit-button,Bouton connexion,button,src/pages/LoginPage.jsx,oui
+Page Login (`/login`),login-error-message,Message d'erreur,div,src/pages/LoginPage.jsx,oui
+Page Login (`/login`),login-signup-link,Lien vers inscription,link,src/pages/LoginPage.jsx,oui
+Page Signup (`/signup`),signup-displayname-input,Champ nom d'affichage,input,SignupPage.jsx,oui
+Page Signup (`/signup`),signup-email-input,Champ email,input,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-password-input,Champ mot de passe,input,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-confirm-password-input,Confirmation mot de passe,input,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-submit-button,Bouton inscription,button,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-error-message,Message d'erreur,div,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-success-message,Message succès,div,src/pages/SignupPage.jsx,oui
+Page Signup (`/signup`),signup-login-link,Lien vers connexion,link,src/pages/SignupPage.jsx,oui
+Desktop (authentifié),header-projects-link,"Lien ""Mes Projets""","Connecté, non admin",src/components/layout/Header.jsx,oui
+Desktop (authentifié),header-dashboard-link,"Lien ""Dashboard Créateur""","Connecté, non admin",src/components/layout/Header.jsx,oui
+Desktop (authentifié),header-donor-dashboard-link,"Lien ""Dashboard Donateur""","Connecté, non admin",src/components/layout/Header.jsx,oui
+Desktop (authentifié),header-admin-link,"Lien ""Dashboard Admin""",Admin uniquement,src/components/layout/Header.jsx,oui
+Desktop (authentifié),header-user-info,Affichage avatar + nom,Connecté,src/components/layout/Header.jsx,oui
+Desktop (authentifié),header-logout-button,Bouton déconnexion,Connecté,src/components/layout/Header.jsx,oui
+Desktop (non authentifié),header-login-button,"Bouton ""Connexion""",,src/components/layout/Header.jsx,oui
+Desktop (non authentifié),header-signup-button,"Bouton ""Inscription""",,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-menu-button,Bouton burger,,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-menu,Menu déplié,,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-dashboard-link,Lien Dashboard (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-projects-link,Lien Mes Projets (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-donor-dashboard-link,Lien Dashboard Donateur (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-user-info,Info utilisateur (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-login-button,Bouton connexion (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-signup-button,Bouton inscription (mobile),,src/components/layout/Header.jsx,oui
+Mobile,header-mobile-logout-button,Bouton déconnexion (mobile),,src/components/layout/Header.jsx,oui
+Filtres,projects-page,Container page,,src/pages/public/ProjectsPage.jsx,oui
+Filtres,projects-page-title,Titre principal,,src/pages/public/ProjectsPage.jsx,oui
+Filtres,projects-page-subtitle,Sous-titre,,src/pages/public/ProjectsPage.jsx,oui
+Filtres,projects-search-input,Champ recherche,,ProjectFilters.jsx,oui
+Filtres,projects-status-filter,Select filtre statut,,ProjectFilters.jsx,oui
+Filtres,projects-sort-filter,Select tri,,ProjectFilters.jsx,oui
+Filtres,projects-page-creator-filter,Bandeau filtrage créateur,,src/pages/public/ProjectsPage.jsx,oui
+Filtres,projects-page-clear-creator-filter,Bouton effacer filtre créateur,,src/pages/public/ProjectsPage.jsx,oui
+Grille et cartes,projects-grid,Container grille,,ProjectGrid.jsx,oui
+Grille et cartes,project-card,Carte projet (multiple),,src/components/projects/ProjectCard.jsx,oui
+Grille et cartes,project-card-image,Image du projet,,src/components/projects/ProjectCard.jsx,oui
+Grille et cartes,project-card-title,Titre,,src/components/projects/ProjectCard.jsx,oui
+Grille et cartes,project-card-tagline,Tagline,,ProjectCard.jsx,oui
+Grille et cartes,project-card-badge,Badge statut,,ProjectCard.jsx,oui
+Grille et cartes,project-card-progress,Barre de progression,,src/components/projects/ProjectCard.jsx,oui
+Grille et cartes,project-card-stats,"Statistiques (montant, donateurs)",,ProjectCard.jsx,oui
+Grille et cartes,project-card-creator,Info créateur (avatar + nom),,ProjectCard.jsx,oui
+Grille et cartes,project-card-link,Lien vers détail,,src/components/projects/ProjectCard.jsx,oui
+Grille et cartes,projects-grid-empty,État vide,,ProjectGrid.jsx,oui
+Grille et cartes,projects-grid-loading,État chargement,,ProjectGrid.jsx,oui
+Grille et cartes,projects-grid-error,État erreur,,ProjectGrid.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-page,Container page,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-loading,État chargement,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-error,État erreur,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-back-button,Bouton retour,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-title,Titre projet,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-tagline,Tagline,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-image,Image principale,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-description,Section description,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-creator,"Section créateur (avatar, nom, bio)",,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-stats,Section statistiques,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-donations,Section donations récentes,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-share-button,Bouton partager,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-donate-button,Bouton faire un don,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-donation-modal,Modal de don,,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-login-button,Bouton connexion (si non connecté),,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-manage-button,Bouton gérer (si créateur),,src/pages/public/ProjectDetailPage.jsx,oui
+3.4 Détail projet (`/projects/:id`),project-detail-view-donations-button,Bouton voir donations (si créateur),,src/pages/public/ProjectDetailPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",create-project-page,Container page création,,src/pages/creator/CreateProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",edit-project-page,Container page édition,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form,Formulaire,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-title-input,Champ titre,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-tagline-input,Champ tagline,,Inconnu,non
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-description-input,Champ description,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-goal-input,Champ objectif,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-deadline-input,Champ deadline,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-image-upload,Upload image,,src/pages/creator/CreateProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-image-preview,Prévisualisation image,,Inconnu,non
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-save-button,Bouton sauvegarder (brouillon),,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-publish-button,Bouton publier,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-cancel-button,Bouton annuler,,Inconnu,non
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-delete-button,Bouton supprimer,,src/pages/creator/EditProjectPage.jsx,oui
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-error,Message erreur,,Inconnu,non
+"Création/Édition (`/projects/create`, `/projects/:id/edit`)",project-form-success,Message succès,,Inconnu,non
+Liste mes projets (`/dashboard/projects`),my-projects-page,Container page,,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-projects-create-button,Bouton créer projet,,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-projects-filter-tabs,"Onglets filtres (Tous, Brouillons, Actifs...)",,src/pages/creator/MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-projects-grid,Grille de projets,,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-project-card,Carte projet (multiple),,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-project-card-title,Titre,,Inconnu,non
+Liste mes projets (`/dashboard/projects`),my-project-card-status,Badge statut,,Inconnu,non
+Liste mes projets (`/dashboard/projects`),my-project-card-stats,Statistiques,,Inconnu,non
+Liste mes projets (`/dashboard/projects`),my-project-card-edit-button,Bouton éditer,,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-project-card-view-button,Bouton voir,,MyProjectsPage.jsx,oui
+Liste mes projets (`/dashboard/projects`),my-projects-empty,État vide,,MyProjectsPage.jsx,oui
+Formulaire de don (dans modal),donation-form,Formulaire,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-amount-input,Champ montant,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-message-input,Champ message,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-preview,Prévisualisation impact,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-submit-button,Bouton continuer,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-cancel-button,Bouton annuler,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-form-error,Message erreur,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-confirm-modal,Modal confirmation,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-confirm-amount,Montant affiché,,Inconnu,non
+Formulaire de don (dans modal),donation-confirm-button,Bouton confirmer,,src/components/donations/DonationForm.jsx,oui
+Formulaire de don (dans modal),donation-success-message,Message succès,,Inconnu,non
+Mes donations (`/my-donations`),my-donations-page,Container page,,src/pages/MyDonationsPage.jsx,oui
+Mes donations (`/my-donations`),my-donations-stats,Statistiques globales,,src/pages/MyDonationsPage.jsx,oui
+Mes donations (`/my-donations`),my-donations-list,Liste des donations,,src/pages/MyDonationsPage.jsx,oui
+Mes donations (`/my-donations`),donation-card,Carte donation (multiple),,src/components/donations/DonationCard.jsx,oui
+Mes donations (`/my-donations`),donation-card-project,Nom projet,,Inconnu,non
+Mes donations (`/my-donations`),donation-card-amount,Montant,,Inconnu,non
+Mes donations (`/my-donations`),donation-card-date,Date,,Inconnu,non
+Mes donations (`/my-donations`),donation-card-edit-button,Bouton modifier,,Inconnu,non
+Mes donations (`/my-donations`),donation-card-delete-button,Bouton supprimer,,Inconnu,non
+Mes donations (`/my-donations`),my-donations-empty,État vide,,src/pages/MyDonationsPage.jsx,oui
+Donations reçues - Vue créateur (`/my-projects/:id/donations`),project-donations-page,Container page,,src/pages/ProjectDonationsPage.jsx,oui
+Donations reçues - Vue créateur (`/my-projects/:id/donations`),project-donations-stats,"Statistiques (total, moyenne, nb)",,src/pages/ProjectDonationsPage.jsx,oui
+Donations reçues - Vue créateur (`/my-projects/:id/donations`),project-donations-export-button,Bouton export CSV,,src/pages/ProjectDonationsPage.jsx,oui
+Donations reçues - Vue créateur (`/my-projects/:id/donations`),project-donations-list,Liste des donations,,Inconnu,non
+Donations reçues - Vue créateur (`/my-projects/:id/donations`),project-donations-empty,État vide,,src/pages/ProjectDonationsPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-page,Container page,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-welcome,Message bienvenue,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-stats,Grille statistiques (4 cartes),,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-stat-total,Stat total projets,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-stat-active,Stat projets actifs,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-stat-collected,Stat fonds collectés,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-stat-donors,Stat donateurs,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-recent-projects,Section projets récents,,Inconnu,non
+Dashboard Créateur (`/dashboard`),creator-dashboard-quick-actions,Section actions rapides,,Inconnu,non
+Dashboard Créateur (`/dashboard`),creator-dashboard-drafts-alert,Alerte brouillons,,CreatorDashboardPage.jsx,oui
+Dashboard Créateur (`/dashboard`),creator-dashboard-empty,État vide (nouveau créateur),,Inconnu,non
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-page,Container page,,src/pages/DonorDashboardPage.jsx,oui
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-stats,Grille statistiques,,src/pages/DonorDashboardPage.jsx,oui
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-stat-total-donated,Total donné,,Inconnu,non
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-stat-projects-count,Projets soutenus,,Inconnu,non
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-stat-successful,Projets réussis,,Inconnu,non
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-projects-grid,Grille projets soutenus,,src/pages/DonorDashboardPage.jsx,oui
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-recent-donations,Donations récentes,,Inconnu,non
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-view-all-button,Bouton voir tous mes dons,,src/pages/DonorDashboardPage.jsx,oui
+Dashboard Donateur (`/donor-dashboard`),donor-dashboard-empty,État vide,,Inconnu,non
+Dashboard Admin (`/admin`),admin-dashboard-page,Container page,,AdminDashboardPage.jsx,oui
+Dashboard Admin (`/admin`),admin-dashboard-stats,Grille statistiques globales,,AdminDashboardPage.jsx,oui
+Dashboard Admin (`/admin`),admin-nav-projects,Lien gestion projets,,src/pages/AdminDashboardPage.jsx,oui
+Dashboard Admin (`/admin`),admin-nav-users,Lien gestion utilisateurs,,src/pages/AdminDashboardPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-projects-page,Container page,,AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-projects-search,Recherche,,AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-projects-filter,Filtre statut,,AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-projects-table,Table des projets,,src/pages/AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-project-row,Ligne projet (multiple),,AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-project-status-select,Select changement statut,,AdminProjectsPage.jsx,oui
+Admin - Gestion projets (`/admin/projects`),admin-project-delete-button,Bouton supprimer,,AdminProjectsPage.jsx,oui
+Admin - Gestion utilisateurs (`/admin/users`),admin-users-page,Container page,,AdminUsersPage.jsx,oui
+Admin - Gestion utilisateurs (`/admin/users`),admin-users-search,Recherche,,Inconnu,non
+Admin - Gestion utilisateurs (`/admin/users`),admin-users-table,Table des utilisateurs,,src/pages/AdminUsersPage.jsx,oui
+Admin - Gestion utilisateurs (`/admin/users`),admin-user-row,Ligne utilisateur (multiple),,AdminUsersPage.jsx,oui
+Admin - Gestion utilisateurs (`/admin/users`),admin-user-role-select,Select changement rôle,,AdminUsersPage.jsx,oui
+Admin - Gestion utilisateurs (`/admin/users`),admin-user-status-toggle,Toggle actif/suspendu,,AdminUsersPage.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor,Container éditeur,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-name-input,Champ nom d'affichage,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-bio-textarea,Champ bio,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-bio-counter,Compteur caractères,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-save-button,Bouton enregistrer,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-success-message,Message succès,,src/components/profile/ProfileEditor.jsx,oui
+ProfileEditor (dans Dashboard Créateur),profile-editor-error-message,Message erreur,,src/components/profile/ProfileEditor.jsx,oui
+AvatarUpload,avatar-upload,Container upload,,src/components/profile/AvatarUpload.jsx,oui
+AvatarUpload,avatar-upload-preview,Prévisualisation,,src/components/profile/AvatarUpload.jsx,oui
+AvatarUpload,avatar-upload-input,Input file (hidden),,src/components/profile/AvatarUpload.jsx,oui
+AvatarUpload,avatar-upload-button,Bouton upload,,src/components/profile/AvatarUpload.jsx,oui
+AvatarUpload,avatar-delete-button,Bouton supprimer,,src/components/profile/AvatarUpload.jsx,oui
+Page Créateurs (`/creators`),creators-page,Container page,,src/pages/public/CreatorsPage.jsx,oui
+Page Créateurs (`/creators`),creators-page-title,Titre,,src/pages/public/CreatorsPage.jsx,oui
+Page Créateurs (`/creators`),creators-page-grid,Grille créateurs,,src/components/creators/CreatorsGrid.jsx,oui
+Page Créateurs (`/creators`),creators-page-login-message,Message si non connecté,,src/pages/public/CreatorsPage.jsx,oui
+Page Créateurs (`/creators`),creators-page-login-button,Bouton connexion,,src/pages/public/CreatorsPage.jsx,oui
+Page Créateurs (`/creators`),creators-page-signup-link,Lien inscription,,src/pages/public/CreatorsPage.jsx,oui
+CreatorCard,creator-card,Carte créateur (multiple),,src/components/creators/CreatorCard.jsx,oui
+CreatorCard,creator-card-avatar,Avatar,,src/components/creators/CreatorCard.jsx,oui
+CreatorCard,creator-card-name,Nom,,src/components/creators/CreatorCard.jsx,oui
+CreatorCard,creator-card-bio,Bio,,src/components/creators/CreatorCard.jsx,oui
+CreatorCard,creator-card-projects-count,Nombre de projets,,src/components/creators/CreatorCard.jsx,oui
+CreatorCard,creator-card-view-button,Bouton voir projets,,src/components/creators/CreatorCard.jsx,oui

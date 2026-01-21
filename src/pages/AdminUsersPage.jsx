@@ -84,7 +84,7 @@ export function AdminUsersPage() {
 
   return (
     <MainLayout>
-      <Container className="py-8">
+      <Container data-testid="admin-users-page" className="py-8">
       {/* Header */}
       <div className="mb-6 flex items-center gap-4">
         <Link to="/admin">
@@ -148,7 +148,7 @@ export function AdminUsersPage() {
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-50">
+                <tr key={user.id} data-testid="admin-user-row" className="hover:bg-gray-50">
                   <td className="border border-gray-200 px-4 py-2 text-sm">
                     {user.email}
                   </td>
@@ -171,6 +171,7 @@ export function AdminUsersPage() {
                   <td className="border border-gray-200 px-4 py-2 text-sm">
                     <div className="flex flex-col gap-1">
                       <select
+                        data-testid="admin-user-role-select"
                         className="text-xs border border-gray-300 rounded px-2 py-1"
                         value={user.role}
                         onChange={(e) =>
@@ -181,6 +182,7 @@ export function AdminUsersPage() {
                         <option value="admin">admin</option>
                       </select>
                       <button
+                        data-testid="admin-user-status-toggle"
                         onClick={() =>
                           handleToggleStatus(user.id, user.is_active, user.email)
                         }

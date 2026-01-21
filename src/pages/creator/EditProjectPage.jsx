@@ -311,7 +311,7 @@ export function EditProjectPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div data-testid="edit-project-page" className="min-h-screen bg-gray-50 py-8">
       <Container>
         {/* Header */}
         <div className="mb-8">
@@ -342,7 +342,7 @@ export function EditProjectPage() {
         </div>
 
         {/* Formulaire */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div data-testid="project-form" className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Colonne principale */}
           <div className="lg:col-span-2 space-y-6">
             {/* Informations de base */}
@@ -353,7 +353,7 @@ export function EditProjectPage() {
                 <div className="space-y-6">
                   {/* Titre */}
                   <Input
-                    data-testid="project-title-input"
+                    data-testid="project-form-title-input"
                     label="Titre du projet"
                     placeholder="Ex: Mystic Quest - Un RPG épique"
                     value={formData.title}
@@ -376,7 +376,7 @@ export function EditProjectPage() {
 
                   {/* Description */}
                   <Textarea
-                    data-testid="project-description-input"
+                    data-testid="project-form-description-input"
                     label="Description"
                     placeholder="Décrivez votre projet en détail..."
                     value={formData.description}
@@ -413,7 +413,7 @@ export function EditProjectPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Montant cible */}
                   <Input
-                    data-testid="project-goal-input"
+                    data-testid="project-form-goal-input"
                     label="Montant cible"
                     type="number"
                     placeholder="Ex: 50000"
@@ -429,7 +429,7 @@ export function EditProjectPage() {
 
                   {/* Date d'échéance */}
                   <Input
-                    data-testid="project-deadline-input"
+                    data-testid="project-form-deadline-input"
                     label="Date d'échéance"
                     type="date"
                     value={formData.deadline}
@@ -463,7 +463,7 @@ export function EditProjectPage() {
                   <div className="space-y-3">
                     {/* Bouton Sauvegarder */}
                     <Button
-                      data-testid="save-project-button"
+                      data-testid="project-form-save-button"
                       variant="primary"
                       size="md"
                       className="w-full"
@@ -478,7 +478,7 @@ export function EditProjectPage() {
                     {/* Bouton Publier (si brouillon) */}
                     {formData.status === 'draft' && (
                       <Button
-                        data-testid="publish-project-button"
+                        data-testid="project-form-publish-button"
                         variant="success"
                         size="md"
                         className="w-full"
@@ -492,7 +492,7 @@ export function EditProjectPage() {
 
                     {/* Bouton Supprimer */}
                     <Button
-                      data-testid="delete-project-button"
+                      data-testid="project-form-delete-button"
                       variant="danger"
                       size="md"
                       className="w-full"

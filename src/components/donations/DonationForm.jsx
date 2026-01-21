@@ -107,7 +107,7 @@ export default function DonationForm({
       <form data-testid="donation-form" onSubmit={handleSubmit} className="space-y-6">
         {/* Montant */}
         <Input
-          data-testid="donation-amount-input"
+          data-testid="donation-form-amount-input"
           label="Montant du don *"
           type="number"
           min="1"
@@ -121,7 +121,7 @@ export default function DonationForm({
 
         {/* Message optionnel */}
         <Textarea
-          data-testid="donation-message-input"
+          data-testid="donation-form-message-input"
           label="Message au créateur (optionnel)"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -132,7 +132,7 @@ export default function DonationForm({
         {/* Prévisualisation du nouveau total */}
         {amount && Number(amount) >= 1 && (
           <div
-            data-testid="donation-preview-total"
+            data-testid="donation-form-preview"
             className="bg-primary-50 border border-primary-200 rounded-xl p-4"
           >
             <p className="text-sm text-gray-600 mb-1">
@@ -150,7 +150,7 @@ export default function DonationForm({
         {/* Message d'erreur */}
         {error && (
           <div
-            data-testid="donation-error-message"
+            data-testid="donation-form-error"
             className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700 text-sm"
           >
             {error}
@@ -160,7 +160,7 @@ export default function DonationForm({
         {/* Boutons */}
         <div className="flex gap-3">
           <Button
-            data-testid="donation-cancel-button"
+            data-testid="donation-form-cancel-button"
             type="button"
             variant="ghost"
             onClick={onCancel}
@@ -169,7 +169,7 @@ export default function DonationForm({
             Annuler
           </Button>
           <Button
-            data-testid="donation-submit-button"
+            data-testid="donation-form-submit-button"
             type="submit"
             variant="primary"
             className="flex-1"

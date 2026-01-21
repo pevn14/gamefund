@@ -91,18 +91,18 @@ export function CreatorDashboardPage() {
 
   return (
     <MainLayout>
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div data-testid="creator-dashboard-page" className="min-h-screen bg-gray-50 py-8">
         <Container>
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900">
+            <h1 data-testid="creator-dashboard-welcome" className="text-4xl font-bold text-gray-900">
               Dashboard Créateur
             </h1>
           </div>
 
         {/* Statistiques principales */}
-        <div data-testid="dashboard-stats-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div data-testid="stat-total-projects">
+        <div data-testid="creator-dashboard-stats" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div data-testid="creator-dashboard-stat-total">
             <StatsCard
               icon={<FolderOpen size={24} />}
               label="Total projets"
@@ -111,7 +111,7 @@ export function CreatorDashboardPage() {
             />
           </div>
 
-          <div data-testid="stat-active-projects">
+          <div data-testid="creator-dashboard-stat-active">
             <StatsCard
               icon={<Target size={24} />}
               label="Projets actifs"
@@ -120,7 +120,7 @@ export function CreatorDashboardPage() {
             />
           </div>
 
-          <div data-testid="stat-total-collected">
+          <div data-testid="creator-dashboard-stat-collected">
             <StatsCard
               icon={<TrendingUp size={24} />}
               label="Fonds collectés"
@@ -129,7 +129,7 @@ export function CreatorDashboardPage() {
             />
           </div>
 
-          <div data-testid="stat-total-donors">
+          <div data-testid="creator-dashboard-stat-donors">
             <StatsCard
               icon={<Users size={24} />}
               label="Donateurs"
@@ -161,7 +161,7 @@ export function CreatorDashboardPage() {
 
             {/* Brouillons en attente */}
             {stats.draftProjects > 0 && (
-              <Card data-testid="drafts-alert">
+              <Card data-testid="creator-dashboard-drafts-alert">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-3">
                     <div className="p-2 bg-amber-100 rounded-lg flex-shrink-0">

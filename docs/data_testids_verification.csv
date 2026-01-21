@@ -1,0 +1,115 @@
+Section,data-testid,Fichier,Statut,Notes
+Login,login-email-input,src/pages/LoginPage.jsx,✅ Conforme,
+Login,login-password-input,src/pages/LoginPage.jsx,✅ Conforme,
+Login,login-submit-button,src/pages/LoginPage.jsx,✅ Conforme,
+Login,login-error-message,src/pages/LoginPage.jsx,✅ Conforme,
+Login,login-signup-link,src/pages/LoginPage.jsx,✅ Conforme,
+Signup,signup-displayname-input,src/pages/SignupPage.jsx,✅ Conforme,Corrigé (était signup-display-name-input)
+Signup,signup-email-input,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-password-input,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-confirm-password-input,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-submit-button,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-error-message,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-success-message,src/pages/SignupPage.jsx,✅ Conforme,
+Signup,signup-login-link,src/pages/SignupPage.jsx,✅ Conforme,
+Galerie - Filtres,projects-page,src/pages/public/ProjectsPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Galerie - Filtres,projects-page-title,src/pages/public/ProjectsPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Galerie - Filtres,projects-page-subtitle,src/pages/public/ProjectsPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Galerie - Filtres,projects-search-input,src/components/projects/ProjectFilters.jsx,✅ Conforme,Corrigé (était search-input)
+Galerie - Filtres,projects-status-filter,src/components/projects/ProjectFilters.jsx,✅ Conforme,Corrigé (était status-filter)
+Galerie - Filtres,projects-sort-filter,src/components/projects/ProjectFilters.jsx,✅ Conforme,Corrigé (était sort-select)
+Galerie - Filtres,projects-page-creator-filter,src/pages/public/ProjectsPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Galerie - Filtres,projects-page-clear-creator-filter,src/pages/public/ProjectsPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Galerie - Grille,projects-grid,src/components/projects/ProjectGrid.jsx,✅ Conforme,Corrigé (était project-grid)
+Galerie - Grille,projects-grid-loading,src/components/projects/ProjectGrid.jsx,✅ Conforme,Corrigé (était project-grid-skeleton)
+Galerie - Grille,projects-grid-error,src/components/projects/ProjectGrid.jsx,✅ Conforme,Corrigé (était project-grid-error)
+Galerie - Grille,projects-grid-empty,src/components/projects/ProjectGrid.jsx,✅ Conforme,Corrigé (était project-grid-empty)
+ProjectCard,project-card,src/components/projects/ProjectCard.jsx,✅ Conforme,
+ProjectCard,project-card-image,src/components/projects/ProjectCard.jsx,✅ Conforme,
+ProjectCard,project-card-title,src/components/projects/ProjectCard.jsx,✅ Conforme,
+ProjectCard,project-card-tagline,src/components/projects/ProjectCard.jsx,✅ Conforme,Corrigé (était project-card-description)
+ProjectCard,project-card-badge,src/components/projects/ProjectCard.jsx,✅ Conforme,Corrigé (était project-card-status-badge)
+ProjectCard,project-card-progress,src/components/projects/ProjectCard.jsx,✅ Conforme,
+ProjectCard,project-card-stats,src/components/projects/ProjectCard.jsx,✅ Conforme,Ajouté (wrapper)
+ProjectCard,project-card-creator,src/components/projects/ProjectCard.jsx,✅ Conforme,Ajouté (wrapper)
+ProjectCard,project-card-link,src/components/projects/ProjectCard.jsx,✅ Conforme,
+Détail Projet,project-detail-page,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-loading,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-error,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-back-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-title,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-tagline,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-image,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-description,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-creator,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-stats,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-donations,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-share-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-donate-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-donation-modal,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-login-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-manage-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Détail Projet,project-detail-view-donations-button,src/pages/public/ProjectDetailPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,create-project-page,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,edit-project-page,src/pages/creator/EditProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-title-input,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-tagline-input,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-description-input,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-goal-input,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-deadline-input,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-image-upload,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-image-preview,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-save-button,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-publish-button,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-cancel-button,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-delete-button,src/pages/creator/EditProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-error,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+CRUD Projets,project-form-success,src/pages/creator/CreateProjectPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Mes Projets,my-projects-page,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Ajouté
+Mes Projets,my-projects-create-button,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Ajouté
+Mes Projets,my-projects-filter-tabs,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Ajouté (wrapper)
+Mes Projets,my-projects-grid,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Corrigé (était projects-grid)
+Mes Projets,my-project-card,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Corrigé (était project-card)
+Mes Projets,my-project-card-edit-button,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Corrigé (était edit-project-button)
+Mes Projets,my-project-card-view-button,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Corrigé (était view-project-button)
+Mes Projets,my-projects-empty,src/pages/creator/MyProjectsPage.jsx,✅ Conforme,Ajouté
+Dons - Formulaire,donation-form,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-amount-input,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-message-input,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-preview,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-submit-button,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-cancel-button,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-form-error,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-confirm-modal,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-confirm-amount,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-confirm-button,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dons - Formulaire,donation-success-message,src/components/donations/DonationForm.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dashboard Créateur,creator-dashboard-page,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Ajouté
+Dashboard Créateur,creator-dashboard-welcome,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Ajouté
+Dashboard Créateur,creator-dashboard-stats,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était dashboard-stats-grid)
+Dashboard Créateur,creator-dashboard-stat-total,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était stat-total-projects)
+Dashboard Créateur,creator-dashboard-stat-active,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était stat-active-projects)
+Dashboard Créateur,creator-dashboard-stat-collected,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était stat-total-collected)
+Dashboard Créateur,creator-dashboard-stat-donors,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était stat-total-donors)
+Dashboard Créateur,creator-dashboard-recent-projects,src/pages/creator/CreatorDashboardPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dashboard Créateur,creator-dashboard-quick-actions,src/pages/creator/CreatorDashboardPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dashboard Créateur,creator-dashboard-drafts-alert,src/pages/creator/CreatorDashboardPage.jsx,✅ Conforme,Corrigé (était drafts-alert)
+Dashboard Créateur,creator-dashboard-empty,src/pages/creator/CreatorDashboardPage.jsx,⚠️ À vérifier,Non vérifié dans cette session
+Dashboard Admin,admin-dashboard-page,src/pages/AdminDashboardPage.jsx,✅ Conforme,Ajouté
+Dashboard Admin,admin-dashboard-stats,src/pages/AdminDashboardPage.jsx,✅ Conforme,Ajouté
+Dashboard Admin,admin-nav-projects,src/pages/AdminDashboardPage.jsx,✅ Conforme,Existait déjà
+Dashboard Admin,admin-nav-users,src/pages/AdminDashboardPage.jsx,✅ Conforme,Existait déjà
+Admin Projets,admin-projects-page,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Projets,admin-projects-search,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Projets,admin-projects-filter,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Projets,admin-projects-table,src/pages/AdminProjectsPage.jsx,✅ Conforme,Existait déjà
+Admin Projets,admin-project-row,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Projets,admin-project-status-select,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Projets,admin-project-delete-button,src/pages/AdminProjectsPage.jsx,✅ Conforme,Ajouté
+Admin Utilisateurs,admin-users-page,src/pages/AdminUsersPage.jsx,✅ Conforme,Ajouté
+Admin Utilisateurs,admin-users-search,src/pages/AdminUsersPage.jsx,❌ Manquant,Fonctionnalité non implémentée
+Admin Utilisateurs,admin-users-table,src/pages/AdminUsersPage.jsx,✅ Conforme,Existait déjà
+Admin Utilisateurs,admin-user-row,src/pages/AdminUsersPage.jsx,✅ Conforme,Ajouté
+Admin Utilisateurs,admin-user-role-select,src/pages/AdminUsersPage.jsx,✅ Conforme,Ajouté
+Admin Utilisateurs,admin-user-status-toggle,src/pages/AdminUsersPage.jsx,✅ Conforme,Ajouté

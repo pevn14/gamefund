@@ -62,7 +62,7 @@ export default function LoginPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
-                <div data-testid="error-message" className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+                <div data-testid="login-error-message" className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
                   {error}
                 </div>
               )}
@@ -103,6 +103,7 @@ export default function LoginPage() {
                 Pas encore de compte ?{' '}
                 <Link
                   to="/signup"
+                  data-testid="login-signup-link"
                   className="text-primary-600 hover:text-primary-700 font-medium"
                 >
                   S'inscrire

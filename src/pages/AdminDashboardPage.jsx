@@ -34,7 +34,7 @@ export function AdminDashboardPage() {
 
   return (
     <MainLayout>
-      <Container className="py-8">
+      <Container data-testid="admin-dashboard-page" className="py-8">
       {/* Header */}
       <div className="mb-8">
         <h1
@@ -65,7 +65,7 @@ export function AdminDashboardPage() {
           ))}
         </div>
       ) : (
-        <div className="mb-8">
+        <div data-testid="admin-dashboard-stats" className="mb-8">
           <StatsGrid stats={stats} />
         </div>
       )}
