@@ -116,11 +116,12 @@ export function CreateProjectPage() {
 
     try {
       // Créer le projet en mode draft
+      const goalAmount = parseFloat(formData.goal_amount)
       const projectData = {
         creator_id: user.id,
         title: formData.title.trim() || 'Brouillon sans titre',
         description: formData.description.trim() || 'Description à compléter',
-        goal_amount: parseFloat(formData.goal_amount) || 100,
+        goal_amount: (!isNaN(goalAmount) && goalAmount > 0) ? goalAmount : 100,
         deadline: formData.deadline || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
         status: 'draft',
         image_url: '' // Chaîne vide au lieu de null
@@ -169,11 +170,12 @@ export function CreateProjectPage() {
 
     try {
       // Créer le projet en mode draft d'abord
+      const goalAmount = parseFloat(formData.goal_amount)
       const projectData = {
         creator_id: user.id,
         title: formData.title.trim(),
         description: formData.description.trim(),
-        goal_amount: parseFloat(formData.goal_amount),
+        goal_amount: goalAmount,
         deadline: formData.deadline,
         status: 'draft',
         image_url: '' // Chaîne vide au lieu de null

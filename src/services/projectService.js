@@ -122,8 +122,10 @@ export async function createProject(projectData) {
   // Mapper les noms de colonnes du frontend vers la base de données
   const dbData = {
     ...projectData,
-    goal_amount: projectData.goal,
-    deadline: projectData.end_date
+    // Accepter goal ou goal_amount (pour compatibilité)
+    goal_amount: projectData.goal_amount || projectData.goal,
+    // Accepter deadline ou end_date (pour compatibilité)
+    deadline: projectData.deadline || projectData.end_date
   }
 
   // Supprimer les propriétés du frontend qui n'existent pas en base
