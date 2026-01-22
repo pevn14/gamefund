@@ -172,6 +172,7 @@ export function CreatorDashboardPage() {
                 />
               </div>
             )}
+          </div>
 
           {/* Sidebar (1/3) */}
           <div className="lg:col-span-1 space-y-6">

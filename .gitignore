@@ -25,3 +25,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Dossiers temporaires Supabase CLI
+supabase/.temp/
+supabase/.branches/
+supabase/snippets/
