@@ -1,11 +1,11 @@
-export function Skeleton({ className = '', variant = 'default' }) {
+export function Skeleton({ className = '', variant = 'default', ...props }) {
   const variants = {
     default: 'skeleton',
     circle: 'skeleton rounded-full',
     text: 'skeleton h-4 rounded-sm',
   }
 
-  return <div className={`${variants[variant]} ${className}`} />
+  return <div className={`${variants[variant]} ${className}`} {...props} />
 }
 
 export function SkeletonCard() {

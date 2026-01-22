@@ -6,7 +6,8 @@ export function ProgressBar({
   size = 'md',
   variant = 'primary',
   animated = false,
-  className = ''
+  className = '',
+  ...props
 }) {
   const percentage = Math.min((value / max) * 100, 100)
 
@@ -24,7 +25,7 @@ export function ProgressBar({
   }
 
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full ${className}`} {...props}>
       {showLabel && (
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-gray-700">Progression</span>

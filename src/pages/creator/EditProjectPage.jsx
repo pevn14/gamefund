@@ -54,7 +54,7 @@ export function EditProjectPage() {
     }
 
     try {
-      const { project: projectData, error } = await getProjectById(id)
+      const { data: projectData, error } = await getProjectById(id)
 
       if (error) throw error
 
@@ -160,7 +160,7 @@ export function EditProjectPage() {
   }
 
   // Sauvegarder les modifications
-  const handleSave = async () => {
+  const handleSave = async ({ silent = false } = {}) => {
     if (!validateForm()) {
       alert('Veuillez corriger les erreurs avant de sauvegarder')
       return
@@ -196,7 +196,9 @@ export function EditProjectPage() {
 
       if (error) throw error
 
-      alert('Projet mis à jour avec succès !')
+      if (!silent) {
+        alert('Projet mis à jour avec succès !')
+      }
 
       // Recharger le projet
       await loadProject()
@@ -222,8 +224,8 @@ export function EditProjectPage() {
     setSaving(true)
 
     try {
-      // Sauvegarder d'abord les modifications
-      await handleSave()
+      // Sauvegarder d'abord les modifications (sans alert)
+      await handleSave({ silent: true })
 
       // Puis publier
       const { error } = await publishProject(id)

@@ -5,7 +5,8 @@ export function Avatar({
   alt = 'Avatar',
   size = 'md',
   fallback,
-  className = ''
+  className = '',
+  ...props
 }) {
   const sizes = {
     xs: 'w-6 h-6',
@@ -27,7 +28,7 @@ export function Avatar({
 
   if (!src) {
     return (
-      <div className={`${sizes[size]} rounded-full bg-gray-200 flex items-center justify-center text-gray-500 ${className}`}>
+      <div className={`${sizes[size]} rounded-full bg-gray-200 flex items-center justify-center text-gray-500 ${className}`} {...props}>
         {fallback || <User size={iconSizes[size]} />}
       </div>
     )
@@ -38,6 +39,7 @@ export function Avatar({
       src={src}
       alt={alt}
       className={`${sizes[size]} rounded-full object-cover border-2 border-gray-200 ${className}`}
+      {...props}
     />
   )
 }

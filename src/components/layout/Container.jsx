@@ -1,4 +1,4 @@
-export function Container({ children, size = 'default', className = '' }) {
+export function Container({ children, size = 'default', className = '', ...props }) {
   const sizes = {
     sm: 'max-w-3xl',
     default: 'max-w-7xl',
@@ -7,7 +7,7 @@ export function Container({ children, size = 'default', className = '' }) {
   }
 
   return (
-    <div className={`${sizes[size]} mx-auto px-6 ${className}`}>
+    <div className={`${sizes[size]} mx-auto px-6 ${className}`} {...props}>
       {children}
     </div>
   )
