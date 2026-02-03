@@ -189,6 +189,7 @@ WHERE schemaname = 'public';
 
 | Date | Modification |
 |------|--------------|
+| 2026-01-27 | **Correctif critique** : Ajout des politiques UPDATE et DELETE manquantes sur `donations` pour les donateurs. Avant ce fix, les appels `.update()` et `.delete()` réussissaient silencieusement sans effet (0 lignes affectées) |
 | 2026-01-16 | Migration de toutes les politiques admin (`profiles`, `projects`, `donations`) vers `public.is_admin()` |
 | 2026-01-16 | Création de `is_admin()` pour éviter la récursion infinie sur `profiles` |
 | Initial | Création des politiques de base |
