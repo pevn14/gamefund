@@ -1,0 +1,7 @@
+project_id = "yenatijeznplmvvymats"
+
+[functions.projects]
+verify_jwt = false
+
+[functions.donations]
+verify_jwt = false
